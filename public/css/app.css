@@ -1,0 +1,200 @@
+/* Reset para algunos navegadores */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#container-nav{
+    margin-left: 20px;
+}
+
+
+body::before {
+    content: "";
+    position: fixed; /* Ajusta al tamaño de la ventana */
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-image: url('../img/tipo-empresas.jpg');
+    filter: brightness(70%); /* oscurece la imagen */
+    z-index: -1; /* Mueve el fondo detrás del contenido */
+}
+
+.overlay-text {
+    position: absolute;
+    top: 50%; /* Centra el texto verticalmente */
+    left: 70%; /* Centra el texto horizontalmente */
+    transform: translate(-50%, -50%); /* Centrado perfecto */
+    color: white;
+    font-size: 2em;
+    font-weight: bold;
+    z-index: 1; /* Asegura que el texto esté encima de todo */
+}
+
+#app {
+    background: #f5f6f5;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    padding: 20px;
+    border-radius: 8px;
+    width: 650px;
+    height: 1000px;
+    
+}
+
+h1, h2 {
+    font-weight: 300;
+}
+
+#Nombre-app {
+    font-size: 3.5em;
+    color: #168021; /* color de bootstrap primary */
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    font-weight: bolder;
+    margin-top: 2em;
+    border-color: #0b652c;
+
+}
+
+#login {
+    font-size: 1.5em;
+    color: #168021;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+
+}
+
+#img-login {
+    display: block;
+    margin: 20px auto;
+    width: 20%; /* puedes ajustar según tus necesidades */
+}
+
+/* Estilo para el botón */
+#submit{
+    background-color: #1d3e07;
+    border-color: #0b652c;
+    color: #ffffff;
+    font-size: 1.1em;
+    padding: 10px 20px;
+    transition: background-color 0.3s ease;
+}
+
+#submit:hover {
+    background-color: #98a59e;
+    border-color: #6ac68a;
+}
+
+.form-control {
+    border-radius: 5px;
+    border: 1px solid #a29d9d;
+    padding: 10px;
+    font-size: 1em;
+}
+
+/* Espaciado entre elementos del formulario */
+.form-group {
+    margin-bottom: 20px;
+}
+
+#pie-login{
+    bottom:0px;
+    position:fixed;
+    width: 40%;
+
+}
+
+#pie1{
+    color: #168021;
+}
+
+#pie-login > a{
+color:#6ac68a;
+font-size: medium;
+}
+
+
+
+#container-edit {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+#container-edit >h3 {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+#container-edit >table {
+    width: 100%;
+    margin-bottom: 20px;
+    border-collapse: collapse;
+}
+
+.table th, .table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+.table th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.table tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.alert-success {
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.btn-primary {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #45a049;
+}
+
+.btn-danger {
+    background-color: #f44336;
+    color: white;
+}
+
+.btn-danger:hover {
+    background-color: #da190b;
+}
+
+.table input {
+    border: none;
+    padding: 5px;
+    outline: none;
+    width: 100%;
+}
+
+.table input:focus {
+    border: 1px solid #4CAF50;
+}
+
+/*Reset*/
+
+#reset-email{
+    margin-top: 1%;
+}
