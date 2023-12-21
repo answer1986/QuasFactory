@@ -131,10 +131,11 @@ Route::post('register', [RegisterController::class, 'register'])->name('register
         Route::get('/inventario', [InventarioController::class, 'index'])->name('inventario.index');
         Route::post('/inventario/iniciar', [InventarioController::class, 'iniciarInventario'])->name('inventario.iniciar');
         Route::post('/inventario/procesar', [InventarioController::class, 'procesar'])->name('inventario.procesar');
+
         Route::get('/inventario/validar-codigo', [InventarioController::class, 'validarCodigoBarra'])->name('inventario.validarCodigo')->withoutMiddleware(['auth']);
         Route::post('/inventario/finalizar', [InventarioController::class, 'finalizarInventario'])->name('inventario.finalizar');
         
-        
+
     });
 
         //Producto terminado

@@ -8,20 +8,54 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         body {
-            background: url('ruta-a-tu-imagen-de-fondo') no-repeat center center fixed; 
-            background-size: cover;
-            overflow-x: hidden; 
+            background-color: #f4f7f6; /* Un fondo más suave */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         .card {
-            background-color: rgba(255, 255, 255, 0.8); 
             margin-top: 20px;
+            border: none; /* Eliminar bordes predeterminados */
+            border-radius: 10px; /* Bordes redondeados para las tarjetas */
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Sombra suave para profundidad */
+            overflow: hidden; /* Asegurar que el contenido no desborde */
         }
         .card-header {
-            font-weight: bold;
+            font-size: 1.25rem;
+            font-weight: 600; /* Negrita para el encabezado */
+            background-color: #007bff; /* Color de fondo para el encabezado de la tarjeta */
+            color: white; /* Color de texto para el encabezado de la tarjeta */
         }
-        .metric-card {
-            min-height: 150px; 
+        .card-body {
+            padding: 20px;
+            height: calc(100vh - 210px); /* Altura para mantener todo en una vista sin desplazamiento */
+            overflow-y: auto; /* Habilitar el desplazamiento vertical si el contenido es demasiado largo */
         }
+        .list-group-item {
+            border: none; /* Eliminar bordes de los items */
+            padding: 15px 20px; /* Espaciado interno más amplio */
+        }
+        .list-group-item:not(:last-child) {
+            border-bottom: 1px solid #ececec; /* Línea divisoria suave entre items */
+        }
+        .pagination {
+            justify-content: center; /* Centrar los enlaces de paginación */
+        }
+        /* Personalización de la paginación para que se integre mejor */
+        .pagination .page-link {
+            color: #007bff; /* Color del texto de los enlaces */
+            background-color: #fff; /* Fondo de los enlaces */
+            border: 1px solid #dee2e6; /* Borde de los enlaces */
+        }
+        .pagination .active .page-link {
+            color: #fff; /* Color del texto para el item activo */
+            background-color: #007bff; /* Fondo para el item activo */
+            border-color: #007bff; /* Borde para el item activo */
+        }
+        .pagination > li > a .fa, 
+        .pagination > li > a .fas, 
+        .pagination > li > span .fa, 
+        .pagination > li > span .fas {
+        font-size: 0.5rem; /* Puedes ajustar esto según sea necesario */
+    }
     </style>
 </head>
 <body>
@@ -41,14 +75,17 @@
                 <div class="card-body">
                     <ul class="list-group list-group-flush">
                         @forelse ($productosTerminados as $producto)
-                            <li class="list-group-item">{{ $producto->codigo }} - {{ $producto->descripcion }} - Cantidad: {{ $producto->cantidad }}</li>
+                            <li class="list-group-item">{{ $producto->producto_id }} - Observaciones: {{ $producto->observaciones }} - Unidades: {{ $producto->unidades }}
+                            </li>
                         @empty
                             <li class="list-group-item">No hay productos terminados para mostrar.</li>
                         @endforelse
-                    </ul>
+                    </ul> 
+                    {{ $productosTerminados->links() }}                   
                 </div>
             </div>
         </div>
+        
 
         <!-- Materias Primas -->
         <div class="col-12 col-lg-6 mb-4">
@@ -62,6 +99,7 @@
                             <li class="list-group-item">No hay materias primas para mostrar.</li>
                         @endforelse
                     </ul>
+                    {{ $materiasPrimas->links() }}
                 </div>
             </div>
         </div>

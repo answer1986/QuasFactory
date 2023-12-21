@@ -9,8 +9,10 @@ class PublicController extends Controller
 {
     public function mostrarProductos()
     {
-        $productosTerminados = ProductoTerminado::all();
-        $materiasPrimas = IngresoMateriaPrima::all();
+
+    $productosTerminados = ProductoTerminado::paginate(15); // Ejemplo para 10 items por página
+    $materiasPrimas = IngresoMateriaPrima::paginate(15);
+
 
         return view('status', compact('productosTerminados', 'materiasPrimas'));
     }

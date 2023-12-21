@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Inventario;
 use App\Models\IngresoMateriaPrima;
+use App\Models\ProductoTerminado;
 use Exception;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -32,18 +33,38 @@ class InventarioController extends Controller
         try {
             $ingresoMateriaPrima = IngresoMateriaPrima::where('barcode_value', $barcode)->firstOrFail();
 
-            $inventario = new Inventario();
-            $inventario->ingreso_materia_prima_id = $ingresoMateriaPrima->id;
-            $inventario->cantidad_sacos = $request->input('cantidad_sacos');
-            $inventario->fecha_inicio = Session::get('fecha_inicio_inventario', $request->input('fecha_inicio'));
-            $inventario->save();
+            $productoTerminados = ProductoTerminados::where('codigo_producto', $barcode)->first(); // nuevo
 
-            $this->agregarAlResumen($inventario);
+            if ($ingresoMateriaPrima) {
 
-            return back()->with('success', 'Inventario actualizado correctamente.');
+                $inventario = new Inventario();
+                $inventario->ingreso_materia_prima_id = $ingresoMateriaPrima->id;
+                $inventario->cantidad_sacos = $request->input('cantidad_sacos');
+                $inventario->fecha_inicio = Session::get('fecha_inicio_inventario', $request->input('fecha_inicio'));
+                $inventario->save();
+
+                $this->agregarAlResumen($inventario);
+
+                return back()->with('success', 'Inventario actualizado correctamente.');
+            
+            } elseif ($productoTerminado) {
+                // Lógica para manejar producto terminado
+                $inventario = new Inventario();
+                $inventario->producto_terminado_id = $productoTerminado->id; // Asegúrate de que esta columna exista en tu tabla de Inventario
+                $inventario->cantidad_sacos = $request->input('cantidad_sacos');
+                $inventario->fecha_inicio = Session::get('fecha_inicio_inventario', now()->toDateString());
+                $inventario->save();
+    
+                $this->agregarAlResumen($inventario);
+    
+                return back()->with('success', 'Inventario actualizado correctamente para producto terminado.');
+            } else {
+                throw new ModelNotFoundException('El código de barras no coincide con materias primas ni productos terminados.');
+            }
+    
         } catch (ModelNotFoundException $e) {
             Log::error('Error de validación: Código de barras no encontrado.', ['barcode' => $barcode]);
-            return back()->with('error', 'El código de barras no existe en la base de datos.');
+            return back()->with('error', 'El código de barras no coincide con materias primas ni productos terminados.');
         } catch (Exception $e) {
             Log::error('Error al procesar el inventario.', ['error' => $e->getMessage()]);
             return back()->with('error', 'Se produjo un error al procesar el inventario. Por favor, inténtalo de nuevo.');
@@ -87,14 +108,24 @@ class InventarioController extends Controller
     return back()->with('success', 'Inventario finalizado correctamente.');
 
     }
-
-    public function validarCodigoBarra(Request $request)
+   /* public function validarCodigoBarra(Request $request)
     {
         $barcode = $request->query('codigo_barra');
         $existe = IngresoMateriaPrima::where('barcode_value', $barcode)->exists();    
         return response()->json(['existe' => $existe]);
-    }
-    
+    }*/
 
-    
+    public function validarCodigoBarra(Request $request)
+{
+    $barcode = $request->query('codigo_barra');
+    $existeMateriaPrima = IngresoMateriaPrima::where('barcode_value', $barcode)->exists();
+    $existeProductoTerminado = ProductoTerminado::where('codigo_producto', $barcode)->exists();
+
+    return response()->json([
+        'existeMateriaPrima' => $existeMateriaPrima,
+        'existeProductoTerminado' => $existeProductoTerminado
+    ]);
+}
+
+
 }

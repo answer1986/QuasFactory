@@ -249,69 +249,63 @@
 
 
 </script>
-
 <script>
     const baseUrl = '{{ config("app.url") }}'; 
 
     let inventario = [];
 
     document.addEventListener('DOMContentLoaded', function() {
-    const agregarBtn = document.getElementById('agregar-inventario');
-    const listaInventario = document.getElementById('lista-inventario');
-    const finalizarBtn = document.getElementById('finalizar-inventario');
+        const agregarBtn = document.getElementById('agregar-inventario');
+        const listaInventario = document.getElementById('lista-inventario');
+        const finalizarBtn = document.getElementById('finalizar-inventario');
 
-    agregarBtn.addEventListener('click', function() {
-        const codigo = document.getElementById('codigo_barra').value;
-        const cantidad = document.getElementById('cantidad_sacos').value;
+        agregarBtn.addEventListener('click', function() {
+            const codigo = document.getElementById('codigo_barra').value;
+            const cantidad = document.getElementById('cantidad_sacos').value;
 
-        if (codigo && cantidad) {
-            if ({{ Auth::check() }}) {
-                fetch(`${baseUrl}inventario/validar-codigo?codigo_barra=${encodeURIComponent(codigo)}`, {
-                    method: 'GET',
-                    headers: {
-                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-                    }
-                })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Error en la respuesta del servidor. Estado HTTP: ' + response.status);
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    if (data.existe) {
-                        const nuevoItem = { codigo: codigo, cantidad: cantidad };
-                        inventario.push(nuevoItem);
+            if (codigo && cantidad) {
+                if ({{ Auth::check() }}) {
+                    fetch(`${baseUrl}inventario/validar-codigo?codigo_barra=${encodeURIComponent(codigo)}`, {
+                        method: 'GET',
+                        headers: {
+                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                        }
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.existeMateriaPrima || data.existeProductoTerminado) {
+                            const nuevoItem = { codigo: codigo, cantidad: cantidad };
+                            inventario.push(nuevoItem);
 
-                        const nuevoElementoLista = document.createElement('li');
-                        nuevoElementoLista.textContent = `${cantidad} sacos - Código: ${codigo}`;
-                        listaInventario.appendChild(nuevoElementoLista);
+                            const nuevoElementoLista = document.createElement('li');
+                            nuevoElementoLista.textContent = `${cantidad} sacos - Código: ${codigo}`;
+                            listaInventario.appendChild(nuevoElementoLista);
 
-                        document.getElementById('codigo_barra').value = '';
-                        document.getElementById('cantidad_sacos').value = '';
-                    } else {
-                        alert('El código de barras no existe en la base de datos, debes crearlo previamente.');
-                    }
-                })
-                .catch(error => {
-                    console.error('Error en la solicitud:', error);
-                    alert('Ocurrió un error. Por favor, revisa la consola para más detalles.');
-                });
-            } else {
-                // Redirigir al usuario a la página de inicio de sesión
-                window.location.href = '{{ route("login.form") }}';
+                            document.getElementById('codigo_barra').value = '';
+                            document.getElementById('cantidad_sacos').value = '';
+                        } else {
+                            alert('El código de barras no existe en la base de datos, debes crearlo previamente.');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error en la solicitud:', error);
+                        alert('Ocurrió un error. Por favor, revisa la consola para más detalles.');
+                    });
+                } else {
+                    // Redirigir al usuario a la página de inicio de sesión
+                    window.location.href = '{{ route("login.form") }}';
+                }
             }
-        }
-    });
+        });
 
-    finalizarBtn.addEventListener('click', function() {
-        const formularioFinalizar = document.getElementById('formulario-finalizar');
-        const inputDatosInventario = document.getElementById('datos-inventario');
-        
-        inputDatosInventario.value = JSON.stringify(inventario);
-        formularioFinalizar.submit();
+        finalizarBtn.addEventListener('click', function() {
+            const formularioFinalizar = document.getElementById('formulario-finalizar');
+            const inputDatosInventario = document.getElementById('datos-inventario');
+            
+            inputDatosInventario.value = JSON.stringify(inventario);
+            formularioFinalizar.submit();
+        });
     });
-});
 </script>   
 
 <script>
@@ -321,6 +315,8 @@
         });
     }, 4000);
 </script>
+
+
 
 </body>
 </html>
