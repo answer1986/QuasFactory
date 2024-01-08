@@ -274,11 +274,13 @@
                     .then(response => response.json())
                     .then(data => {
                         if (data.existeMateriaPrima || data.existeProductoTerminado) {
-                            const nuevoItem = { codigo: codigo, cantidad: cantidad };
+                            // Modificación: Obtener el valor antes del primer punto y coma
+                            const codigoBarrasValidado = codigo.split(';')[0];
+                            const nuevoItem = { codigo: codigoBarrasValidado, cantidad: cantidad };
                             inventario.push(nuevoItem);
 
                             const nuevoElementoLista = document.createElement('li');
-                            nuevoElementoLista.textContent = `${cantidad} sacos - Código: ${codigo}`;
+                            nuevoElementoLista.textContent = `${cantidad} sacos - Código: ${codigoBarrasValidado}`;
                             listaInventario.appendChild(nuevoElementoLista);
 
                             document.getElementById('codigo_barra').value = '';
@@ -306,7 +308,9 @@
             formularioFinalizar.submit();
         });
     });
-</script>   
+</script>
+
+
 
 <script>
     window.setTimeout(function() {

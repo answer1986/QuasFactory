@@ -14,6 +14,10 @@ class Inventario extends Model
         'cantidad_sacos',
         'fecha_inicio',
         'fecha_fin',
+        'turno',
+        'num_maquina',
+        'operario',
+        'nueva_fecha',
     ];
 
     public function ingresoMateriaPrima()
