@@ -18,8 +18,7 @@ use App\Http\Controllers\MaquinaReservaController;
 use App\Http\Controllers\InventarioController;
 use App\Http\Controllers\ProductoTerminadoController;
 use App\Http\Controllers\PublicController;
-
-
+use App\Http\Controllers\PrdController;
 
 
 
@@ -34,6 +33,9 @@ Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
 //Status
 Route::get('status', [PublicController::class, 'mostrarProductos']);
 
+
+// Ruta pública para mostrar información en la vista 'prd'
+Route::get('/prd', [PrdController::class, 'mostrarImagenPublica'])->name('mostrar-imagen');
 
 
 //recover
@@ -166,7 +168,15 @@ Route::post('register', [RegisterController::class, 'register'])->name('register
         Route::get('/programacion/data', [ProgramacionController::class, 'getEvents'])->name('calendario.data');    
         Route::resource('maquina_reservas', MaquinaReservaController::class);     
         Route::get('ingreso/{ingreso}', [OrdenDeTrabajoController::class, 'show'])->name('ingreso.show');
+
+        
+      //  Route::post('/cargar-informacion', [PrdController::class, 'cargarInformacion'])->name('cargar');
+        Route::get('/cargar-informacion', [PrdController::class, 'mostrarFormularioCarga'])->name('mostrar-formulario-carga');    
+        Route::post('/cargar-informacion', [PrdController::class, 'cargarImagen'])->name('cargar-imagen');
+
        
     });
+
+
     
  });
