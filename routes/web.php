@@ -170,9 +170,15 @@ Route::post('register', [RegisterController::class, 'register'])->name('register
         Route::get('ingreso/{ingreso}', [OrdenDeTrabajoController::class, 'show'])->name('ingreso.show');
 
         
-      //  Route::post('/cargar-informacion', [PrdController::class, 'cargarInformacion'])->name('cargar');
-        Route::get('/cargar-informacion', [PrdController::class, 'mostrarFormularioCarga'])->name('mostrar-formulario-carga');    
+
+        Route::get('/cargar-informacion', [PrdController::class, 'mostrarFormularioCarga'])->name('mostrar-formulario-carga');
+        
         Route::post('/cargar-informacion', [PrdController::class, 'cargarImagen'])->name('cargar-imagen');
+        
+        Route::post('/cargar-imagenes', [PrdController::class, 'cargarImagenes'])->name('cargar-imagenes');
+        
+        Route::get('/prd', [PrdController::class, 'mostrarImagenPublica'])->name('mostrar-imagen-publica');
+        
 
        
     });
