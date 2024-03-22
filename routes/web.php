@@ -179,6 +179,8 @@ Route::post('register', [RegisterController::class, 'register'])->name('register
         
         Route::get('/prd', [PrdController::class, 'mostrarImagenPublica'])->name('mostrar-imagen-publica');
         
+        Route::post('/configurar-tiempo', [PrdController::class, 'guardarTiempo'])->name('configurar-tiempo');
+
 
        
     });

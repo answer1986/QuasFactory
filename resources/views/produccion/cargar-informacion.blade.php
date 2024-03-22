@@ -12,6 +12,9 @@
 
         <h3>Seccion Inferior</h3>
         <p>En la segunda parte puedes cargar hasta 10 fotos con un maximo de 5mb</p>
+        <br>
+        <h3>Seccion Temporizador</h3>
+        <p>En la tercera parte debes definir el tiempo de cambio de imagen antes de cargar las imagenes a mostrar</p>
     </div>
 </div>
 @endsection
@@ -41,7 +44,15 @@
    <input style="margin-left:2%" type="file" name="imagenes[]" accept="image/*" multiple>
    <button type="submit">Subir Imágenes</button>
  </form>
- 
+<br>
+<br>
+
+<h2 style="margin-left:2%">Temporizador</h2>
+<form action="{{ route('configurar-tiempo') }}" method="post">
+    @csrf
+    <input style="margin-left:2%" type="number" name="tiempoCambio" placeholder="Tiempo en minutos" required>
+    <button type="submit">Configurar Tiempo</button>
+</form>
 
 
  

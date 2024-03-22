@@ -12,7 +12,7 @@ class PrdController extends Controller
     public function cargarImagen(Request $request)
     {
         $request->validate([
-            'imagen' => 'required|image', // Asegúrate de que el nombre del input es 'imagen'
+            'imagen' => 'required|image', 
         ]);
 
         $archivo = $request->file('imagen');
@@ -23,18 +23,14 @@ class PrdController extends Controller
         $imagen->nombre_archivo = $nombreArchivo;
         $imagen->save();
 
-        // Corregido para redirigir a una ruta que se espera esté definida en el archivo de rutas
         return redirect()->route('mostrar-imagen-publica');
     }
 
     public function mostrarImagenPublica()
     {
-        // Obtiene la última imagen subida
         $imagen = Imagen::latest()->first();
-        // Obtiene las últimas 10 imágenes subidas
         $imagenes = Imagen::latest()->take(10)->get();
 
-        // Corregido para pasar correctamente ambas variables a la vista
         return view('prd', compact('imagen', 'imagenes'));
     }
 
@@ -60,9 +56,18 @@ class PrdController extends Controller
             $imagen->save();
         }
 
-        // Corregido para redirigir a una ruta que se espera esté definida en el archivo de rutas
         return redirect()->route('mostrar-imagen-publica');
     }
+
+    public function guardarTiempo(Request $request)
+    {
+    $tiempoCambioMilisegundos = $request->tiempoCambio * 60000;
+
+    $request->session()->put('tiempoCambio', $tiempoCambioMilisegundos);
+
+    return back()->with('success', 'Tiempo de cambio configurado correctamente.');
+    }
+
 
     
 }

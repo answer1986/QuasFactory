@@ -58,8 +58,9 @@
     <script>
     let imagenes = document.querySelectorAll('.full-screen-image');
     let indiceActual = 0;
+    let tiempoCambioMinutos = {{ $tiempoCambio ?? 0.5 }}; 
+    let tiempoCambioMilisegundos = tiempoCambioMinutos * 60 * 1000; 
 
-    // Hace la primera imagen visible al cargar
     window.onload = function() {
         imagenes[indiceActual].classList.add('active');
         imagenes[indiceActual].style.opacity = '1';
@@ -76,25 +77,23 @@
     });
 
     function cambiarImagen() {
-        // Oculta todas las imágenes
         imagenes.forEach(img => {
             img.classList.remove('active');
             img.style.opacity = '0';
         });
 
-        // Muestra la imagen actual
         imagenes[indiceActual].classList.add('active');
         setTimeout(() => { imagenes[indiceActual].style.opacity = '1'; }, 100);
     }
 
     if (imagenes.length > 0) {
-        // Inicia la rotación automática de las imágenes
         setInterval(function() {
             indiceActual = (indiceActual + 1) % imagenes.length;
             cambiarImagen();
-        }, 5000); // Cambia cada 5 segundos
+        }, tiempoCambioMilisegundos); 
     }
 </script>
+
 
 </body>
 </html>
