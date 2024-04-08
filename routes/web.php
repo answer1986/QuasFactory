@@ -19,6 +19,8 @@ use App\Http\Controllers\InventarioController;
 use App\Http\Controllers\ProductoTerminadoController;
 use App\Http\Controllers\PublicController;
 use App\Http\Controllers\PrdController;
+use App\Http\Controllers\DespachoController;
+
 
 
 
@@ -156,6 +158,15 @@ Route::post('register', [RegisterController::class, 'register'])->name('register
         });
 
 
+
+        Route::prefix('bodega')->group(function () {
+            Route::get('despacho', function () {
+                return view('bodega.despacho');
+            })->name('bodega.despacho');
+         
+            Route::get('/despacho/create', [DespachoController::class, 'create'])->name('despacho.create');    
+            Route::post('/despacho/store', [DespachoController::class, 'store'])->name('rebajar.store');
+        });    
     
     //ingreso a producion
     Route::prefix('produccion')->group(function () {

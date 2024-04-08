@@ -40,7 +40,7 @@
                                         <a class="dropdown-item" href="#">Balance</a>
                                         <a class="dropdown-item" href="{{url('bodega/inventario') }}">Inventario</a>
                                         <a class="dropdown-item" href="#">Almacenaje</a>
-                                        <a class="dropdown-item" href="#">Despacho</a>
+                                        <a class="dropdown-item" href="{{url('bodega/despacho') }}">Despacho</a>
                                         <a class="dropdown-item" href="{{url('bodega/buscador') }}">Buscador codigo barras</a>
 
 

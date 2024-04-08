@@ -15,27 +15,27 @@ class ProductoTerminadoController extends Controller
         // Valida los datos del formulario
         $request->validate([
             'numero_oc' => 'required|string',
-            'kilos' => 'required|numeric',
             'producto_id' => 'required|string',
             'unidades' => 'required|integer',
             'fecha' => 'required|date',
-            'hora' => 'required|date_format:H:i',
             'codigo_producto' => 'required|string',
             'observaciones' => 'nullable|string',
-            'porcentaje_avance' => 'required|numeric',
         ]);
+        
+        /* -- quitado javiera -->
+        /**   'hora' => 'date_format:H:i',
+         *    'porcentaje_avance' => 'numeric',
+         *    'kilos' => 'numeric',
+         */
 
         // Crea un nuevo producto terminado con los datos del formulario
         $productoTerminado = new ProductoTerminado([
             'numero_oc' => $request->input('numero_oc'),
-            'kilos' => $request->input('kilos'),
             'producto_id' => $request->input('producto_id'),
             'unidades' => $request->input('unidades'),
             'fecha' => $request->input('fecha'),
-            'hora' => $request->input('hora'),
             'codigo_producto' => $request->input('codigo_producto'),
             'observaciones' => $request->input('observaciones'),
-            'porcentaje_avance' => $request->input('porcentaje_avance'),
         ]);
 
         $productoTerminado->save();
@@ -44,7 +44,18 @@ class ProductoTerminadoController extends Controller
         return redirect()->route('producto-terminado.store')->with('success', 'Producto Terminado creado exitosamente!');
     }
 
-    /*
+    /* modificaciones javiera */
+
+    /* 'hora' => $request->input('hora'),
+       'kilos' => $request->input('kilos'),
+       'porcentaje_avance' => $request->input('porcentaje_avance'),
+
+
+
+
+
+
+
 
     public function show($id)
     {

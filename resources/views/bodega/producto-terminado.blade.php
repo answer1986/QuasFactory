@@ -27,8 +27,8 @@
         <input type="text" name="numero_oc" required>
         
         <!-- Cantidad de Kilos -->
-        <label for="kilos">Kilos:</label>
-        <input type="number" name="kilos" required>
+        <!--<label for="kilos">Kilos:</label>  javiera -->
+        <!--<input type="number" name="kilos" required> javiera -->
 
         <!-- Tipo de Producto -->
         <label for="producto_id">Tipo de Producto:</label>
@@ -59,8 +59,8 @@
         <input type="date" name="fecha" required>
 
         <!-- Hora -->
-        <label for="hora">Hora:</label>
-        <input type="time" name="hora" required>
+        <!--<label for="hora">Hora:</label> javiera-->
+        <!--<input type="time" name="hora" required> javiera-->
 
          <!-- Codigo Producto -->
         <label for="codigo_producto">Codigo Producto:</label>
@@ -73,10 +73,10 @@
         <textarea name="observaciones" id="observaciones"  style="width:400px"></textarea>
 
         <!-- Porcentaje de Avance -->
-        <label for="porcentaje_avance">Porcentaje de Avance:</label>
-        <input type="number" name="porcentaje_avance" required>
+        <!-- <label for="porcentaje_avance">Porcentaje de Avance:</label> javiera-->
+        <!-- <input type="number" name="porcentaje_avance" required> javiera-->
         <br>
-        <button type="submit" id="boton-prterminado">Crear OC</button>
+        <button type="submit" id="boton-prterminado">Agregar producto</button>
     </form>
 
 
