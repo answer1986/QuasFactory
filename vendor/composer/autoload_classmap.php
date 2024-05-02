@@ -17,6 +17,7 @@ return array(
     'App\\Http\\Controllers\\ClienteController' => $baseDir . '/app/Http/Controllers/ClienteController.php',
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
     'App\\Http\\Controllers\\DashboardController' => $baseDir . '/app/Http/Controllers/DashboardController.php',
+    'App\\Http\\Controllers\\DespachoController' => $baseDir . '/app/Http/Controllers/DespachoController.php',
     'App\\Http\\Controllers\\HomeController' => $baseDir . '/app/Http/Controllers/HomeController.php',
     'App\\Http\\Controllers\\IngresoMateriaPrimaController' => $baseDir . '/app/Http/Controllers/IngresoMateriaPrimaController.php',
     'App\\Http\\Controllers\\InventarioController' => $baseDir . '/app/Http/Controllers/InventarioController.php',

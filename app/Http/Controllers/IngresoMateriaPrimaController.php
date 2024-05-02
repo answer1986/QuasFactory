@@ -12,7 +12,9 @@ use Intervention\Image\Facades\Image;
 
 class IngresoMateriaPrimaController extends Controller
 {
-  
+    protected $fillable = [
+        'tipo_materia', 'cantidad', 'sacos', 'proveedor', 'fecha_ingreso', 'descripcion', 'imagen_referencia', 'barcode_path', 'barcode_value'
+    ];
 
     public function create()
     {

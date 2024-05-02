@@ -24,7 +24,8 @@
                     <div class="card-header">Rebajar Producto Terminado y Materia Prima</div>
 
                     <div class="card-body">
-                        <form method="POST" action="{ route('rebajar.store') }}"> <!-- { -->
+                        <form method="POST" action="{{ route('rebajar.store') }}">
+
                             @csrf
 
                             <div class="form-group row">

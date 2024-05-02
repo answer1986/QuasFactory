@@ -587,6 +587,7 @@ class ComposerStaticInit72aa12b2532353cbb442db5de8145f99
         'App\\Http\\Controllers\\ClienteController' => __DIR__ . '/../..' . '/app/Http/Controllers/ClienteController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\DashboardController' => __DIR__ . '/../..' . '/app/Http/Controllers/DashboardController.php',
+        'App\\Http\\Controllers\\DespachoController' => __DIR__ . '/../..' . '/app/Http/Controllers/DespachoController.php',
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
         'App\\Http\\Controllers\\IngresoMateriaPrimaController' => __DIR__ . '/../..' . '/app/Http/Controllers/IngresoMateriaPrimaController.php',
         'App\\Http\\Controllers\\InventarioController' => __DIR__ . '/../..' . '/app/Http/Controllers/InventarioController.php',

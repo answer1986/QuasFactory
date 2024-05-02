@@ -32,6 +32,7 @@ Route::post('/', [LoginController::class, 'login'])->name('login');
 Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
 
 
+
 //Status
 Route::get('status', [PublicController::class, 'mostrarProductos']);
 
@@ -49,7 +50,7 @@ Route::get('/inventario/validar-codigo', [InventarioController::class, 'validarC
 
 // Si necesitas rutas adicionales de autenticación, considera personalizarlas
 Auth::routes([
- //   'register' => false,  // Para desactivar la ruta de registro, etc.
+   'register' => false,  // Para desactivar la ruta de registro, etc.
 ]);
 
 Route::middleware(['auth'])->group(function () {
@@ -165,7 +166,7 @@ Route::post('register', [RegisterController::class, 'register'])->name('register
             })->name('bodega.despacho');
          
             Route::get('/despacho/create', [DespachoController::class, 'create'])->name('despacho.create');    
-            Route::post('/despacho/store', [DespachoController::class, 'store'])->name('rebajar.store');
+            Route::post('/despacho/rebajar', [DespachoController::class, 'store'])->name('rebajar.store');
         });    
     
     //ingreso a producion
@@ -190,6 +191,9 @@ Route::post('register', [RegisterController::class, 'register'])->name('register
         
         Route::get('/prd', [PrdController::class, 'mostrarImagenPublica'])->name('mostrar-imagen-publica');
         
+        Route::delete('/eliminar-todas-las-imagenes', 'PrdController@eliminarTodasLasImagenes')->name('eliminar-todas-las-imagenes');
+
+
         Route::post('/configurar-tiempo', [PrdController::class, 'guardarTiempo'])->name('configurar-tiempo');
 
 

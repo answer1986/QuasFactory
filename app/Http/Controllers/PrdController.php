@@ -36,9 +36,11 @@ class PrdController extends Controller
 
     public function mostrarFormularioCarga()
     {
-        Log::debug('Mostrando formulario de carga de imagen');
-        return view('produccion/cargar-informacion');
+        $imagenes = Imagen::all();
+        Log::debug('Imágenes cargadas: ', ['count' => count($imagenes)]);
+        return view('produccion/cargar-informacion', compact('imagenes'));
     }
+    
 
     public function cargarImagenes(Request $request)
     {
@@ -68,6 +70,16 @@ class PrdController extends Controller
     return back()->with('success', 'Tiempo de cambio configurado correctamente.');
     }
 
+    public function eliminarTodasLasImagenes()
+    {
+        $imagenes = Imagen::all();
+        foreach ($imagenes as $imagen) {
+            Storage::delete('public/imagenes/' . $imagen->nombre_archivo);
+        }
+        Imagen::truncate();
+        return redirect()->route('mostrar-imagen-publica')->with('success', 'Todas las imágenes fueron eliminadas correctamente.');
+    }
+    
 
     
 }
