@@ -71,14 +71,16 @@ class PrdController extends Controller
     }
 
     public function eliminarTodasLasImagenes()
-    {
-        $imagenes = Imagen::all();
-        foreach ($imagenes as $imagen) {
-            Storage::delete('public/imagenes/' . $imagen->nombre_archivo);
-        }
-        Imagen::truncate();
-        return redirect()->route('mostrar-imagen-publica')->with('success', 'Todas las imágenes fueron eliminadas correctamente.');
+{
+    Log::debug('Eliminando todas las imágenes...');
+    $imagenes = Imagen::all();
+    foreach ($imagenes as $imagen) {
+        Storage::delete('public/imagenes/' . $imagen->nombre_archivo);
     }
+    Imagen::truncate();
+    return redirect()->route('mostrar-formulario-carga')->with('success', 'Todas las imágenes fueron eliminadas correctamente.');
+}
+
     
 
     

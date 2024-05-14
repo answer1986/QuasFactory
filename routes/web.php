@@ -191,7 +191,8 @@ Route::post('register', [RegisterController::class, 'register'])->name('register
         
         Route::get('/prd', [PrdController::class, 'mostrarImagenPublica'])->name('mostrar-imagen-publica');
         
-        Route::delete('/eliminar-todas-las-imagenes', 'PrdController@eliminarTodasLasImagenes')->name('eliminar-todas-las-imagenes');
+       // Route::delete('/eliminar-todas-las-imagenes', 'PrdController@eliminarTodasLasImagenes')->name('eliminar-todas-las-imagenes');
+        Route::delete('/eliminar-todas-las-imagenes', [PrdController::class, 'eliminarTodasLasImagenes'])->name('eliminar-todas-las-imagenes');
 
 
         Route::post('/configurar-tiempo', [PrdController::class, 'guardarTiempo'])->name('configurar-tiempo');
