@@ -16,14 +16,16 @@
         #carrusel-imagenes {
             position: relative;
             max-width: 100%;
-            max-height: 100%;
-            overflow: hidden;
+            height: 100vh; 
+            overflow: hidden;   
         }
         .full-screen-image {
             display: none;
-            width: 100%;
-            height: auto;
+            width: auto; /* Cambia esto para que la imagen se ajuste al ancho */
+            height: 100%; /* Cambia esto para que la imagen ocupe todo el alto */
+            object-fit: cover; /* Cambia esto para que la imagen se ajuste manteniendo la proporción */
             transition: opacity 1s ease;
+            margin: 0; /* Cambia esto para eliminar el margen por defecto de la imagen */
         }
         .active {
             display: block;

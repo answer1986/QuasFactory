@@ -81,6 +81,22 @@ class PrdController extends Controller
     return redirect()->route('mostrar-formulario-carga')->with('success', 'Todas las imágenes fueron eliminadas correctamente.');
 }
 
+/* borrar una imagen en particular */
+
+public function eliminarImagen($id)
+{
+    $imagen = Imagen::find($id);
+
+    if (!$imagen) {
+        return back()->with('error', 'La imagen no existe.');
+    }
+
+    Storage::delete('public/imagenes/' . $imagen->nombre_archivo);
+    $imagen->delete();
+
+    return redirect()->route('mostrar-formulario-carga')->with('success', 'La imagen fue eliminada correctamente.');
+}
+
     
 
     
