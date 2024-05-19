@@ -1,5 +1,6 @@
 <?php
 
+use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\LoginController;
@@ -20,6 +21,8 @@ use App\Http\Controllers\ProductoTerminadoController;
 use App\Http\Controllers\PublicController;
 use App\Http\Controllers\PrdController;
 use App\Http\Controllers\DespachoController;
+use App\Http\Controllers\RproduccionController;
+
 
 
 
@@ -200,6 +203,10 @@ Route::post('register', [RegisterController::class, 'register'])->name('register
 
 
        
+    });
+
+    Route::prefix('reporteria')->group(function() {
+        Route::get('rproduccion', [RproduccionController::class, 'index'])->name('rproduccion');
     });
 
 

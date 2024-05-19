@@ -521,3 +521,50 @@ select {
    background-color: #4CAF50;
 
 }
+
+
+/*paginas de reporteria*/
+
+.form-group {
+   display: flex;
+   flex-wrap: wrap;
+   gap: 10px;
+   align-items: center;
+}
+.form-group label {
+   width: 28%;
+   display: block;
+   margin-left: 1%
+}
+.form-group input {
+   width: 220px;
+   padding: 8px;
+   margin-bottom: 10px;
+   border:solid 1px ;
+}
+.form-group .actions {
+   width: 100%;
+   display: flex;
+   justify-content: space-between;
+}
+.form-group .actions button {
+   padding: 8px;
+   margin-top: 10px;
+}
+
+#myChart{
+ width: 600px;
+ height: 600px;
+}
+
+#fechainicio{
+   width:250px;
+}
+
+#startDate-1{
+   margin-right:20px;
+}
+
+#btn-graficos{
+   margin-left: 5px;
+}

@@ -8,7 +8,7 @@
                 <!-- Enlaces de navegación -->
                 <div class="collapse navbar-collapse" id="navbarNavDropdown">
                     <ul class="navbar-nav mr-auto">
-                        @foreach(['Usuarios', 'Productos', 'Clientes', 'Produccion', 'Bodega'] as $section)
+                        @foreach(['Usuarios', 'Productos', 'Clientes', 'Produccion', 'Bodega', 'Reporteria'] as $section)
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink{{$section}}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     {{$section}}
@@ -43,6 +43,15 @@
                                         <a class="dropdown-item" href="{{url('bodega/despacho') }}">Despacho</a>
                                         <a class="dropdown-item" href="{{url('bodega/buscador') }}">Buscador codigo barras</a>
 
+                                    @endif
+                                    @if($section === 'Reporteria')
+                                        <a class="dropdown-item" href="{{url('reporteria/rproduccion') }}">Reporteria produccion</a>
+                                        <a class="dropdown-item" href="{{url('reporteria/rcomercial') }}">Reporteria Comercial</a>
+                                        <a class="dropdown-item" href="{{url('reporteria/rrrh') }}">Reporteria RRHH</a>
+                                        <a class="dropdown-item" href="{{url('reporteria/rcontabilidad') }}">Reporteria Contabilidad</a>
+                                        <a class="dropdown-item" href="{{url('reporteria/rbodega') }}">Reporteria Bodega</a>
+                                        <a class="dropdown-item" href="{{url('reporteria/rti-soporte') }}">Reporteria TI </a>
+                                        <a class="dropdown-item" href="{{url('reporteria/rcalidad') }}">Reporteria Calidad</a>
 
                                     @endif
                                 </div>

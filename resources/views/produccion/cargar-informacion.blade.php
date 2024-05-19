@@ -87,4 +87,5 @@
 </script>
 
 @endsection
+
 @include('essencials/footer')
