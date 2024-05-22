@@ -104,51 +104,67 @@
             </div>
             
             <!-- Selladoras -->
-            <h3>Selladoras</h3>
+       <!-- Selladoras -->
+       <h3>Selladoras</h3>
             <div class="row">
                 <!-- Selladora 1 -->
-                <div class="col-md-4">
-                    <div class="machine-group">
+                <div class="col-md-2">
+                    <div class="machine-group" id="selladora-1">
                         <i class="fa fa-cog"></i> Selladora 1
-                        <input type="text" name="ocSelladora1" placeholder="OC" class="oc-input">
+                        <input type="text" name="ocSelladora1" placeholder="Orden de produccion" class="oc-input">
                         <input type="number" name="kilosFabricadosSelladora1" placeholder="Kilos fabricados" class="kilos-input">
                         <input type="number" name="kilosProgramadosSelladora1" placeholder="Kilos programados" class="kilos-input">
+                        <div class="extra-lines"></div>
+                        <i class="fa fa-plus-circle" onclick="addLine('selladora-1')"></i>
+                        <i class="fa fa-minus-circle" onclick="removeLine('selladora-1')"></i>
                     </div>
                 </div>
                 <!-- Selladora 2 -->
-                <div class="col-md-4">
-                    <div class="machine-group">
+                <div class="col-md-2">
+                    <div class="machine-group" id="selladora-2">
                         <i class="fa fa-cog"></i> Selladora 2
-                        <input type="text" name="ocSelladora2" placeholder="OC" class="oc-input">
+                        <input type="text" name="ocSelladora2" placeholder="Orden de produccion" class="oc-input">
                         <input type="number" name="kilosFabricadosSelladora2" placeholder="Kilos fabricados" class="kilos-input">
                         <input type="number" name="kilosProgramadosSelladora2" placeholder="Kilos programados" class="kilos-input">
+                        <div class="extra-lines"></div>
+                        <i class="fa fa-plus-circle" onclick="addLine('selladora-2')"></i>
+                        <i class="fa fa-minus-circle" onclick="removeLine('selladora-2')"></i>
                     </div>
                 </div>
                 <!-- Selladora 3 -->
-                <div class="col-md-4">
-                    <div class="machine-group">
+                <div class="col-md-2">
+                    <div class="machine-group" id="selladora-3">
                         <i class="fa fa-cog"></i> Selladora 3
-                        <input type="text" name="ocSelladora3" placeholder="OC" class="oc-input">
+                        <input type="text" name="ocSelladora3" placeholder="Orden de produccion" class="oc-input">
                         <input type="number" name="kilosFabricadosSelladora3" placeholder="Kilos fabricados" class="kilos-input">
                         <input type="number" name="kilosProgramadosSelladora3" placeholder="Kilos programados" class="kilos-input">
+                        <div class="extra-lines"></div>
+                        <i class="fa fa-plus-circle" onclick="addLine('selladora-3')"></i>
+                        <i class="fa fa-minus-circle" onclick="removeLine('selladora-3')"></i>
                     </div>
                 </div>
                 <!-- Selladora 4 -->
-                <div class="col-md-4">
-                    <div class="machine-group">
+                <div class="col-md-2">
+                    <div class="machine-group" id="selladora-4">
                         <i class="fa fa-cog"></i> Selladora 4
-                        <input type="text" name="ocSelladora4" placeholder="OC" class="oc-input">
+                        <input type="text" name="ocSelladora4" placeholder="Orden de produccion" class="oc-input">
                         <input type="number" name="kilosFabricadosSelladora4" placeholder="Kilos fabricados" class="kilos-input">
                         <input type="number" name="kilosProgramadosSelladora4" placeholder="Kilos programados" class="kilos-input">
+                        <div class="extra-lines"></div>
+                        <i class="fa fa-plus-circle" onclick="addLine('selladora-4')"></i>
+                        <i class="fa fa-minus-circle" onclick="removeLine('selladora-4')"></i>
                     </div>
                 </div>
                 <!-- Selladora 5 -->
-                <div class="col-md-4">
-                    <div class="machine-group">
+                <div class="col-md-2">
+                    <div class="machine-group" id="selladora-5">
                         <i class="fa fa-cog"></i> Selladora 5
-                        <input type="text" name="ocSelladora5" placeholder="OC" class="oc-input">
+                        <input type="text" name="ocSelladora5" placeholder="Orden de produccion" class="oc-input">
                         <input type="number" name="kilosFabricadosSelladora5" placeholder="Kilos fabricados" class="kilos-input">
                         <input type="number" name="kilosProgramadosSelladora5" placeholder="Kilos programados" class="kilos-input">
+                        <div class="extra-lines"></div>
+                        <i class="fa fa-plus-circle" onclick="addLine('selladora-5')"></i>
+                        <i class="fa fa-minus-circle" onclick="removeLine('selladora-5')"></i>
                     </div>
                 </div>
             </div>
@@ -157,30 +173,39 @@
             <h3>Microperforadoras</h3>
             <div class="row">
                 <!-- Microperforadora 1 -->
-                <div class="col-md-4">
-                    <div class="machine-group">
+                <div class="col-md-2">
+                    <div class="machine-group" id="microperforadora-1">
                         <i class="fa fa-cogs"></i> Microperforadora 1
-                        <input type="text" name="ocMicroperforadora1" placeholder="OC" class="oc-input">
+                        <input type="text" name="ocMicroperforadora1" placeholder="Orden de produccion" class="oc-input">
                         <input type="number" name="kilosFabricadosMicroperforadora1" placeholder="Kilos fabricados" class="kilos-input">
                         <input type="number" name="kilosProgramadosMicroperforadora1" placeholder="Kilos programados" class="kilos-input">
+                        <div class="extra-lines"></div>
+                        <i class="fa fa-plus-circle" onclick="addLine('microperforadora-1')"></i>
+                        <i class="fa fa-minus-circle" onclick="removeLine('microperforadora-1')"></i>
                     </div>
                 </div>
                 <!-- Microperforadora 2 -->
-                <div class="col-md-4">
-                    <div class="machine-group">
+                <div class="col-md-2">
+                    <div class="machine-group" id="microperforadora-2">
                         <i class="fa fa-cogs"></i> Microperforadora 2
-                        <input type="text" name="ocMicroperforadora2" placeholder="OC" class="oc-input">
+                        <input type="text" name="ocMicroperforadora2" placeholder="Orden de produccion" class="oc-input">
                         <input type="number" name="kilosFabricadosMicroperforadora2" placeholder="Kilos fabricados" class="kilos-input">
                         <input type="number" name="kilosProgramadosMicroperforadora2" placeholder="Kilos programados" class="kilos-input">
+                        <div class="extra-lines"></div>
+                        <i class="fa fa-plus-circle" onclick="addLine('microperforadora-2')"></i>
+                        <i class="fa fa-minus-circle" onclick="removeLine('microperforadora-2')"></i>
                     </div>
                 </div>
                 <!-- Microperforadora 3 -->
-                <div class="col-md-4">
-                    <div class="machine-group">
+                <div class="col-md-2">
+                    <div class="machine-group" id="microperforadora-3">
                         <i class="fa fa-cogs"></i> Microperforadora 3
-                        <input type="text" name="ocMicroperforadora3" placeholder="OC" class="oc-input">
+                        <input type="text" name="ocMicroperforadora3" placeholder="Orden de produccion" class="oc-input">
                         <input type="number" name="kilosFabricadosMicroperforadora3" placeholder="Kilos fabricados" class="kilos-input">
                         <input type="number" name="kilosProgramadosMicroperforadora3" placeholder="Kilos programados" class="kilos-input">
+                        <div class="extra-lines"></div>
+                        <i class="fa fa-plus-circle" onclick="addLine('microperforadora-3')"></i>
+                        <i class="fa fa-minus-circle" onclick="removeLine('microperforadora-3')"></i>
                     </div>
                 </div>
             </div>
@@ -189,30 +214,39 @@
             <h3>Extrusoras</h3>
             <div class="row">
                 <!-- Extrusora 1 -->
-                <div class="col-md-4">
-                    <div class="machine-group">
+                <div class="col-md-2">
+                    <div class="machine-group" id="extrusora-1">
                         <i class="fa fa-industry"></i> Extrusora 1
-                        <input type="text" name="ocExtrusora1" placeholder="OC" class="oc-input">
+                        <input type="text" name="ocExtrusora1" placeholder="Orden de produccion" class="oc-input">
                         <input type="number" name="kilosFabricadosExtrusora1" placeholder="Kilos fabricados" class="kilos-input">
                         <input type="number" name="kilosProgramadosExtrusora1" placeholder="Kilos programados" class="kilos-input">
+                        <div class="extra-lines"></div>
+                        <i class="fa fa-plus-circle" onclick="addLine('extrusora-1')"></i>
+                        <i class="fa fa-minus-circle" onclick="removeLine('extrusora-1')"></i>
                     </div>
                 </div>
                 <!-- Extrusora 2 -->
-                <div class="col-md-4">
-                    <div class="machine-group">
+                <div class="col-md-2">
+                    <div class="machine-group" id="extrusora-2">
                         <i class="fa fa-industry"></i> Extrusora 2
-                        <input type="text" name="ocExtrusora2" placeholder="OC" class="oc-input">
+                        <input type="text" name="ocExtrusora2" placeholder="Orden de produccion" class="oc-input">
                         <input type="number" name="kilosFabricadosExtrusora2" placeholder="Kilos fabricados" class="kilos-input">
                         <input type="number" name="kilosProgramadosExtrusora2" placeholder="Kilos programados" class="kilos-input">
+                        <div class="extra-lines"></div>
+                        <i class="fa fa-plus-circle" onclick="addLine('extrusora-2')"></i>
+                        <i class="fa fa-minus-circle" onclick="removeLine('extrusora-2')"></i>
                     </div>
                 </div>
                 <!-- Extrusora 3 -->
-                <div class="col-md-4">
-                    <div class="machine-group">
+                <div class="col-md-2">
+                    <div class="machine-group" id="extrusora-3">
                         <i class="fa fa-industry"></i> Extrusora 3
-                        <input type="text" name="ocExtrusora3" placeholder="OC" class="oc-input">
+                        <input type="text" name="ocExtrusora3" placeholder="Orden de produccion" class="oc-input">
                         <input type="number" name="kilosFabricadosExtrusora3" placeholder="Kilos fabricados" class="kilos-input">
                         <input type="number" name="kilosProgramadosExtrusora3" placeholder="Kilos programados" class="kilos-input">
+                        <div class="extra-lines"></div>
+                        <i class="fa fa-plus-circle" onclick="addLine('extrusora-3')"></i>
+                        <i class="fa fa-minus-circle" onclick="removeLine('extrusora-3')"></i>
                     </div>
                 </div>
             </div>
@@ -220,6 +254,7 @@
     </div>
     <button type="button" id="btn-graficos" onclick="generateCharts()">Generar Gráficos</button>
 </form>
+
 
 <div id="chartsContainer" style="display: flex; flex-wrap: wrap; justify-content: center;"></div>
 
@@ -251,42 +286,7 @@ function validateField(value, field) {
     return isValid;
 }
 
-function duplicateFormGroup(button) {
-    const formGroup = button.closest('.form-group');
-    const formContainer = document.getElementById('formContainer');
-    const newFormGroup = formGroup.cloneNode(true);
 
-    const index = formContainer.children.length + 1;
-    newFormGroup.setAttribute('data-index', index);
-    
-    newFormGroup.querySelectorAll('label, input, .validation, .days-count').forEach((element) => {
-        if (element.tagName === 'LABEL') {
-            const forAttribute = element.getAttribute('for');
-            element.setAttribute('for', forAttribute.replace(/\d+/, index));
-        }
-        if (element.tagName === 'INPUT') {
-            const id = element.getAttribute('id');
-            element.setAttribute('id', id.replace(/\d+/, index));
-            element.value = '';
-        }
-        if (element.classList.contains('validation') || element.classList.contains('days-count')) {
-            element.setAttribute('id', element.getAttribute('id').replace(/\d+/, index));
-            element.innerHTML = '';
-        }
-    });
-
-    formContainer.appendChild(newFormGroup);
-}
-
-function removeFormGroup(button) {
-    const formGroup = button.closest('.form-group');
-    const formContainer = document.getElementById('formContainer');
-    if (formContainer.children.length > 1) {
-        formGroup.remove();
-    } else {
-        alert("No se puede eliminar el último conjunto de campos.");
-    }
-}
 
 function calculateDays(input) {
     const group = input.closest('.form-group');
@@ -434,6 +434,56 @@ function generateCharts() {
             chartsContainer.appendChild(canvasContainer);
         });
     });
+}
+
+// Event listeners to ensure only numbers are entered
+document.querySelectorAll('input[type="number"]').forEach(input => {
+    input.addEventListener('input', () => {
+        input.value = input.value.replace(/[^0-9.]/g, '');
+    });
+
+    input.addEventListener('keydown', (e) => {
+        if (e.key === 'e' || e.key === '-' || e.key === '+') {
+            e.preventDefault();
+        }
+    });
+
+    input.addEventListener('paste', (e) => {
+        const paste = (e.clipboardData || window.clipboardData).getData('text');
+        if (!/^\d*\.?\d*$/.test(paste)) {
+            e.preventDefault();
+        }
+    });
+});
+
+// Función para agregar líneas dinámicamente
+function addLine(machineId) {
+    const machineGroup = document.getElementById(machineId);
+    const extraLinesContainer = machineGroup.querySelector('.extra-lines');
+    const lines = extraLinesContainer.querySelectorAll('div');
+
+    if (lines.length < 4) {
+        const line = document.createElement('div');
+        line.innerHTML = `
+            <input type="text" name="oc${machineId}Extra" placeholder="Orden de producción" class="oc-input">
+            <input type="number" name="kilosFabricados${machineId}Extra" placeholder="Kilos fabricados" class="kilos-input">
+            <input type="number" name="kilosProgramados${machineId}Extra" placeholder="Kilos programados" class="kilos-input">
+        `;
+        extraLinesContainer.appendChild(line);
+    } else {
+        alert("No se pueden agregar más de 4 líneas.");
+    }
+}
+
+// Función para quitar la última línea agregada
+function removeLine(machineId) {
+    const machineGroup = document.getElementById(machineId);
+    const extraLinesContainer = machineGroup.querySelector('.extra-lines');
+    const lines = extraLinesContainer.querySelectorAll('div');
+
+    if (lines.length > 0) {
+        extraLinesContainer.removeChild(lines[lines.length - 1]);
+    }
 }
 
 // Event listeners to ensure only numbers are entered

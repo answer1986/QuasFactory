@@ -524,6 +524,10 @@ select {
 
 
 /*paginas de reporteria*/
+#dataForm{
+   margin-left:2% ;
+}
+
 .form-group {
    display: flex;
    flex-direction: column;
@@ -599,12 +603,17 @@ button:hover {
    display: flex;
    flex-direction: column;
    gap: 10px;
-   border: 1px solid #ccc;
+   border: 1px solid #111010;
    padding: 10px;
    border-radius: 5px;
+   width: 220px;
 }
 
 .machine-group i {
    font-size: 24px;
    margin-bottom: 5px;
+}
+.oc-input[type="text"]{
+   width: 180px;
+   border: 1px solid #000;
 }
