@@ -524,47 +524,87 @@ select {
 
 
 /*paginas de reporteria*/
-
 .form-group {
    display: flex;
+   flex-direction: column;
+   gap: 15px;
+}
+
+.row {
+   display: flex;
    flex-wrap: wrap;
+   gap: 20px;
+}
+
+.col-md-6 {
+   flex: 0 0 48%;
+   display: flex;
+   flex-direction: column;
    gap: 10px;
+}
+
+.form-group-inline {
+   display: flex;
    align-items: center;
+   gap: 10px;
 }
-.form-group label {
-   width: 28%;
-   display: block;
-   margin-left: 1%
+
+label {
+   font-weight: bold;
+   flex: 1;
 }
-.form-group input {
-   width: 220px;
+
+input[type="date"], input[type="number"] {
    padding: 8px;
-   margin-bottom: 10px;
-   border:solid 1px ;
+   border: 1px solid #ccc;
+   border-radius: 4px;
 }
-.form-group .actions {
-   width: 100%;
+
+input[type="number"] {
+   width: 150px;
+   border: 1px solid #111111;
+}
+
+.actions {
    display: flex;
    justify-content: space-between;
-}
-.form-group .actions button {
-   padding: 8px;
-   margin-top: 10px;
+   gap: 10px;
 }
 
-#myChart{
- width: 600px;
- height: 600px;
+button {
+   padding: 10px 20px;
+   border: none;
+   background-color: #007bff;
+   color: white;
+   border-radius: 4px;
+   cursor: pointer;
 }
 
-#fechainicio{
-   width:250px;
+button:hover {
+   background-color: #0056b3;
 }
 
-#startDate-1{
-   margin-right:20px;
+#chartsContainer canvas {
+   margin: 20px;
 }
 
-#btn-graficos{
-   margin-left: 5px;
+#startDate-1, #endDate-1 {
+   width:160px;
+}
+#fechas{
+   margin-bottom: 20px;
+}
+
+.machine-group {
+   display: flex;
+   flex-direction: column;
+   gap: 10px;
+   border: 1px solid #ccc;
+   padding: 10px;
+   border-radius: 5px;
+}
+
+.machine-group i {
+   font-size: 24px;
+   margin-bottom: 5px;
 }

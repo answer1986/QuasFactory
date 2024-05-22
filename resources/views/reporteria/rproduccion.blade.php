@@ -25,57 +25,195 @@
     </div>
 @endif
 
-@section('banner')
-
 <h2 id="title-oc">Ingreso de indicadores{{$section ?? ''}}</h2>
 <form id="dataForm">
     <div id="formContainer">
         <div class="form-group" data-index="1">
-            <div class="row">
-                
+            <div class="row" id="fechas">
+                <div class="col-md-6">
                     <label for="startDate" id="fechainicio">
                         Fecha de inicio
                         <i class="fa fa-calendar" aria-hidden="true"></i>
                     </label>
                     <input type="date" id="startDate-1" name="startDate[]" onchange="calculateDays(this)">
-                    
-                    <label for="endDate" id="fechainicio" >
+                </div>
+                <div class="col-md-6">
+                    <label for="endDate" id="fechainicio">
                         Fecha de fin
                         <i class="fa fa-calendar" aria-hidden="true"></i>
                     </label>
-                
                     <input type="date" id="endDate-1" name="endDate[]" onchange="calculateDays(this)">
                     <span class="days-count" id="daysCount-1"></span>
-                    <br>
+                </div>
             </div>
             <div class="row">
-                <label for="kilostotales">Total kilogramos de producidos en período</label>
-                <input type="number" id="kilostotales-1" name="kilostotales[]" step="any" inputmode="decimal">
-                <span class="validation" id="validation-kilostotales-1"></span>
-                
-                <label for="kilosscrap">Total kilogramos de scrap del período</label>
-                <input type="number" id="kilosscrap-1" name="kilosscrap[]" step="any" inputmode="decimal">
-                <span class="validation" id="validation-kilosscrap-1"></span>
-                
-                <label for="kilosprogramados">Kilogramos totales de producción programados para el período</label>
-                <input type="number" id="kilosprogramados-1" name="kilosprogramados[]" step="any" inputmode="decimal">
-                <span class="validation" id="validation-kilosprogramados-1"></span>
-                
-                <label for="kiloproducto">Kilogramos totales por producto producidos en el período</label>
-                <input type="number" id="kiloproducto-1" name="kiloproducto[]" step="any" inputmode="decimal">
-                <span class="validation" id="validation-kiloproducto-1"></span>
-                
-                <label for="totalkilosxmaquina">Total de kilogramos producidos por máquina por período</label>
-                <input type="number" id="totalkilosxmaquina-1" name="totalkilosxmaquina[]" step="any" inputmode="decimal">
-                <span class="validation" id="validation-totalkilosxmaquina-1"></span>
-                
-                <label for="numerocambioxprog">N° de cambios hechos al programa de producción</label>
-                <input type="number" id="numerocambioxprog-1" name="numerocambioxprog[]" step="any" inputmode="decimal">
-                <span class="validation" id="validation-numerocambioxprog-1"></span>
-                
-                <div class="actions">
-                    <button type="button" onclick="duplicateFormGroup(this)">Duplicar</button>
-                    <button type="button" onclick="removeFormGroup(this)">Eliminar</button>
+                <div class="col-md-6">
+                    <div class="form-group-inline">
+                        <label for="kilostotales">Total kilogramos de producidos en período</label>
+                        <input type="number" id="kilostotales-1" name="kilostotales[]" step="any" inputmode="decimal">
+                        <span class="validation" id="validation-kilostotales-1"></span>
+                    </div>
+                    <div class="form-group-inline">
+                        <label for="kilosscrap">Total kilogramos de scrap del período</label>
+                        <input type="number" id="kilosscrap-1" name="kilosscrap[]" step="any" inputmode="decimal">
+                        <span class="validation" id="validation-kilosscrap-1"></span>
+                    </div>
+                    <div class="form-group-inline">
+                        <label for="kilosprogramados">Kilogramos totales de producción programados para el período</label>
+                        <input type="number" id="kilosprogramados-1" name="kilosprogramados[]" step="any" inputmode="decimal">
+                        <span class="validation" id="validation-kilosprogramados-1"></span>
+                    </div>
+                    <div class="form-group-inline">
+                        <label for="kiloproducto">Kilogramos totales por producto producidos en el período</label>
+                        <input type="number" id="kiloproducto-1" name="kiloproducto[]" step="any" inputmode="decimal">
+                        <span class="validation" id="validation-kiloproducto-1"></span>
+                    </div>
+                    <div class="form-group-inline">
+                        <label for="totalkilosxmaquina">Total de kilogramos producidos por máquina por período</label>
+                        <input type="number" id="totalkilosxmaquina-1" name="totalkilosxmaquina[]" step="any" inputmode="decimal">
+                        <span class="validation" id="validation-totalkilosxmaquina-1"></span>
+                    </div>
+                    <div class="form-group-inline">
+                        <label for="numerocambioxprog">N° de cambios hechos al programa de producción</label>
+                        <input type="number" id="numerocambioxprog-1" name="numerocambioxprog[]" step="any" inputmode="decimal">
+                        <span class="validation" id="validation-numerocambioxprog-1"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group-inline">
+                        <label for="kilosprodprog">kilogramos totales de producción por producto programados para el período</label>
+                        <input type="number" id="kilosprodprog-1" name="kilosprodprog[]" step="any" inputmode="decimal">
+                        <span class="validation" id="validation-kilosprodprog-1"></span>
+                    </div>
+                    <div class="form-group-inline">
+                        <label for="kilosscrapproce">Total kilogramos scrap por proceso por período</label>
+                        <input type="number" id="kilosscrapproce-1" name="kilosscrapproce[]" step="any" inputmode="decimal">
+                        <span class="validation" id="validation-kilosscrapproce-1"></span>
+                    </div>
+                    <div class="form-group-inline">
+                        <label for="kiloproducxmaqperiod">Total de kilogramos de producción por proceso por período</label>
+                        <input type="number" id="kiloproducxmaqperiod-1" name="kiloproducxmaqperiod[]" step="any" inputmode="decimal">
+                        <span class="validation" id="validation-kiloproducxmaqperiod-1"></span>
+                    </div>
+                    <div class="form-group-inline">
+                        <label for="totalkilosxmaquina">Kilogramos programados para producción por máquina por período</label>
+                        <input type="number" id="totalkilosxmaquina-1" name="totalkilosxmaquina[]" step="any" inputmode="decimal">
+                        <span class="validation" id="validation-totalkilosxmaquina-1"></span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Selladoras -->
+            <h3>Selladoras</h3>
+            <div class="row">
+                <!-- Selladora 1 -->
+                <div class="col-md-4">
+                    <div class="machine-group">
+                        <i class="fa fa-cog"></i> Selladora 1
+                        <input type="text" name="ocSelladora1" placeholder="OC" class="oc-input">
+                        <input type="number" name="kilosFabricadosSelladora1" placeholder="Kilos fabricados" class="kilos-input">
+                        <input type="number" name="kilosProgramadosSelladora1" placeholder="Kilos programados" class="kilos-input">
+                    </div>
+                </div>
+                <!-- Selladora 2 -->
+                <div class="col-md-4">
+                    <div class="machine-group">
+                        <i class="fa fa-cog"></i> Selladora 2
+                        <input type="text" name="ocSelladora2" placeholder="OC" class="oc-input">
+                        <input type="number" name="kilosFabricadosSelladora2" placeholder="Kilos fabricados" class="kilos-input">
+                        <input type="number" name="kilosProgramadosSelladora2" placeholder="Kilos programados" class="kilos-input">
+                    </div>
+                </div>
+                <!-- Selladora 3 -->
+                <div class="col-md-4">
+                    <div class="machine-group">
+                        <i class="fa fa-cog"></i> Selladora 3
+                        <input type="text" name="ocSelladora3" placeholder="OC" class="oc-input">
+                        <input type="number" name="kilosFabricadosSelladora3" placeholder="Kilos fabricados" class="kilos-input">
+                        <input type="number" name="kilosProgramadosSelladora3" placeholder="Kilos programados" class="kilos-input">
+                    </div>
+                </div>
+                <!-- Selladora 4 -->
+                <div class="col-md-4">
+                    <div class="machine-group">
+                        <i class="fa fa-cog"></i> Selladora 4
+                        <input type="text" name="ocSelladora4" placeholder="OC" class="oc-input">
+                        <input type="number" name="kilosFabricadosSelladora4" placeholder="Kilos fabricados" class="kilos-input">
+                        <input type="number" name="kilosProgramadosSelladora4" placeholder="Kilos programados" class="kilos-input">
+                    </div>
+                </div>
+                <!-- Selladora 5 -->
+                <div class="col-md-4">
+                    <div class="machine-group">
+                        <i class="fa fa-cog"></i> Selladora 5
+                        <input type="text" name="ocSelladora5" placeholder="OC" class="oc-input">
+                        <input type="number" name="kilosFabricadosSelladora5" placeholder="Kilos fabricados" class="kilos-input">
+                        <input type="number" name="kilosProgramadosSelladora5" placeholder="Kilos programados" class="kilos-input">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Microperforadoras -->
+            <h3>Microperforadoras</h3>
+            <div class="row">
+                <!-- Microperforadora 1 -->
+                <div class="col-md-4">
+                    <div class="machine-group">
+                        <i class="fa fa-cogs"></i> Microperforadora 1
+                        <input type="text" name="ocMicroperforadora1" placeholder="OC" class="oc-input">
+                        <input type="number" name="kilosFabricadosMicroperforadora1" placeholder="Kilos fabricados" class="kilos-input">
+                        <input type="number" name="kilosProgramadosMicroperforadora1" placeholder="Kilos programados" class="kilos-input">
+                    </div>
+                </div>
+                <!-- Microperforadora 2 -->
+                <div class="col-md-4">
+                    <div class="machine-group">
+                        <i class="fa fa-cogs"></i> Microperforadora 2
+                        <input type="text" name="ocMicroperforadora2" placeholder="OC" class="oc-input">
+                        <input type="number" name="kilosFabricadosMicroperforadora2" placeholder="Kilos fabricados" class="kilos-input">
+                        <input type="number" name="kilosProgramadosMicroperforadora2" placeholder="Kilos programados" class="kilos-input">
+                    </div>
+                </div>
+                <!-- Microperforadora 3 -->
+                <div class="col-md-4">
+                    <div class="machine-group">
+                        <i class="fa fa-cogs"></i> Microperforadora 3
+                        <input type="text" name="ocMicroperforadora3" placeholder="OC" class="oc-input">
+                        <input type="number" name="kilosFabricadosMicroperforadora3" placeholder="Kilos fabricados" class="kilos-input">
+                        <input type="number" name="kilosProgramadosMicroperforadora3" placeholder="Kilos programados" class="kilos-input">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Extrusoras -->
+            <h3>Extrusoras</h3>
+            <div class="row">
+                <!-- Extrusora 1 -->
+                <div class="col-md-4">
+                    <div class="machine-group">
+                        <i class="fa fa-industry"></i> Extrusora 1
+                        <input type="text" name="ocExtrusora1" placeholder="OC" class="oc-input">
+                        <input type="number" name="kilosFabricadosExtrusora1" placeholder="Kilos fabricados" class="kilos-input">
+                        <input type="number" name="kilosProgramadosExtrusora1" placeholder="Kilos programados" class="kilos-input">
+                    </div>
+                </div>
+                <!-- Extrusora 2 -->
+                <div class="col-md-4">
+                    <div class="machine-group">
+                        <i class="fa fa-industry"></i> Extrusora 2
+                        <input type="text" name="ocExtrusora2" placeholder="OC" class="oc-input">
+                        <input type="number" name="kilosFabricadosExtrusora2" placeholder="Kilos fabricados" class="kilos-input">
+                        <input type="number" name="kilosProgramadosExtrusora2" placeholder="Kilos programados" class="kilos-input">
+                    </div>
+                </div>
+                <!-- Extrusora 3 -->
+                <div class="col-md-4">
+                    <div class="machine-group">
+                        <i class="fa fa-industry"></i> Extrusora 3
+                        <input type="text" name="ocExtrusora3" placeholder="OC" class="oc-input">
+                        <input type="number" name="kilosFabricadosExtrusora3" placeholder="Kilos fabricados" class="kilos-input">
+                        <input type="number" name="kilosProgramadosExtrusora3" placeholder="Kilos programados" class="kilos-input">
+                    </div>
                 </div>
             </div>
         </div>
@@ -86,8 +224,8 @@
 <div id="chartsContainer" style="display: flex; flex-wrap: wrap; justify-content: center;"></div>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-1uau2f6k
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
 
 <script>
 let charts = [];
