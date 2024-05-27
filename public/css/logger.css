@@ -582,6 +582,7 @@ button {
    color: white;
    border-radius: 4px;
    cursor: pointer;
+   
 }
 
 button:hover {
@@ -616,4 +617,22 @@ button:hover {
 .oc-input[type="text"]{
    width: 180px;
    border: 1px solid #000;
+   margin-top: 10px;
+}
+
+.button-container {
+   margin-top: 5%;
+   display: flex;
+   gap: 900px; /* Espacio entre los botones */
+}
+
+.button-container button {
+   flex: 1; /* Ajusta el tamaño de los botones */
+}
+#formContainer{
+   margin-bottom: 10px;
+}
+
+#btn-graficos{
+   margin-top: 30px;
 }

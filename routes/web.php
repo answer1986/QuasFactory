@@ -207,6 +207,8 @@ Route::post('register', [RegisterController::class, 'register'])->name('register
 
     Route::prefix('reporteria')->group(function() {
         Route::get('rproduccion', [RproduccionController::class, 'index'])->name('rproduccion');
+        Route::post('rproduccion/store', [RproduccionController::class, 'store'])->name('rproduccion.store');
+
     });
 
 
