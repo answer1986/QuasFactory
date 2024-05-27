@@ -131,10 +131,10 @@
                     <i class="fa fa-industry"></i> Extrusora 1
                     <input type="hidden" name="machine_type[]" value="extrusora">
                     <input type="hidden" name="machine_id[]" value="extrusora-1">
-                    <input type="text" name="orden_produccion[]" placeholder="Orden de produccion" class="oc-input" value="{{ old('orden_produccion.0') }}">
-                    <input type="number" name="kilos_fabricados[]" placeholder="Kilos fabricados" class="kilos-input" value="{{ old('kilos_fabricados.0') }}">
-                    <input type="number" name="kilos_programados[]" placeholder="Kilos programados" class="kilos-input" value="{{ old('kilos_programados.0') }}">
-                    <input type="number" name="kilosscrap[]" placeholder="Kilos scrap" class="kilos-scrap" value="{{ old('kilosscrap.0') }}">
+                    <input type="text" name="orden_produccion_extrusora-1[]" placeholder="Orden de produccion" class="oc-input" value="{{ old('orden_produccion_extrusora-1.0') }}">
+                    <input type="number" name="kilos_fabricados_extrusora-1[]" placeholder="Kilos fabricados" class="kilos-input" value="{{ old('kilos_fabricados_extrusora-1.0') }}">
+                    <input type="number" name="kilos_programados_extrusora-1[]" placeholder="Kilos programados" class="kilos-input" value="{{ old('kilos_programados_extrusora-1.0') }}">
+                    <input type="number" name="kilosscrap_extrusora-1[]" placeholder="Kilos scrap" class="kilos-scrap" value="{{ old('kilosscrap_extrusora-1.0') }}">
 
                     <div class="extra-lines"></div>
                     <i class="fa fa-plus-circle" onclick="addExtrusoraLine('extrusora-1')"></i>
@@ -147,10 +147,10 @@
                     <i class="fa fa-industry"></i> Extrusora 2
                     <input type="hidden" name="machine_type[]" value="extrusora">
                     <input type="hidden" name="machine_id[]" value="extrusora-2">
-                    <input type="text" name="orden_produccion[]" placeholder="Orden de produccion" class="oc-input" value="{{ old('orden_produccion.1') }}">
-                    <input type="number" name="kilos_fabricados[]" placeholder="Kilos fabricados" class="kilos-input" value="{{ old('kilos_fabricados.1') }}">
-                    <input type="number" name="kilos_programados[]" placeholder="Kilos programados" class="kilos-input" value="{{ old('kilos_programados.1') }}">
-                    <input type="number" name="kilosscrap[]" placeholder="Kilos scrap" class="kilos-scrap" value="{{ old('kilosscrap.1') }}">
+                    <input type="text" name="orden_produccion_extrusora-2[]" placeholder="Orden de produccion" class="oc-input" value="{{ old('orden_produccion_extrusora-2.0') }}">
+                    <input type="number" name="kilos_fabricados_extrusora-2[]" placeholder="Kilos fabricados" class="kilos-input" value="{{ old('kilos_fabricados_extrusora-2.0') }}">
+                    <input type="number" name="kilos_programados_extrusora-2[]" placeholder="Kilos programados" class="kilos-input" value="{{ old('kilos_programados_extrusora-2.0') }}">
+                    <input type="number" name="kilosscrap_extrusora-2[]" placeholder="Kilos scrap" class="kilos-scrap" value="{{ old('kilosscrap_extrusora-2.0') }}">
 
                     <div class="extra-lines"></div>
                     <i class="fa fa-plus-circle" onclick="addExtrusoraLine('extrusora-2')"></i>
@@ -163,10 +163,10 @@
                     <i class="fa fa-industry"></i> Extrusora 3
                     <input type="hidden" name="machine_type[]" value="extrusora">
                     <input type="hidden" name="machine_id[]" value="extrusora-3">
-                    <input type="text" name="orden_produccion[]" placeholder="Orden de produccion" class="oc-input" value="{{ old('orden_produccion.2') }}">
-                    <input type="number" name="kilos_fabricados[]" placeholder="Kilos fabricados" class="kilos-input" value="{{ old('kilos_fabricados.2') }}">
-                    <input type="number" name="kilos_programados[]" placeholder="Kilos programados" class="kilos-input" value="{{ old('kilos_programados.2') }}">
-                    <input type="number" name="kilosscrap[]" placeholder="Kilos scrap" class="kilos-scrap" value="{{ old('kilosscrap.2') }}">
+                    <input type="text" name="orden_produccion_extrusora-3[]" placeholder="Orden de produccion" class="oc-input" value="{{ old('orden_produccion_extrusora-3.0') }}">
+                    <input type="number" name="kilos_fabricados_extrusora-3[]" placeholder="Kilos fabricados" class="kilos-input" value="{{ old('kilos_fabricados_extrusora-3.0') }}">
+                    <input type="number" name="kilos_programados_extrusora-3[]" placeholder="Kilos programados" class="kilos-input" value="{{ old('kilos_programados_extrusora-3.0') }}">
+                    <input type="number" name="kilosscrap_extrusora-3[]" placeholder="Kilos scrap" class="kilos-scrap" value="{{ old('kilosscrap_extrusora-3.0') }}">
 
                     <div class="extra-lines"></div>
                     <i class="fa fa-plus-circle" onclick="addExtrusoraLine('extrusora-3')"></i>
@@ -184,9 +184,9 @@
                     <i class="fa fa-cog"></i> Selladora 1
                     <input type="hidden" name="machine_type[]" value="selladora">
                     <input type="hidden" name="machine_id[]" value="selladora-1">
-                    <input type="text" name="orden_produccion[]" placeholder="Orden de produccion" class="oc-input" value="{{ old('orden_produccion.3') }}">
-                    <input type="number" name="kilos_fabricados[]" placeholder="Kilos fabricados" class="kilos-input" value="{{ old('kilos_fabricados.3') }}">
-                    <input type="number" name="kilos_programados[]" placeholder="Kilos programados" class="kilos-input" value="{{ old('kilos_programados.3') }}">
+                    <input type="text" name="orden_produccion_selladora-1[]" placeholder="Orden de produccion" class="oc-input" value="{{ old('orden_produccion_selladora-1.0') }}">
+                    <input type="number" name="kilos_fabricados_selladora-1[]" placeholder="Kilos fabricados" class="kilos-input" value="{{ old('kilos_fabricados_selladora-1.0') }}">
+                    <input type="number" name="kilos_programados_selladora-1[]" placeholder="Kilos programados" class="kilos-input" value="{{ old('kilos_programados_selladora-1.0') }}">
 
                     <div class="extra-lines"></div>
                     <i class="fa fa-plus-circle" onclick="addSelladoraLine('selladora-1')"></i>
@@ -199,9 +199,9 @@
                     <i class="fa fa-cog"></i> Selladora 2
                     <input type="hidden" name="machine_type[]" value="selladora">
                     <input type="hidden" name="machine_id[]" value="selladora-2">
-                    <input type="text" name="orden_produccion[]" placeholder="Orden de produccion" class="oc-input" value="{{ old('orden_produccion.4') }}">
-                    <input type="number" name="kilos_fabricados[]" placeholder="Kilos fabricados" class="kilos-input" value="{{ old('kilos_fabricados.4') }}">
-                    <input type="number" name="kilos_programados[]" placeholder="Kilos programados" class="kilos-input" value="{{ old('kilos_programados.4') }}">
+                    <input type="text" name="orden_produccion_selladora-2[]" placeholder="Orden de produccion" class="oc-input" value="{{ old('orden_produccion_selladora-2.0') }}">
+                    <input type="number" name="kilos_fabricados_selladora-2[]" placeholder="Kilos fabricados" class="kilos-input" value="{{ old('kilos_fabricados_selladora-2.0') }}">
+                    <input type="number" name="kilos_programados_selladora-2[]" placeholder="Kilos programados" class="kilos-input" value="{{ old('kilos_programados_selladora-2.0') }}">
 
                     <div class="extra-lines"></div>
                     <i class="fa fa-plus-circle" onclick="addSelladoraLine('selladora-2')"></i>
@@ -214,9 +214,9 @@
                     <i class="fa fa-cog"></i> Selladora 3
                     <input type="hidden" name="machine_type[]" value="selladora">
                     <input type="hidden" name="machine_id[]" value="selladora-3">
-                    <input type="text" name="orden_produccion[]" placeholder="Orden de produccion" class="oc-input" value="{{ old('orden_produccion.5') }}">
-                    <input type="number" name="kilos_fabricados[]" placeholder="Kilos fabricados" class="kilos-input" value="{{ old('kilos_fabricados.5') }}">
-                    <input type="number" name="kilos_programados[]" placeholder="Kilos programados" class="kilos-input" value="{{ old('kilos_programados.5') }}">
+                    <input type="text" name="orden_produccion_selladora-3[]" placeholder="Orden de produccion" class="oc-input" value="{{ old('orden_produccion_selladora-3.0') }}">
+                    <input type="number" name="kilos_fabricados_selladora-3[]" placeholder="Kilos fabricados" class="kilos-input" value="{{ old('kilos_fabricados_selladora-3.0') }}">
+                    <input type="number" name="kilos_programados_selladora-3[]" placeholder="Kilos programados" class="kilos-input" value="{{ old('kilos_programados_selladora-3.0') }}">
 
                     <div class="extra-lines"></div>
                     <i class="fa fa-plus-circle" onclick="addSelladoraLine('selladora-3')"></i>
@@ -229,9 +229,9 @@
                     <i class="fa fa-cog"></i> Selladora 4
                     <input type="hidden" name="machine_type[]" value="selladora">
                     <input type="hidden" name="machine_id[]" value="selladora-4">
-                    <input type="text" name="orden_produccion[]" placeholder="Orden de produccion" class="oc-input" value="{{ old('orden_produccion.6') }}">
-                    <input type="number" name="kilos_fabricados[]" placeholder="Kilos fabricados" class="kilos-input" value="{{ old('kilos_fabricados.6') }}">
-                    <input type="number" name="kilos_programados[]" placeholder="Kilos programados" class="kilos-input" value="{{ old('kilos_programados.6') }}">
+                    <input type="text" name="orden_produccion_selladora-4[]" placeholder="Orden de produccion" class="oc-input" value="{{ old('orden_produccion_selladora-4.0') }}">
+                    <input type="number" name="kilos_fabricados_selladora-4[]" placeholder="Kilos fabricados" class="kilos-input" value="{{ old('kilos_fabricados_selladora-4.0') }}">
+                    <input type="number" name="kilos_programados_selladora-4[]" placeholder="Kilos programados" class="kilos-input" value="{{ old('kilos_programados_selladora-4.0') }}">
 
                     <div class="extra-lines"></div>
                     <i class="fa fa-plus-circle" onclick="addSelladoraLine('selladora-4')"></i>
@@ -244,9 +244,9 @@
                     <i class="fa fa-cog"></i> Selladora 5
                     <input type="hidden" name="machine_type[]" value="selladora">
                     <input type="hidden" name="machine_id[]" value="selladora-5">
-                    <input type="text" name="orden_produccion[]" placeholder="Orden de produccion" class="oc-input" value="{{ old('orden_produccion.7') }}">
-                    <input type="number" name="kilos_fabricados[]" placeholder="Kilos fabricados" class="kilos-input" value="{{ old('kilos_fabricados.7') }}">
-                    <input type="number" name="kilos_programados[]" placeholder="Kilos programados" class="kilos-input" value="{{ old('kilos_programados.7') }}">
+                    <input type="text" name="orden_produccion_selladora-5[]" placeholder="Orden de produccion" class="oc-input" value="{{ old('orden_produccion_selladora-5.0') }}">
+                    <input type="number" name="kilos_fabricados_selladora-5[]" placeholder="Kilos fabricados" class="kilos-input" value="{{ old('kilos_fabricados_selladora-5.0') }}">
+                    <input type="number" name="kilos_programados_selladora-5[]" placeholder="Kilos programados" class="kilos-input" value="{{ old('kilos_programados_selladora-5.0') }}">
 
                     <div class="extra-lines"></div>
                     <i class="fa fa-plus-circle" onclick="addSelladoraLine('selladora-5')"></i>
@@ -264,9 +264,9 @@
                     <i class="fa fa-cogs"></i> Microperforadora 1
                     <input type="hidden" name="machine_type[]" value="microperforadora">
                     <input type="hidden" name="machine_id[]" value="microperforadora-1">
-                    <input type="text" name="orden_produccion[]" placeholder="Orden de produccion" class="oc-input" value="{{ old('orden_produccion.8') }}">
-                    <input type="number" name="kilos_fabricados[]" placeholder="Kilos fabricados" class="kilos-input" value="{{ old('kilos_fabricados.8') }}">
-                    <input type="number" name="kilos_programados[]" placeholder="Kilos programados" class="kilos-input" value="{{ old('kilos_programados.8') }}">
+                    <input type="text" name="orden_produccion_microperforadora-1[]" placeholder="Orden de produccion" class="oc-input" value="{{ old('orden_produccion_microperforadora-1.0') }}">
+                    <input type="number" name="kilos_fabricados_microperforadora-1[]" placeholder="Kilos fabricados" class="kilos-input" value="{{ old('kilos_fabricados_microperforadora-1.0') }}">
+                    <input type="number" name="kilos_programados_microperforadora-1[]" placeholder="Kilos programados" class="kilos-input" value="{{ old('kilos_programados_microperforadora-1.0') }}">
                     <div class="extra-lines"></div>
                     <i class="fa fa-plus-circle" onclick="addMicroperforadoraLine('microperforadora-1')"></i>
                     <i class="fa fa-minus-circle" onclick="removeMicroperforadoraLine('microperforadora-1')"></i>
@@ -278,9 +278,9 @@
                     <i class="fa fa-cogs"></i> Microperforadora 2
                     <input type="hidden" name="machine_type[]" value="microperforadora">
                     <input type="hidden" name="machine_id[]" value="microperforadora-2">
-                    <input type="text" name="orden_produccion[]" placeholder="Orden de produccion" class="oc-input" value="{{ old('orden_produccion.9') }}">
-                    <input type="number" name="kilos_fabricados[]" placeholder="Kilos fabricados" class="kilos-input" value="{{ old('kilos_fabricados.9') }}">
-                    <input type="number" name="kilos_programados[]" placeholder="Kilos programados" class="kilos-input" value="{{ old('kilos_programados.9') }}">
+                    <input type="text" name="orden_produccion_microperforadora-2[]" placeholder="Orden de produccion" class="oc-input" value="{{ old('orden_produccion_microperforadora-2.0') }}">
+                    <input type="number" name="kilos_fabricados_microperforadora-2[]" placeholder="Kilos fabricados" class="kilos-input" value="{{ old('kilos_fabricados_microperforadora-2.0') }}">
+                    <input type="number" name="kilos_programados_microperforadora-2[]" placeholder="Kilos programados" class="kilos-input" value="{{ old('kilos_programados_microperforadora-2.0') }}">
                     <div class="extra-lines"></div>
                     <i class="fa fa-plus-circle" onclick="addMicroperforadoraLine('microperforadora-2')"></i>
                     <i class="fa fa-minus-circle" onclick="removeMicroperforadoraLine('microperforadora-2')"></i>
@@ -292,9 +292,9 @@
                     <i class="fa fa-cogs"></i> Microperforadora 3
                     <input type="hidden" name="machine_type[]" value="microperforadora">
                     <input type="hidden" name="machine_id[]" value="microperforadora-3">
-                    <input type="text" name="orden_produccion[]" placeholder="Orden de produccion" class="oc-input" value="{{ old('orden_produccion.10') }}">
-                    <input type="number" name="kilos_fabricados[]" placeholder="Kilos fabricados" class="kilos-input" value="{{ old('kilos_fabricados.10') }}">
-                    <input type="number" name="kilos_programados[]" placeholder="Kilos programados" class="kilos-input" value="{{ old('kilos_programados.10') }}">
+                    <input type="text" name="orden_produccion_microperforadora-3[]" placeholder="Orden de produccion" class="oc-input" value="{{ old('orden_produccion_microperforadora-3.0') }}">
+                    <input type="number" name="kilos_fabricados_microperforadora-3[]" placeholder="Kilos fabricados" class="kilos-input" value="{{ old('kilos_fabricados_microperforadora-3.0') }}">
+                    <input type="number" name="kilos_programados_microperforadora-3[]" placeholder="Kilos programados" class="kilos-input" value="{{ old('kilos_programados_microperforadora-3.0') }}">
                     <div class="extra-lines"></div>
                     <i class="fa fa-plus-circle" onclick="addMicroperforadoraLine('microperforadora-3')"></i>
                     <i class="fa fa-minus-circle" onclick="removeMicroperforadoraLine('microperforadora-3')"></i>
@@ -490,15 +490,15 @@ function generateCharts() {
 function addExtrusoraLine(machineId) {
     const machineGroup = document.getElementById(machineId);
     const extraLinesContainer = machineGroup.querySelector('.extra-lines');
-    const lines = extraLinesContainer.querySelectorAll('div');
-    if (lines.length < 4) {
+    const lines = extraLinesContainer.querySelectorAll('div').length;
+    if (lines < 4) {
         const line = document.createElement('div');
         line.classList.add('extra-line');
         line.innerHTML = `
-            <input type="text" name="orden_produccion[]" placeholder="Orden de producción" class="oc-input">
-            <input type="number" name="kilos_fabricados[]" placeholder="Kilos fabricados" class="kilos-input">
-            <input type="number" name="kilos_programados[]" placeholder="Kilos programados" class="kilos-input">
-            <input type="number" name="kilosscrap[]" placeholder="Kilos scrap" class="kilos-scrap">
+            <input type="text" name="orden_produccion_extrusora-1[]" placeholder="Orden de producción" class="oc-input">
+            <input type="number" name="kilos_fabricados_extrusora-1[]" placeholder="Kilos fabricados" class="kilos-input">
+            <input type="number" name="kilos_programados_extrusora-1[]" placeholder="Kilos programados" class="kilos-input">
+            <input type="number" name="kilosscrap_extrusora-1[]" placeholder="Kilos scrap" class="kilos-scrap">
         `;
         extraLinesContainer.appendChild(line);
     } else {
@@ -519,14 +519,14 @@ function removeExtrusoraLine(machineId) {
 function addSelladoraLine(machineId) {
     const machineGroup = document.getElementById(machineId);
     const extraLinesContainer = machineGroup.querySelector('.extra-lines');
-    const lines = extraLinesContainer.querySelectorAll('div');
-    if (lines.length < 4) {
+    const lines = extraLinesContainer.querySelectorAll('div').length;
+    if (lines < 4) {
         const line = document.createElement('div');
         line.classList.add('extra-line');
         line.innerHTML = `
-            <input type="text" name="orden_produccion[]" placeholder="Orden de producción" class="oc-input">
-            <input type="number" name="kilos_fabricados[]" placeholder="Kilos fabricados" class="kilos-input">
-            <input type="number" name="kilos_programados[]" placeholder="Kilos programados" class="kilos-input">
+            <input type="text" name="orden_produccion_selladora-1[]" placeholder="Orden de producción" class="oc-input">
+            <input type="number" name="kilos_fabricados_selladora-1[]" placeholder="Kilos fabricados" class="kilos-input">
+            <input type="number" name="kilos_programados_selladora-1[]" placeholder="Kilos programados" class="kilos-input">
         `;
         extraLinesContainer.appendChild(line);
     } else {
@@ -547,14 +547,14 @@ function removeSelladoraLine(machineId) {
 function addMicroperforadoraLine(machineId) {
     const machineGroup = document.getElementById(machineId);
     const extraLinesContainer = machineGroup.querySelector('.extra-lines');
-    const lines = extraLinesContainer.querySelectorAll('div');
-    if (lines.length < 4) {
+    const lines = extraLinesContainer.querySelectorAll('div').length;
+    if (lines < 4) {
         const line = document.createElement('div');
         line.classList.add('extra-line');
         line.innerHTML = `
-            <input type="text" name="orden_produccion[]" placeholder="Orden de producción" class="oc-input">
-            <input type="number" name="kilos_fabricados[]" placeholder="Kilos fabricados" class="kilos-input">
-            <input type="number" name="kilos_programados[]" placeholder="Kilos programados" class="kilos-input">
+            <input type="text" name="orden_produccion_microperforadora-1[]" placeholder="Orden de producción" class="oc-input">
+            <input type="number" name="kilos_fabricados_microperforadora-1[]" placeholder="Kilos fabricados" class="kilos-input">
+            <input type="number" name="kilos_programados_microperforadora-1[]" placeholder="Kilos programados" class="kilos-input">
         `;
         extraLinesContainer.appendChild(line);
     } else {
