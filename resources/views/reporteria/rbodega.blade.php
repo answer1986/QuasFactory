@@ -1,5 +1,5 @@
-@extends('layouts/all')
-@include('essencials/nav')
+@extends('layouts.all')
+@include('essencials.nav')
 
 @section('sidebar')
 <div id="mySidebar">
@@ -19,9 +19,6 @@
 </div>
 @endsection
 
-
-
-
 @section('banner')
 @if(session('error'))
     <div class="alert alert-danger">
@@ -29,8 +26,8 @@
     </div>
 @endif
 
-<h2 id="title-oc">Ingreso de indicadores {{$section ?? ''}}</h2>
-<form id="dataForm" method="POST" action="{{ route('rcomercial.store') }}" onsubmit="return validateForm()">
+<h2 id="title-oc">Ingreso de indicadores de Bodega</h2>
+<form id="dataForm" method="POST" action="{{ route('rbodega.store') }}" onsubmit="return validateForm()">
     @csrf
     @if(session('error'))
     <div class="alert alert-danger">
@@ -69,46 +66,51 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group-inline">
-                        <label for="variacion_programa">Tasa de variación programa distribución</label>
-                        <input type="number" id="variacion_programa-1" name="variacion_programa[]" step="any" inputmode="decimal" value="{{ old('variacion_programa.0') }}">
-                        <span class="validation" id="validation-variacion_programa-1"></span>
+                        <label for="retiro_produccion">Retiro de producción interna</label>
+                        <input type="number" id="retiro_produccion-1" name="retiro_produccion[]" step="any" inputmode="decimal" value="{{ old('retiro_produccion.0') }}">
+                        <span class="validation" id="validation-retiro_produccion-1"></span>
                     </div>
                     <div class="form-group-inline">
-                        <label for="retencion_clientes">Tasa retención clientes</label>
-                        <input type="number" id="retencion_clientes-1" name="retencion_clientes[]" step="any" inputmode="decimal" value="{{ old('retencion_clientes.0') }}">
-                        <span class="validation" id="validation-retencion_clientes-1"></span>
+                        <label for="envio_inventario">Envío de inventario</label>
+                        <input type="number" id="envio_inventario-1" name="envio_inventario[]" step="any" inputmode="decimal" value="{{ old('envio_inventario.0') }}">
+                        <span class="validation" id="validation-envio_inventario-1"></span>
                     </div>
                     <div class="form-group-inline">
-                        <label for="incorporacion_clientes">Tasa incorporación clientes</label>
-                        <input type="number" id="incorporacion_clientes-1" name="incorporacion_clientes[]" step="any" inputmode="decimal" value="{{ old('incorporacion_clientes.0') }}">
-                        <span class="validation" id="validation-incorporacion_clientes-1"></span>
+                        <label for="verificacion_materias_primas">Verificación materias primas</label>
+                        <input type="number" id="verificacion_materias_primas-1" name="verificacion_materias_primas[]" step="any" inputmode="decimal" value="{{ old('verificacion_materias_primas.0') }}">
+                        <span class="validation" id="validation-verificacion_materias_primas-1"></span>
                     </div>
                     <div class="form-group-inline">
-                        <label for="satisfaccion_clientes">Tasa de satisfacción de clientes</label>
-                        <input type="number" id="satisfaccion_clientes-1" name="satisfaccion_clientes[]" step="any" inputmode="decimal" value="{{ old('satisfaccion_clientes.0') }}">
-                        <span class="validation" id="validation-satisfaccion_clientes-1"></span>
+                        <label for="verificacion_producto_terminado">Verificación producto terminado</label>
+                        <input type="number" id="verificacion_producto_terminado-1" name="verificacion_producto_terminado[]" step="any" inputmode="decimal" value="{{ old('verificacion_producto_terminado.0') }}">
+                        <span class="validation" id="validation-verificacion_producto_terminado-1"></span>
+                    </div>
+                    <div class="form-group-inline">
+                        <label for="cumplimiento_envio_programacion">Tasa cumplimiento envío programación de despacho</label>
+                        <input type="number" id="cumplimiento_envio_programacion-1" name="cumplimiento_envio_programacion[]" step="any" inputmode="decimal" value="{{ old('cumplimiento_envio_programacion.0') }}">
+                        <span class="validation" id="validation-cumplimiento_envio_programacion-1"></span>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group-inline">
-                        <label for="carpetas_completas">Tasa de carpetas comerciales completas</label>
-                        <input type="number" id="carpetas_completas-1" name="carpetas_completas[]" step="any" inputmode="decimal" value="{{ old('carpetas_completas.0') }}">
-                        <span class="validation" id="validation-carpetas_completas-1"></span>
+                        <label for="cumplimiento_estandar_embalaje">Tasa cumplimiento estándar de embalaje</label>
+                        <input type="number" id="cumplimiento_estandar_embalaje-1" name="cumplimiento_estandar_embalaje[]" step="any" inputmode="decimal" value="{{ old('cumplimiento_estandar_embalaje.0') }}">
+                        <span class="validation" id="validation-cumplimiento_estandar_embalaje-1"></span>
                     </div>
                     <div class="form-group-inline">
-                        <label for="devolucion_productos">Tasa devolución de productos</label>
-                        <input type="number" id="devolucion_productos-1" name="devolucion_productos[]" step="any" inputmode="decimal" value="{{ old('devolucion_productos.0') }}">
-                        <span class="validation" id="validation-devolucion_productos-1"></span>
+                        <label for="cumplimiento_programa_despacho">Tasa de cumplimiento de programa de despacho de productos</label>
+                        <input type="number" id="cumplimiento_programa_despacho-1" name="cumplimiento_programa_despacho[]" step="any" inputmode="decimal" value="{{ old('cumplimiento_programa_despacho.0') }}">
+                        <span class="validation" id="validation-cumplimiento_programa_despacho-1"></span>
                     </div>
                     <div class="form-group-inline">
-                        <label for="tiempo_respuesta">Tiempo promedio respuesta a consultas y/o reclamos de clientes</label>
-                        <input type="number" id="tiempo_respuesta-1" name="tiempo_respuesta[]" step="any" inputmode="decimal" value="{{ old('tiempo_respuesta.0') }}">
-                        <span class="validation" id="validation-tiempo_respuesta-1"></span>
+                        <label for="eficiencia_emision_documentos">Tasa de eficiencia emisión documentos mercantiles</label>
+                        <input type="number" id="eficiencia_emision_documentos-1" name="eficiencia_emision_documentos[]" step="any" inputmode="decimal" value="{{ old('eficiencia_emision_documentos.0') }}">
+                        <span class="validation" id="validation-eficiencia_emision_documentos-1"></span>
                     </div>
                     <div class="form-group-inline">
-                        <label for="capacitacion_personal">Tasa de capacitación personal</label>
-                        <input type="number" id="capacitacion_personal-1" name="capacitacion_personal[]" step="any" inputmode="decimal" value="{{ old('capacitacion_personal.0') }}">
-                        <span class="validation" id="validation-capacitacion_personal-1"></span>
+                        <label for="gestion_retiro_scrap">Tasa gestión retiro de scrap</label>
+                        <input type="number" id="gestion_retiro_scrap-1" name="gestion_retiro_scrap[]" step="any" inputmode="decimal" value="{{ old('gestion_retiro_scrap.0') }}">
+                        <span class="validation" id="validation-gestion_retiro_scrap-1"></span>
                     </div>
                 </div>
             </div>
@@ -128,13 +130,15 @@
 let charts = [];
 
 const metas = {
-    'variacion_programa': { max: 10 },
-    'retencion_clientes': { min: 90 },
-    'incorporacion_clientes': { min: 10 },
-    'satisfaccion_clientes': { min: 80 },
-    'carpetas_completas': { min: 80 },
-    'devolucion_productos': { max: 3 },
-    'tiempo_respuesta': { max: 3 }
+    'retiro_produccion': { min: 100 },
+    'envio_inventario': { min: 80 },
+    'verificacion_materias_primas': { min: 100 },
+    'verificacion_producto_terminado': { min: 100 },
+    'cumplimiento_envio_programacion': { min: 100 },
+    'cumplimiento_estandar_embalaje': { min: 90 },
+    'cumplimiento_programa_despacho': { min: 100 },
+    'eficiencia_emision_documentos': { min: 100 },
+    'gestion_retiro_scrap': { min: 100 }
 };
 
 function validateField(value, field) {
@@ -169,63 +173,70 @@ function generateCharts() {
 
     const formGroups = document.querySelectorAll('.form-group');
     formGroups.forEach((group, groupIndex) => {
-        const variacionPrograma = parseFloat(group.querySelector(`#variacion_programa-${groupIndex + 1}`).value) || 0;
-        const retencionClientes = parseFloat(group.querySelector(`#retencion_clientes-${groupIndex + 1}`).value) || 0;
-        const incorporacionClientes = parseFloat(group.querySelector(`#incorporacion_clientes-${groupIndex + 1}`).value) || 0;
-        const satisfaccionClientes = parseFloat(group.querySelector(`#satisfaccion_clientes-${groupIndex + 1}`).value) || 0;
-        const carpetasCompletas = parseFloat(group.querySelector(`#carpetas_completas-${groupIndex + 1}`).value) || 0;
-        const devolucionProductos = parseFloat(group.querySelector(`#devolucion_productos-${groupIndex + 1}`).value) || 0;
-        const tiempoRespuesta = parseFloat(group.querySelector(`#tiempo_respuesta-${groupIndex + 1}`).value) || 0;
-        const capacitacionPersonal = parseFloat(group.querySelector(`#capacitacion_personal-${groupIndex + 1}`).value) || 0;
+        const retiroProduccion = parseFloat(group.querySelector(`#retiro_produccion-${groupIndex + 1}`).value) || 0;
+        const envioInventario = parseFloat(group.querySelector(`#envio_inventario-${groupIndex + 1}`).value) || 0;
+        const verificacionMateriasPrimas = parseFloat(group.querySelector(`#verificacion_materias_primas-${groupIndex + 1}`).value) || 0;
+        const verificacionProductoTerminado = parseFloat(group.querySelector(`#verificacion_producto_terminado-${groupIndex + 1}`).value) || 0;
+        const cumplimientoEnvioProgramacion = parseFloat(group.querySelector(`#cumplimiento_envio_programacion-${groupIndex + 1}`).value) || 0;
+        const cumplimientoEstandarEmbalaje = parseFloat(group.querySelector(`#cumplimiento_estandar_embalaje-${groupIndex + 1}`).value) || 0;
+        const cumplimientoProgramaDespacho = parseFloat(group.querySelector(`#cumplimiento_programa_despacho-${groupIndex + 1}`).value) || 0;
+        const eficienciaEmisionDocumentos = parseFloat(group.querySelector(`#eficiencia_emision_documentos-${groupIndex + 1}`).value) || 0;
+        const gestionRetiroScrap = parseFloat(group.querySelector(`#gestion_retiro_scrap-${groupIndex + 1}`).value) || 0;
 
         const formulas = [
             {
-                label: "Tasa de variación programa distribución",
-                description: "(N ° Variaciones Prog. Dist. /N° total de Prog. Distrib solicitadas) x100",
-                value: variacionPrograma,
-                field: 'variacion_programa'
+                label: "Retiro de producción interna",
+                description: "(N ° de pallets que cumplen con las especificaciones de la orden de producción/ N ° total de pallets retirados desde sellado) x 100",
+                value: retiroProduccion,
+                field: 'retiro_produccion'
             },
             {
-                label: "Tasa retención clientes",
-                description: "((N ° de clientes finales del período – N° de clientes nuevos del periodo) /N ° clientes iniciales del período) x100",
-                value: retencionClientes,
-                field: 'retencion_clientes'
+                label: "Envío de inventario",
+                description: "(N ° de inventarios enviados por período / N ° total de inventarios planificados para el período) x 100",
+                value: envioInventario,
+                field: 'envio_inventario'
             },
             {
-                label: "Tasa incorporación clientes",
-                description: "(N ° de clientes nuevos del período / N ° de clientes antiguos del período) x 100",
-                value: incorporacionClientes,
-                field: 'incorporacion_clientes'
+                label: "Verificación materias primas",
+                description: "(N ° de comparaciones concordantes entre existencia física materia prima v/s inventario / N ° total de verificaciones planificadas para el período) x 100",
+                value: verificacionMateriasPrimas,
+                field: 'verificacion_materias_primas'
             },
             {
-                label: "Tasa de satisfacción de clientes",
-                description: "(N ° de encuestas con resultados iguales o superiores al 80% de satisfacción / N ° total de encuestas del período) x 100",
-                value: satisfaccionClientes,
-                field: 'satisfaccion_clientes'
+                label: "Verificación producto terminado",
+                description: "(N ° de comparaciones concordantes entre existencia física de producto terminado v/s inventario / N ° total de verificaciones planificadas para el período) x 100",
+                value: verificacionProductoTerminado,
+                field: 'verificacion_producto_terminado'
             },
             {
-                label: "Tasa de carpetas comerciales completas",
-                description: "(N ° de carpetas de clientes completas / N ° total de clientes) x 100",
-                value: carpetasCompletas,
-                field: 'carpetas_completas'
+                label: "Tasa cumplimiento envío programación de despacho",
+                description: "(N ° de programas de despacho de productos enviados dentro del plazo por período / N ° total de programas de despacho de productos planificadas para el período) x 100",
+                value: cumplimientoEnvioProgramacion,
+                field: 'cumplimiento_envio_programacion'
             },
             {
-                label: "Tasa devolución de productos",
-                description: "(N ° devoluciones de productos del período / N ° total de entregas del período) x 100",
-                value: devolucionProductos,
-                field: 'devolucion_productos'
+                label: "Tasa cumplimiento estándar de embalaje",
+                description: "(N ° total de pallets que cumplen con estándar de embalaje por período / N ° total de pallet por período) x 100",
+                value: cumplimientoEstandarEmbalaje,
+                field: 'cumplimiento_estandar_embalaje'
             },
             {
-                label: "Tiempo promedio respuesta a consultas y/o reclamos de clientes",
-                description: "(Suma de días en espera por respuesta a reclamos y/o consultas no cerradas en el período / N ° total reclamos y/o consultas recibidas en el período)",
-                value: tiempoRespuesta,
-                field: 'tiempo_respuesta'
+                label: "Tasa de cumplimiento de programa de despacho de productos",
+                description: "(N ° total de despachos ejecutados por período / N ° total de despachos planificadas para el período) x 100",
+                value: cumplimientoProgramaDespacho,
+                field: 'cumplimiento_programa_despacho'
             },
             {
-                label: "Tasa de capacitación personal",
-                description: "Tasa de capacitación personal",
-                value: capacitacionPersonal,
-                field: 'capacitacion_personal'
+                label: "Tasa de eficiencia emisión documentos mercantiles",
+                description: "(N ° total de facturas emitidas por período de tiempo / N ° total de despachos ejecutados por período) x 100",
+                value: eficienciaEmisionDocumentos,
+                field: 'eficiencia_emision_documentos'
+            },
+            {
+                label: "Tasa gestión retiro de scrap",
+                description: "(N ° de retiros de scrap realizados por período / N ° total de retiros de scrap planificados para el período) x 100",
+                value: gestionRetiroScrap,
+                field: 'gestion_retiro_scrap'
             },
         ];
 
@@ -333,5 +344,4 @@ document.querySelectorAll('#dataForm input').forEach(input => {
 </script>
 @endsection
 
-
-@include('essencials/footer')
+@include('essencials.footer')

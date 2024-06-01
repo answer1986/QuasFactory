@@ -1,5 +1,5 @@
-@extends('layouts/all')
-@include('essencials/nav')
+@extends('layouts.all')
+@include('essencials.nav')
 
 @section('sidebar')
 <div id="mySidebar">
@@ -19,9 +19,6 @@
 </div>
 @endsection
 
-
-
-
 @section('banner')
 @if(session('error'))
     <div class="alert alert-danger">
@@ -29,8 +26,8 @@
     </div>
 @endif
 
-<h2 id="title-oc">Ingreso de indicadores {{$section ?? ''}}</h2>
-<form id="dataForm" method="POST" action="{{ route('rcomercial.store') }}" onsubmit="return validateForm()">
+<h2 id="title-oc">Ingreso de indicadores financieros</h2>
+<form id="dataForm" method="POST" action="{{ route('rcontabilidad.store') }}" onsubmit="return validateForm()">
     @csrf
     @if(session('error'))
     <div class="alert alert-danger">
@@ -69,46 +66,51 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group-inline">
-                        <label for="variacion_programa">Tasa de variación programa distribución</label>
-                        <input type="number" id="variacion_programa-1" name="variacion_programa[]" step="any" inputmode="decimal" value="{{ old('variacion_programa.0') }}">
-                        <span class="validation" id="validation-variacion_programa-1"></span>
+                        <label for="conciliacion_bancaria">Tasa asertividad conciliación bancaria del período</label>
+                        <input type="number" id="conciliacion_bancaria-1" name="conciliacion_bancaria[]" step="any" inputmode="decimal" value="{{ old('conciliacion_bancaria.0') }}">
+                        <span class="validation" id="validation-conciliacion_bancaria-1"></span>
                     </div>
                     <div class="form-group-inline">
-                        <label for="retencion_clientes">Tasa retención clientes</label>
-                        <input type="number" id="retencion_clientes-1" name="retencion_clientes[]" step="any" inputmode="decimal" value="{{ old('retencion_clientes.0') }}">
-                        <span class="validation" id="validation-retencion_clientes-1"></span>
+                        <label for="liquidez_corriente">Tasa liquidez corriente</label>
+                        <input type="number" id="liquidez_corriente-1" name="liquidez_corriente[]" step="any" inputmode="decimal" value="{{ old('liquidez_corriente.0') }}">
+                        <span class="validation" id="validation-liquidez_corriente-1"></span>
                     </div>
                     <div class="form-group-inline">
-                        <label for="incorporacion_clientes">Tasa incorporación clientes</label>
-                        <input type="number" id="incorporacion_clientes-1" name="incorporacion_clientes[]" step="any" inputmode="decimal" value="{{ old('incorporacion_clientes.0') }}">
-                        <span class="validation" id="validation-incorporacion_clientes-1"></span>
+                        <label for="ventas_netas">Ventas netas del período</label>
+                        <input type="number" id="ventas_netas-1" name="ventas_netas[]" step="any" inputmode="decimal" value="{{ old('ventas_netas.0') }}">
+                        <span class="validation" id="validation-ventas_netas-1"></span>
                     </div>
                     <div class="form-group-inline">
-                        <label for="satisfaccion_clientes">Tasa de satisfacción de clientes</label>
-                        <input type="number" id="satisfaccion_clientes-1" name="satisfaccion_clientes[]" step="any" inputmode="decimal" value="{{ old('satisfaccion_clientes.0') }}">
-                        <span class="validation" id="validation-satisfaccion_clientes-1"></span>
+                        <label for="ventas_netas_tasa">Tasa de ventas netas por período</label>
+                        <input type="number" id="ventas_netas_tasa-1" name="ventas_netas_tasa[]" step="any" inputmode="decimal" value="{{ old('ventas_netas_tasa.0') }}">
+                        <span class="validation" id="validation-ventas_netas_tasa-1"></span>
+                    </div>
+                    <div class="form-group-inline">
+                        <label for="rotacion_cuentas">Rotación cuentas por cobrar</label>
+                        <input type="number" id="rotacion_cuentas-1" name="rotacion_cuentas[]" step="any" inputmode="decimal" value="{{ old('rotacion_cuentas.0') }}">
+                        <span class="validation" id="validation-rotacion_cuentas-1"></span>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group-inline">
-                        <label for="carpetas_completas">Tasa de carpetas comerciales completas</label>
-                        <input type="number" id="carpetas_completas-1" name="carpetas_completas[]" step="any" inputmode="decimal" value="{{ old('carpetas_completas.0') }}">
-                        <span class="validation" id="validation-carpetas_completas-1"></span>
+                        <label for="deudas_vencidas">% deudas vencidas</label>
+                        <input type="number" id="deudas_vencidas-1" name="deudas_vencidas[]" step="any" inputmode="decimal" value="{{ old('deudas_vencidas.0') }}">
+                        <span class="validation" id="validation-deudas_vencidas-1"></span>
                     </div>
                     <div class="form-group-inline">
-                        <label for="devolucion_productos">Tasa devolución de productos</label>
-                        <input type="number" id="devolucion_productos-1" name="devolucion_productos[]" step="any" inputmode="decimal" value="{{ old('devolucion_productos.0') }}">
-                        <span class="validation" id="validation-devolucion_productos-1"></span>
+                        <label for="solvencia_largo_plazo">Solvencia a largo plazo</label>
+                        <input type="number" id="solvencia_largo_plazo-1" name="solvencia_largo_plazo[]" step="any" inputmode="decimal" value="{{ old('solvencia_largo_plazo.0') }}">
+                        <span class="validation" id="validation-solvencia_largo_plazo-1"></span>
                     </div>
                     <div class="form-group-inline">
-                        <label for="tiempo_respuesta">Tiempo promedio respuesta a consultas y/o reclamos de clientes</label>
-                        <input type="number" id="tiempo_respuesta-1" name="tiempo_respuesta[]" step="any" inputmode="decimal" value="{{ old('tiempo_respuesta.0') }}">
-                        <span class="validation" id="validation-tiempo_respuesta-1"></span>
+                        <label for="razon_endeudamiento">Razón de endeudamiento</label>
+                        <input type="number" id="razon_endeudamiento-1" name="razon_endeudamiento[]" step="any" inputmode="decimal" value="{{ old('razon_endeudamiento.0') }}">
+                        <span class="validation" id="validation-razon_endeudamiento-1"></span>
                     </div>
                     <div class="form-group-inline">
-                        <label for="capacitacion_personal">Tasa de capacitación personal</label>
-                        <input type="number" id="capacitacion_personal-1" name="capacitacion_personal[]" step="any" inputmode="decimal" value="{{ old('capacitacion_personal.0') }}">
-                        <span class="validation" id="validation-capacitacion_personal-1"></span>
+                        <label for="liquidez_corto_plazo">Razón liquidez corto plazo</label>
+                        <input type="number" id="liquidez_corto_plazo-1" name="liquidez_corto_plazo[]" step="any" inputmode="decimal" value="{{ old('liquidez_corto_plazo.0') }}">
+                        <span class="validation" id="validation-liquidez_corto_plazo-1"></span>
                     </div>
                 </div>
             </div>
@@ -128,13 +130,13 @@
 let charts = [];
 
 const metas = {
-    'variacion_programa': { max: 10 },
-    'retencion_clientes': { min: 90 },
-    'incorporacion_clientes': { min: 10 },
-    'satisfaccion_clientes': { min: 80 },
-    'carpetas_completas': { min: 80 },
-    'devolucion_productos': { max: 3 },
-    'tiempo_respuesta': { max: 3 }
+    'conciliacion_bancaria': { min: 100 },
+    'liquidez_corriente': { min: 1.2 },
+    'ventas_netas_tasa': { max: 5 },
+    'deudas_vencidas': { max: 10 },
+    'solvencia_largo_plazo': { min: 1 },
+    'razon_endeudamiento': { max: 0.8 },
+    'liquidez_corto_plazo': { min: 100 }
 };
 
 function validateField(value, field) {
@@ -169,63 +171,56 @@ function generateCharts() {
 
     const formGroups = document.querySelectorAll('.form-group');
     formGroups.forEach((group, groupIndex) => {
-        const variacionPrograma = parseFloat(group.querySelector(`#variacion_programa-${groupIndex + 1}`).value) || 0;
-        const retencionClientes = parseFloat(group.querySelector(`#retencion_clientes-${groupIndex + 1}`).value) || 0;
-        const incorporacionClientes = parseFloat(group.querySelector(`#incorporacion_clientes-${groupIndex + 1}`).value) || 0;
-        const satisfaccionClientes = parseFloat(group.querySelector(`#satisfaccion_clientes-${groupIndex + 1}`).value) || 0;
-        const carpetasCompletas = parseFloat(group.querySelector(`#carpetas_completas-${groupIndex + 1}`).value) || 0;
-        const devolucionProductos = parseFloat(group.querySelector(`#devolucion_productos-${groupIndex + 1}`).value) || 0;
-        const tiempoRespuesta = parseFloat(group.querySelector(`#tiempo_respuesta-${groupIndex + 1}`).value) || 0;
-        const capacitacionPersonal = parseFloat(group.querySelector(`#capacitacion_personal-${groupIndex + 1}`).value) || 0;
+        const conciliacionBancaria = parseFloat(group.querySelector(`#conciliacion_bancaria-${groupIndex + 1}`).value) || 0;
+        const liquidezCorriente = parseFloat(group.querySelector(`#liquidez_corriente-${groupIndex + 1}`).value) || 0;
+        const ventasNetasTasa = parseFloat(group.querySelector(`#ventas_netas_tasa-${groupIndex + 1}`).value) || 0;
+        const deudasVencidas = parseFloat(group.querySelector(`#deudas_vencidas-${groupIndex + 1}`).value) || 0;
+        const solvenciaLargoPlazo = parseFloat(group.querySelector(`#solvencia_largo_plazo-${groupIndex + 1}`).value) || 0;
+        const razonEndeudamiento = parseFloat(group.querySelector(`#razon_endeudamiento-${groupIndex + 1}`).value) || 0;
+        const liquidezCortoPlazo = parseFloat(group.querySelector(`#liquidez_corto_plazo-${groupIndex + 1}`).value) || 0;
 
         const formulas = [
             {
-                label: "Tasa de variación programa distribución",
-                description: "(N ° Variaciones Prog. Dist. /N° total de Prog. Distrib solicitadas) x100",
-                value: variacionPrograma,
-                field: 'variacion_programa'
+                label: "Tasa asertividad conciliación bancaria del período",
+                description: "(N ° de movimientos en cuentas bancarias identificados por período / N ° de movimientos totales en cuentas bancarias por período) x 100",
+                value: conciliacionBancaria,
+                field: 'conciliacion_bancaria'
             },
             {
-                label: "Tasa retención clientes",
-                description: "((N ° de clientes finales del período – N° de clientes nuevos del periodo) /N ° clientes iniciales del período) x100",
-                value: retencionClientes,
-                field: 'retencion_clientes'
+                label: "Tasa liquidez corriente",
+                description: "(Total activo circulante / total pasivo circulante)",
+                value: liquidezCorriente,
+                field: 'liquidez_corriente'
             },
             {
-                label: "Tasa incorporación clientes",
-                description: "(N ° de clientes nuevos del período / N ° de clientes antiguos del período) x 100",
-                value: incorporacionClientes,
-                field: 'incorporacion_clientes'
+                label: "Tasa de ventas netas por período",
+                description: "(Valor total de descuento en $ / Valor total de ventas en $) x 100",
+                value: ventasNetasTasa,
+                field: 'ventas_netas_tasa'
             },
             {
-                label: "Tasa de satisfacción de clientes",
-                description: "(N ° de encuestas con resultados iguales o superiores al 80% de satisfacción / N ° total de encuestas del período) x 100",
-                value: satisfaccionClientes,
-                field: 'satisfaccion_clientes'
+                label: "% deudas vencidas",
+                description: "(Valor total $ cuentas por cobrar con retraso por período / Valor total $ cuentas por cobrar por período) x 100",
+                value: deudasVencidas,
+                field: 'deudas_vencidas'
             },
             {
-                label: "Tasa de carpetas comerciales completas",
-                description: "(N ° de carpetas de clientes completas / N ° total de clientes) x 100",
-                value: carpetasCompletas,
-                field: 'carpetas_completas'
+                label: "Solvencia a largo plazo",
+                description: "(Activos totales $ / Deuda total Largo plazo $) x 100",
+                value: solvenciaLargoPlazo,
+                field: 'solvencia_largo_plazo'
             },
             {
-                label: "Tasa devolución de productos",
-                description: "(N ° devoluciones de productos del período / N ° total de entregas del período) x 100",
-                value: devolucionProductos,
-                field: 'devolucion_productos'
+                label: "Razón de endeudamiento",
+                description: "(Deuda total $ del período / capital total $ del período)",
+                value: razonEndeudamiento,
+                field: 'razon_endeudamiento'
             },
             {
-                label: "Tiempo promedio respuesta a consultas y/o reclamos de clientes",
-                description: "(Suma de días en espera por respuesta a reclamos y/o consultas no cerradas en el período / N ° total reclamos y/o consultas recibidas en el período)",
-                value: tiempoRespuesta,
-                field: 'tiempo_respuesta'
-            },
-            {
-                label: "Tasa de capacitación personal",
-                description: "Tasa de capacitación personal",
-                value: capacitacionPersonal,
-                field: 'capacitacion_personal'
+                label: "Razón liquidez corto plazo",
+                description: "((Total valor $ activo corriente - Total valor $ inventario) / Total $ pasivo corriente) x 100",
+                value: liquidezCortoPlazo,
+                field: 'liquidez_corto_plazo'
             },
         ];
 
@@ -333,5 +328,5 @@ document.querySelectorAll('#dataForm input').forEach(input => {
 </script>
 @endsection
 
+@include('essencials.footer')
 
-@include('essencials/footer')

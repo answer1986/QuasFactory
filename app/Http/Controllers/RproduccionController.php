@@ -54,7 +54,7 @@ class RproduccionController extends Controller
              'kiloproducxmaqperiod.*' => 'required|integer',
              'machine_type.*' => 'required|string',
              'machine_id.*' => 'required|string',
-             'orden_produccion.*' => 'nullable|string',
+             'orden_produccion.*' => 'required|string',
              'kilos_fabricados.*' => 'nullable|integer',
              'kilos_programados.*' => 'nullable|integer',
          ]);

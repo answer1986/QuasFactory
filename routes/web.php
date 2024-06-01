@@ -22,6 +22,11 @@ use App\Http\Controllers\PublicController;
 use App\Http\Controllers\PrdController;
 use App\Http\Controllers\DespachoController;
 use App\Http\Controllers\RproduccionController;
+use App\Http\Controllers\RcomercialController;
+use App\Http\Controllers\RrrhhController;
+use App\Http\Controllers\RcontabilidadController;
+use App\Http\Controllers\RbodegaController;
+
 
 
 
@@ -208,6 +213,21 @@ Route::post('register', [RegisterController::class, 'register'])->name('register
     Route::prefix('reporteria')->group(function() {
         Route::get('rproduccion', [RproduccionController::class, 'index'])->name('rproduccion');
         Route::post('rproduccion/store', [RproduccionController::class, 'store'])->name('rproduccion.store');
+        
+        Route::get('rcomercial', [RcomercialController::class, 'index'])->name('rcomercial');
+        Route::post('rproduccion/rcomercial', [RcomercialController::class, 'store'])->name('comercial.store');
+
+        Route::get('rrrhh', [RrrhhController::class, 'index'])->name('rrrhh');
+        Route::post('rproduccion/rrrhh', [RrrhhController::class, 'store'])->name('rrrhh.store');
+
+
+        Route::get('rcontabilidad', [RcontabilidadController::class, 'index'])->name('rcontabilidad');
+        Route::post('rproduccion/rcontabilidad', [RcontabilidadController::class, 'store'])->name('rcontabilidad.store');
+
+        Route::get('rbodega', [RbodegaController::class, 'index'])->name('rbodega');
+        Route::post('rproduccion/rbodega', [RbodegaController::class, 'store'])->name('rbodega.store');
+
+
 
     });
 

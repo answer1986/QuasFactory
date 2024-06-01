@@ -1,5 +1,5 @@
-@extends('layouts/all')
-@include('essencials/nav')
+@extends('layouts.all')
+@include('essencials.nav')
 
 @section('sidebar')
 <div id="mySidebar">
@@ -19,9 +19,6 @@
 </div>
 @endsection
 
-
-
-
 @section('banner')
 @if(session('error'))
     <div class="alert alert-danger">
@@ -29,8 +26,8 @@
     </div>
 @endif
 
-<h2 id="title-oc">Ingreso de indicadores {{$section ?? ''}}</h2>
-<form id="dataForm" method="POST" action="{{ route('rcomercial.store') }}" onsubmit="return validateForm()">
+<h2 id="title-oc">Ingreso de indicadores de Recursos Humanos</h2>
+<form id="dataForm" method="POST" action="{{ route('rrrhh.store') }}" onsubmit="return validateForm()">
     @csrf
     @if(session('error'))
     <div class="alert alert-danger">
@@ -69,46 +66,41 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group-inline">
-                        <label for="variacion_programa">Tasa de variación programa distribución</label>
-                        <input type="number" id="variacion_programa-1" name="variacion_programa[]" step="any" inputmode="decimal" value="{{ old('variacion_programa.0') }}">
-                        <span class="validation" id="validation-variacion_programa-1"></span>
+                        <label for="induccion_completa">% de trabajadores con inducción de ingreso completa</label>
+                        <input type="number" id="induccion_completa-1" name="induccion_completa[]" step="any" inputmode="decimal" value="{{ old('induccion_completa.0') }}">
+                        <span class="validation" id="validation-induccion_completa-1"></span>
                     </div>
                     <div class="form-group-inline">
-                        <label for="retencion_clientes">Tasa retención clientes</label>
-                        <input type="number" id="retencion_clientes-1" name="retencion_clientes[]" step="any" inputmode="decimal" value="{{ old('retencion_clientes.0') }}">
-                        <span class="validation" id="validation-retencion_clientes-1"></span>
+                        <label for="rotacion_personal">Tasa de rotación de personal</label>
+                        <input type="number" id="rotacion_personal-1" name="rotacion_personal[]" step="any" inputmode="decimal" value="{{ old('rotacion_personal.0') }}">
+                        <span class="validation" id="validation-rotacion_personal-1"></span>
                     </div>
                     <div class="form-group-inline">
-                        <label for="incorporacion_clientes">Tasa incorporación clientes</label>
-                        <input type="number" id="incorporacion_clientes-1" name="incorporacion_clientes[]" step="any" inputmode="decimal" value="{{ old('incorporacion_clientes.0') }}">
-                        <span class="validation" id="validation-incorporacion_clientes-1"></span>
+                        <label for="clima_laboral">Medición clima laboral (“suceso”)</label>
+                        <input type="number" id="clima_laboral-1" name="clima_laboral[]" step="any" inputmode="decimal" value="{{ old('clima_laboral.0') }}">
+                        <span class="validation" id="validation-clima_laboral-1"></span>
                     </div>
                     <div class="form-group-inline">
-                        <label for="satisfaccion_clientes">Tasa de satisfacción de clientes</label>
-                        <input type="number" id="satisfaccion_clientes-1" name="satisfaccion_clientes[]" step="any" inputmode="decimal" value="{{ old('satisfaccion_clientes.0') }}">
-                        <span class="validation" id="validation-satisfaccion_clientes-1"></span>
+                        <label for="escalafon_actualizacion">Actualización Escalafón remuneraciones</label>
+                        <input type="number" id="escalafon_actualizacion-1" name="escalafon_actualizacion[]" step="any" inputmode="decimal" value="{{ old('escalafon_actualizacion.0') }}">
+                        <span class="validation" id="validation-escalafon_actualizacion-1"></span>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group-inline">
-                        <label for="carpetas_completas">Tasa de carpetas comerciales completas</label>
-                        <input type="number" id="carpetas_completas-1" name="carpetas_completas[]" step="any" inputmode="decimal" value="{{ old('carpetas_completas.0') }}">
-                        <span class="validation" id="validation-carpetas_completas-1"></span>
+                        <label for="ausentismo_laboral">Tasa de ausentismo laboral</label>
+                        <input type="number" id="ausentismo_laboral-1" name="ausentismo_laboral[]" step="any" inputmode="decimal" value="{{ old('ausentismo_laboral.0') }}">
+                        <span class="validation" id="validation-ausentismo_laboral-1"></span>
                     </div>
                     <div class="form-group-inline">
-                        <label for="devolucion_productos">Tasa devolución de productos</label>
-                        <input type="number" id="devolucion_productos-1" name="devolucion_productos[]" step="any" inputmode="decimal" value="{{ old('devolucion_productos.0') }}">
-                        <span class="validation" id="validation-devolucion_productos-1"></span>
+                        <label for="horas_extras">Tasa horas extras por período</label>
+                        <input type="number" id="horas_extras-1" name="horas_extras[]" step="any" inputmode="decimal" value="{{ old('horas_extras.0') }}">
+                        <span class="validation" id="validation-horas_extras-1"></span>
                     </div>
                     <div class="form-group-inline">
-                        <label for="tiempo_respuesta">Tiempo promedio respuesta a consultas y/o reclamos de clientes</label>
-                        <input type="number" id="tiempo_respuesta-1" name="tiempo_respuesta[]" step="any" inputmode="decimal" value="{{ old('tiempo_respuesta.0') }}">
-                        <span class="validation" id="validation-tiempo_respuesta-1"></span>
-                    </div>
-                    <div class="form-group-inline">
-                        <label for="capacitacion_personal">Tasa de capacitación personal</label>
-                        <input type="number" id="capacitacion_personal-1" name="capacitacion_personal[]" step="any" inputmode="decimal" value="{{ old('capacitacion_personal.0') }}">
-                        <span class="validation" id="validation-capacitacion_personal-1"></span>
+                        <label for="atraso_periodo">Tasa de atraso por período</label>
+                        <input type="number" id="atraso_periodo-1" name="atraso_periodo[]" step="any" inputmode="decimal" value="{{ old('atraso_periodo.0') }}">
+                        <span class="validation" id="validation-atraso_periodo-1"></span>
                     </div>
                 </div>
             </div>
@@ -128,13 +120,13 @@
 let charts = [];
 
 const metas = {
-    'variacion_programa': { max: 10 },
-    'retencion_clientes': { min: 90 },
-    'incorporacion_clientes': { min: 10 },
-    'satisfaccion_clientes': { min: 80 },
-    'carpetas_completas': { min: 80 },
-    'devolucion_productos': { max: 3 },
-    'tiempo_respuesta': { max: 3 }
+    'induccion_completa': { min: 100 },
+    'rotacion_personal': { max: 5 },
+    'clima_laboral': { min: 80 },
+    'escalafon_actualizacion': { min: 2 },
+    'ausentismo_laboral': { max: 3 },
+    'horas_extras': { max: 5 },
+    'atraso_periodo': { max: 3 }
 };
 
 function validateField(value, field) {
@@ -169,63 +161,56 @@ function generateCharts() {
 
     const formGroups = document.querySelectorAll('.form-group');
     formGroups.forEach((group, groupIndex) => {
-        const variacionPrograma = parseFloat(group.querySelector(`#variacion_programa-${groupIndex + 1}`).value) || 0;
-        const retencionClientes = parseFloat(group.querySelector(`#retencion_clientes-${groupIndex + 1}`).value) || 0;
-        const incorporacionClientes = parseFloat(group.querySelector(`#incorporacion_clientes-${groupIndex + 1}`).value) || 0;
-        const satisfaccionClientes = parseFloat(group.querySelector(`#satisfaccion_clientes-${groupIndex + 1}`).value) || 0;
-        const carpetasCompletas = parseFloat(group.querySelector(`#carpetas_completas-${groupIndex + 1}`).value) || 0;
-        const devolucionProductos = parseFloat(group.querySelector(`#devolucion_productos-${groupIndex + 1}`).value) || 0;
-        const tiempoRespuesta = parseFloat(group.querySelector(`#tiempo_respuesta-${groupIndex + 1}`).value) || 0;
-        const capacitacionPersonal = parseFloat(group.querySelector(`#capacitacion_personal-${groupIndex + 1}`).value) || 0;
+        const induccionCompleta = parseFloat(group.querySelector(`#induccion_completa-${groupIndex + 1}`).value) || 0;
+        const rotacionPersonal = parseFloat(group.querySelector(`#rotacion_personal-${groupIndex + 1}`).value) || 0;
+        const climaLaboral = parseFloat(group.querySelector(`#clima_laboral-${groupIndex + 1}`).value) || 0;
+        const escalafonActualizacion = parseFloat(group.querySelector(`#escalafon_actualizacion-${groupIndex + 1}`).value) || 0;
+        const ausentismoLaboral = parseFloat(group.querySelector(`#ausentismo_laboral-${groupIndex + 1}`).value) || 0;
+        const horasExtras = parseFloat(group.querySelector(`#horas_extras-${groupIndex + 1}`).value) || 0;
+        const atrasoPeriodo = parseFloat(group.querySelector(`#atraso_periodo-${groupIndex + 1}`).value) || 0;
 
         const formulas = [
             {
-                label: "Tasa de variación programa distribución",
-                description: "(N ° Variaciones Prog. Dist. /N° total de Prog. Distrib solicitadas) x100",
-                value: variacionPrograma,
-                field: 'variacion_programa'
+                label: "% de trabajadores con inducción de ingreso completa",
+                description: "(N ° de trabajadores con inducción completa en carpetas / N ° total de trabajadores de la empresa) x 100",
+                value: induccionCompleta,
+                field: 'induccion_completa'
             },
             {
-                label: "Tasa retención clientes",
-                description: "((N ° de clientes finales del período – N° de clientes nuevos del periodo) /N ° clientes iniciales del período) x100",
-                value: retencionClientes,
-                field: 'retencion_clientes'
+                label: "Tasa de rotación de personal",
+                description: "(N ° de trabajadores que se retira de la empresa por período / N ° de trabajadores de la empresa del período) x 100",
+                value: rotacionPersonal,
+                field: 'rotacion_personal'
             },
             {
-                label: "Tasa incorporación clientes",
-                description: "(N ° de clientes nuevos del período / N ° de clientes antiguos del período) x 100",
-                value: incorporacionClientes,
-                field: 'incorporacion_clientes'
+                label: "Medición clima laboral (“suceso”)",
+                description: "(Suma de puntuación del total de encuestas / N ° de encuestas aplicadas)",
+                value: climaLaboral,
+                field: 'clima_laboral'
             },
             {
-                label: "Tasa de satisfacción de clientes",
-                description: "(N ° de encuestas con resultados iguales o superiores al 80% de satisfacción / N ° total de encuestas del período) x 100",
-                value: satisfaccionClientes,
-                field: 'satisfaccion_clientes'
+                label: "Actualización Escalafón remuneraciones",
+                description: "Registros de actualización y/o revisiones hechas al escalafón de sueldos de la empresa por período",
+                value: escalafonActualizacion,
+                field: 'escalafon_actualizacion'
             },
             {
-                label: "Tasa de carpetas comerciales completas",
-                description: "(N ° de carpetas de clientes completas / N ° total de clientes) x 100",
-                value: carpetasCompletas,
-                field: 'carpetas_completas'
+                label: "Tasa de ausentismo laboral",
+                description: "(N ° de ausencias de trabajadores por período / Dotación total de trabajadores del período) x 100",
+                value: ausentismoLaboral,
+                field: 'ausentismo_laboral'
             },
             {
-                label: "Tasa devolución de productos",
-                description: "(N ° devoluciones de productos del período / N ° total de entregas del período) x 100",
-                value: devolucionProductos,
-                field: 'devolucion_productos'
+                label: "Tasa horas extras por período",
+                description: "(N ° de horas extras trabajadas por período / N ° de horas totales jornada laboral norma por período) x 100",
+                value: horasExtras,
+                field: 'horas_extras'
             },
             {
-                label: "Tiempo promedio respuesta a consultas y/o reclamos de clientes",
-                description: "(Suma de días en espera por respuesta a reclamos y/o consultas no cerradas en el período / N ° total reclamos y/o consultas recibidas en el período)",
-                value: tiempoRespuesta,
-                field: 'tiempo_respuesta'
-            },
-            {
-                label: "Tasa de capacitación personal",
-                description: "Tasa de capacitación personal",
-                value: capacitacionPersonal,
-                field: 'capacitacion_personal'
+                label: "Tasa de atraso por período",
+                description: "(N ° de horas totales de atraso de personal por período / N ° total de horas trabajadas por dotación completa por período) x 100",
+                value: atrasoPeriodo,
+                field: 'atraso_periodo'
             },
         ];
 
@@ -333,5 +318,5 @@ document.querySelectorAll('#dataForm input').forEach(input => {
 </script>
 @endsection
 
+@include('essencials.footer')
 
-@include('essencials/footer')
