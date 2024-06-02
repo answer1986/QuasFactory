@@ -50,7 +50,7 @@
                                         <a class="dropdown-item" href="{{url('reporteria/rrrhh') }}">Reporteria RRHH</a>
                                         <a class="dropdown-item" href="{{url('reporteria/rcontabilidad') }}">Reporteria Contabilidad</a>
                                         <a class="dropdown-item" href="{{url('reporteria/rbodega') }}">Reporteria Bodega</a>
-                                        <a class="dropdown-item" href="{{url('reporteria/rti-soporte') }}">Reporteria TI </a>
+                                        <a class="dropdown-item" href="{{url('reporteria/rti') }}">Reporteria TI </a>
                                         <a class="dropdown-item" href="{{url('reporteria/rcalidad') }}">Reporteria Calidad</a>
 
                                     @endif

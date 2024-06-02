@@ -26,9 +26,8 @@ use App\Http\Controllers\RcomercialController;
 use App\Http\Controllers\RrrhhController;
 use App\Http\Controllers\RcontabilidadController;
 use App\Http\Controllers\RbodegaController;
-
-
-
+use App\Http\Controllers\RtiController;
+use App\Http\Controllers\RcalidadController;
 
 
 
@@ -215,7 +214,7 @@ Route::post('register', [RegisterController::class, 'register'])->name('register
         Route::post('rproduccion/store', [RproduccionController::class, 'store'])->name('rproduccion.store');
         
         Route::get('rcomercial', [RcomercialController::class, 'index'])->name('rcomercial');
-        Route::post('rproduccion/rcomercial', [RcomercialController::class, 'store'])->name('comercial.store');
+        Route::post('rproduccion/rcomercial', [RcomercialController::class, 'store'])->name('rcomercial.store');
 
         Route::get('rrrhh', [RrrhhController::class, 'index'])->name('rrrhh');
         Route::post('rproduccion/rrrhh', [RrrhhController::class, 'store'])->name('rrrhh.store');
@@ -227,6 +226,11 @@ Route::post('register', [RegisterController::class, 'register'])->name('register
         Route::get('rbodega', [RbodegaController::class, 'index'])->name('rbodega');
         Route::post('rproduccion/rbodega', [RbodegaController::class, 'store'])->name('rbodega.store');
 
+        Route::get('rti', [RtiController::class, 'index'])->name('rti');
+        Route::post('rproduccion/rti', [RtiController::class, 'store'])->name('rti.store');
+
+        Route::get('rcalidad', [RcalidadController::class, 'index'])->name('rti');
+        Route::post('rproduccion/rcalidad', [RcalidadController::class, 'store'])->name('rcalidad.store');
 
 
     });

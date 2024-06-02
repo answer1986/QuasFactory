@@ -42,27 +42,70 @@ class RbodegaController extends Controller
             'endDate.*' => 'required|date',
             'retiro_produccion' => 'required|array',
             'retiro_produccion.*' => 'required|numeric',
+            'total_pallets_retirados' => 'required|array',
+            'total_pallets_retirados.*' => 'required|numeric',
             'envio_inventario' => 'required|array',
             'envio_inventario.*' => 'required|numeric',
+            'total_inventarios_planificados' => 'required|array',
+            'total_inventarios_planificados.*' => 'required|numeric',
             'verificacion_materias_primas' => 'required|array',
             'verificacion_materias_primas.*' => 'required|numeric',
+            'total_verificaciones_planificadas' => 'required|array',
+            'total_verificaciones_planificadas.*' => 'required|numeric',
             'verificacion_producto_terminado' => 'required|array',
             'verificacion_producto_terminado.*' => 'required|numeric',
             'cumplimiento_envio_programacion' => 'required|array',
             'cumplimiento_envio_programacion.*' => 'required|numeric',
+            'total_programas_despacho' => 'required|array',
+            'total_programas_despacho.*' => 'required|numeric',
             'cumplimiento_estandar_embalaje' => 'required|array',
             'cumplimiento_estandar_embalaje.*' => 'required|numeric',
+            'total_pallet_periodo' => 'required|array',
+            'total_pallet_periodo.*' => 'required|numeric',
             'cumplimiento_programa_despacho' => 'required|array',
             'cumplimiento_programa_despacho.*' => 'required|numeric',
+            'total_despachos_planificados' => 'required|array',
+            'total_despachos_planificados.*' => 'required|numeric',
             'eficiencia_emision_documentos' => 'required|array',
             'eficiencia_emision_documentos.*' => 'required|numeric',
+            'total_despachos_ejecutados' => 'required|array',
+            'total_despachos_ejecutados.*' => 'required|numeric',
             'gestion_retiro_scrap' => 'required|array',
             'gestion_retiro_scrap.*' => 'required|numeric',
+            'total_retiros_scrap' => 'required|array',
+            'total_retiros_scrap.*' => 'required|numeric',
         ]);
-
+    
+        // Procesar y almacenar los datos
+        foreach ($data['startDate'] as $index => $startDate) {
+            $indicador = new IndicadorBodega([
+                'start_date' => $startDate,
+                'end_date' => $data['endDate'][$index],
+                'retiro_produccion' => $data['retiro_produccion'][$index],
+                'total_pallets_retirados' => $data['total_pallets_retirados'][$index],
+                'envio_inventario' => $data['envio_inventario'][$index],
+                'total_inventarios_planificados' => $data['total_inventarios_planificados'][$index],
+                'verificacion_materias_primas' => $data['verificacion_materias_primas'][$index],
+                'total_verificaciones_planificadas' => $data['total_verificaciones_planificadas'][$index],
+                'verificacion_producto_terminado' => $data['verificacion_producto_terminado'][$index],
+                'cumplimiento_envio_programacion' => $data['cumplimiento_envio_programacion'][$index],
+                'total_programas_despacho' => $data['total_programas_despacho'][$index],
+                'cumplimiento_estandar_embalaje' => $data['cumplimiento_estandar_embalaje'][$index],
+                'total_pallet_periodo' => $data['total_pallet_periodo'][$index],
+                'cumplimiento_programa_despacho' => $data['cumplimiento_programa_despacho'][$index],
+                'total_despachos_planificados' => $data['total_despachos_planificados'][$index],
+                'eficiencia_emision_documentos' => $data['eficiencia_emision_documentos'][$index],
+                'total_despachos_ejecutados' => $data['total_despachos_ejecutados'][$index],
+                'gestion_retiro_scrap' => $data['gestion_retiro_scrap'][$index],
+                'total_retiros_scrap' => $data['total_retiros_scrap'][$index],
+            ]);
+            $indicador->save();
+        }
+    
         // Redirigir de vuelta a la página con los datos procesados
         return redirect()->route('rbodega.index')->with('data', $data);
     }
+    
 
     /**
      * Display the specified resource.

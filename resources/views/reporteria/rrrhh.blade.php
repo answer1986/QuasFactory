@@ -71,14 +71,20 @@
                         <span class="validation" id="validation-induccion_completa-1"></span>
                     </div>
                     <div class="form-group-inline">
-                        <label for="rotacion_personal">Tasa de rotación de personal</label>
+                        <label for="rotacion_personal">N° de trabajadores que se retira</label>
                         <input type="number" id="rotacion_personal-1" name="rotacion_personal[]" step="any" inputmode="decimal" value="{{ old('rotacion_personal.0') }}">
-                        <span class="validation" id="validation-rotacion_personal-1"></span>
                     </div>
                     <div class="form-group-inline">
-                        <label for="clima_laboral">Medición clima laboral (“suceso”)</label>
+                        <label for="total_trabajadores_periodo">N° total de trabajadores del período</label>
+                        <input type="number" id="total_trabajadores_periodo-1" name="total_trabajadores_periodo[]" step="any" inputmode="decimal" value="{{ old('total_trabajadores_periodo.0') }}">
+                    </div>
+                    <div class="form-group-inline">
+                        <label for="clima_laboral">Suma de puntuación del total de encuestas</label>
                         <input type="number" id="clima_laboral-1" name="clima_laboral[]" step="any" inputmode="decimal" value="{{ old('clima_laboral.0') }}">
-                        <span class="validation" id="validation-clima_laboral-1"></span>
+                    </div>
+                    <div class="form-group-inline">
+                        <label for="total_encuestas_clima">N° de encuestas aplicadas</label>
+                        <input type="number" id="total_encuestas_clima-1" name="total_encuestas_clima[]" step="any" inputmode="decimal" value="{{ old('total_encuestas_clima.0') }}">
                     </div>
                     <div class="form-group-inline">
                         <label for="escalafon_actualizacion">Actualización Escalafón remuneraciones</label>
@@ -88,26 +94,35 @@
                 </div>
                 <div class="col-md-6">
                     <div class="form-group-inline">
-                        <label for="ausentismo_laboral">Tasa de ausentismo laboral</label>
+                        <label for="ausentismo_laboral">N° de ausencias de trabajadores</label>
                         <input type="number" id="ausentismo_laboral-1" name="ausentismo_laboral[]" step="any" inputmode="decimal" value="{{ old('ausentismo_laboral.0') }}">
-                        <span class="validation" id="validation-ausentismo_laboral-1"></span>
                     </div>
                     <div class="form-group-inline">
-                        <label for="horas_extras">Tasa horas extras por período</label>
+                        <label for="dotacion_total_periodo">Dotación total de trabajadores del período</label>
+                        <input type="number" id="dotacion_total_periodo-1" name="dotacion_total_periodo[]" step="any" inputmode="decimal" value="{{ old('dotacion_total_periodo.0') }}">
+                    </div>
+                    <div class="form-group-inline">
+                        <label for="horas_extras">N° de horas extras trabajadas</label>
                         <input type="number" id="horas_extras-1" name="horas_extras[]" step="any" inputmode="decimal" value="{{ old('horas_extras.0') }}">
-                        <span class="validation" id="validation-horas_extras-1"></span>
                     </div>
                     <div class="form-group-inline">
-                        <label for="atraso_periodo">Tasa de atraso por período</label>
+                        <label for="total_horas_norma">N° de horas totales jornada laboral norma</label>
+                        <input type="number" id="total_horas_norma-1" name="total_horas_norma[]" step="any" inputmode="decimal" value="{{ old('total_horas_norma.0') }}">
+                    </div>
+                    <div class="form-group-inline">
+                        <label for="atraso_periodo">N° de horas totales de atraso</label>
                         <input type="number" id="atraso_periodo-1" name="atraso_periodo[]" step="any" inputmode="decimal" value="{{ old('atraso_periodo.0') }}">
-                        <span class="validation" id="validation-atraso_periodo-1"></span>
+                    </div>
+                    <div class="form-group-inline">
+                        <label for="total_horas_trabajadas">N° total de horas trabajadas por dotación completa</label>
+                        <input type="number" id="total_horas_trabajadas-1" name="total_horas_trabajadas[]" step="any" inputmode="decimal" value="{{ old('total_horas_trabajadas.0') }}">
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <button type="button" id="btn-graficos" onclick="generateCharts()">Generar Gráficos</button>
-    <button type="submit">Subir metrica semanal</button>
+    <button type="submit">Subir métrica semanal</button>
 </form>
 
 <div id="chartsContainer" style="display: flex; flex-wrap: wrap; justify-content: center;"></div>
@@ -127,6 +142,16 @@ const metas = {
     'ausentismo_laboral': { max: 3 },
     'horas_extras': { max: 5 },
     'atraso_periodo': { max: 3 }
+};
+
+const formulas = {
+    'induccion_completa': (completas, total) => (completas / total) * 100,
+    'rotacion_personal': (retirados, total) => (retirados / total) * 100,
+    'clima_laboral': (puntuacion, total) => (puntuacion / total),
+    'escalafon_actualizacion': (registros) => registros,
+    'ausentismo_laboral': (ausencias, dotacion) => (ausencias / dotacion) * 100,
+    'horas_extras': (extras, total) => (extras / total) * 100,
+    'atraso_periodo': (atrasos, total) => (atrasos / total) * 100
 };
 
 function validateField(value, field) {
@@ -161,63 +186,80 @@ function generateCharts() {
 
     const formGroups = document.querySelectorAll('.form-group');
     formGroups.forEach((group, groupIndex) => {
-        const induccionCompleta = parseFloat(group.querySelector(`#induccion_completa-${groupIndex + 1}`).value) || 0;
-        const rotacionPersonal = parseFloat(group.querySelector(`#rotacion_personal-${groupIndex + 1}`).value) || 0;
-        const climaLaboral = parseFloat(group.querySelector(`#clima_laboral-${groupIndex + 1}`).value) || 0;
-        const escalafonActualizacion = parseFloat(group.querySelector(`#escalafon_actualizacion-${groupIndex + 1}`).value) || 0;
-        const ausentismoLaboral = parseFloat(group.querySelector(`#ausentismo_laboral-${groupIndex + 1}`).value) || 0;
-        const horasExtras = parseFloat(group.querySelector(`#horas_extras-${groupIndex + 1}`).value) || 0;
-        const atrasoPeriodo = parseFloat(group.querySelector(`#atraso_periodo-${groupIndex + 1}`).value) || 0;
+        const induccionCompleta = formulas.induccion_completa(
+            parseFloat(group.querySelector(`#induccion_completa-${groupIndex + 1}`).value) || 0,
+            parseFloat(group.querySelector(`#total_trabajadores_periodo-${groupIndex + 1}`).value) || 0
+        );
+        const rotacionPersonal = formulas.rotacion_personal(
+            parseFloat(group.querySelector(`#rotacion_personal-${groupIndex + 1}`).value) || 0,
+            parseFloat(group.querySelector(`#total_trabajadores_periodo-${groupIndex + 1}`).value) || 0
+        );
+        const climaLaboral = formulas.clima_laboral(
+            parseFloat(group.querySelector(`#clima_laboral-${groupIndex + 1}`).value) || 0,
+            parseFloat(group.querySelector(`#total_encuestas_clima-${groupIndex + 1}`).value) || 0
+        );
+        const escalafonActualizacion = formulas.escalafon_actualizacion(
+            parseFloat(group.querySelector(`#escalafon_actualizacion-${groupIndex + 1}`).value) || 0
+        );
+        const ausentismoLaboral = formulas.ausentismo_laboral(
+            parseFloat(group.querySelector(`#ausentismo_laboral-${groupIndex + 1}`).value) || 0,
+            parseFloat(group.querySelector(`#dotacion_total_periodo-${groupIndex + 1}`).value) || 0
+        );
+        const horasExtras = formulas.horas_extras(
+            parseFloat(group.querySelector(`#horas_extras-${groupIndex + 1}`).value) || 0,
+            parseFloat(group.querySelector(`#total_horas_norma-${groupIndex + 1}`).value) || 0
+        );
+        const atrasoPeriodo = formulas.atraso_periodo(
+            parseFloat(group.querySelector(`#atraso_periodo-${groupIndex + 1}`).value) || 0,
+            parseFloat(group.querySelector(`#total_horas_trabajadas-${groupIndex + 1}`).value) || 0
+        );
 
-        const formulas = [
+        const data = [
             {
                 label: "% de trabajadores con inducción de ingreso completa",
-                description: "(N ° de trabajadores con inducción completa en carpetas / N ° total de trabajadores de la empresa) x 100",
-                value: induccionCompleta,
-                field: 'induccion_completa'
+                value: induccionCompleta.toFixed(2),
+                field: 'induccion_completa',
+                isValid: validateField(induccionCompleta, 'induccion_completa')
             },
             {
                 label: "Tasa de rotación de personal",
-                description: "(N ° de trabajadores que se retira de la empresa por período / N ° de trabajadores de la empresa del período) x 100",
-                value: rotacionPersonal,
-                field: 'rotacion_personal'
+                value: rotacionPersonal.toFixed(2),
+                field: 'rotacion_personal',
+                isValid: validateField(rotacionPersonal, 'rotacion_personal')
             },
             {
                 label: "Medición clima laboral (“suceso”)",
-                description: "(Suma de puntuación del total de encuestas / N ° de encuestas aplicadas)",
-                value: climaLaboral,
-                field: 'clima_laboral'
+                value: climaLaboral.toFixed(2),
+                field: 'clima_laboral',
+                isValid: validateField(climaLaboral, 'clima_laboral')
             },
             {
                 label: "Actualización Escalafón remuneraciones",
-                description: "Registros de actualización y/o revisiones hechas al escalafón de sueldos de la empresa por período",
-                value: escalafonActualizacion,
-                field: 'escalafon_actualizacion'
+                value: escalafonActualizacion.toFixed(2),
+                field: 'escalafon_actualizacion',
+                isValid: validateField(escalafonActualizacion, 'escalafon_actualizacion')
             },
             {
                 label: "Tasa de ausentismo laboral",
-                description: "(N ° de ausencias de trabajadores por período / Dotación total de trabajadores del período) x 100",
-                value: ausentismoLaboral,
-                field: 'ausentismo_laboral'
+                value: ausentismoLaboral.toFixed(2),
+                field: 'ausentismo_laboral',
+                isValid: validateField(ausentismoLaboral, 'ausentismo_laboral')
             },
             {
                 label: "Tasa horas extras por período",
-                description: "(N ° de horas extras trabajadas por período / N ° de horas totales jornada laboral norma por período) x 100",
-                value: horasExtras,
-                field: 'horas_extras'
+                value: horasExtras.toFixed(2),
+                field: 'horas_extras',
+                isValid: validateField(horasExtras, 'horas_extras')
             },
             {
                 label: "Tasa de atraso por período",
-                description: "(N ° de horas totales de atraso de personal por período / N ° total de horas trabajadas por dotación completa por período) x 100",
-                value: atrasoPeriodo,
-                field: 'atraso_periodo'
-            },
+                value: atrasoPeriodo.toFixed(2),
+                field: 'atraso_periodo',
+                isValid: validateField(atrasoPeriodo, 'atraso_periodo')
+            }
         ];
 
-        formulas.forEach((formula, formulaIndex) => {
-            const isValid = validateField(formula.value, formula.field);
-            const difference = 100 - formula.value;
-
+        data.forEach((item) => {
             const canvasContainer = document.createElement('div');
             canvasContainer.style.width = '400px';
             canvasContainer.style.margin = '10px';
@@ -234,18 +276,17 @@ function generateCharts() {
             validationIcon.style.top = '10px';
             validationIcon.style.right = '10px';
             validationIcon.style.fontSize = '24px';
-            validationIcon.style.color = isValid ? 'green' : 'red';
-            validationIcon.textContent = isValid ? '✔️' : '❌';
+            validationIcon.style.color = item.isValid ? 'green' : 'red';
+            validationIcon.textContent = item.isValid ? '✔️' : '❌';
             canvasContainer.appendChild(validationIcon);
 
             const ctx = canvas.getContext('2d');
             charts.push(new Chart(ctx, {
                 type: 'pie',
                 data: {
-                    labels: [formula.label, 'Restante'],
+                    labels: [item.label, 'Restante'],
                     datasets: [{
-                        label: formula.description,
-                        data: [formula.value.toFixed(2), difference.toFixed(2)],
+                        data: [item.value, 100 - item.value],
                         backgroundColor: [
                             'rgba(54, 162, 235, 0.2)',
                             'rgba(75, 192, 192, 0.2)'
@@ -266,7 +307,7 @@ function generateCharts() {
                             },
                             formatter: (value, context) => {
                                 if (context.dataIndex === 0) {
-                                    return value.toFixed(2) + '%';
+                                    return value + '%';
                                 }
                                 return '';
                             }
@@ -319,4 +360,3 @@ document.querySelectorAll('#dataForm input').forEach(input => {
 @endsection
 
 @include('essencials.footer')
-

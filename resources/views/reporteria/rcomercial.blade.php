@@ -9,7 +9,6 @@
         <p></p>
         <br>
         <br>
-
         <h3>Seccion Inferior</h3>
         <p></p>
         <br>
@@ -18,9 +17,6 @@
     </div>
 </div>
 @endsection
-
-
-
 
 @section('banner')
 @if(session('error'))
@@ -69,53 +65,69 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group-inline">
-                        <label for="variacion_programa">Tasa de variación programa distribución</label>
-                        <input type="number" id="variacion_programa-1" name="variacion_programa[]" step="any" inputmode="decimal" value="{{ old('variacion_programa.0') }}">
-                        <span class="validation" id="validation-variacion_programa-1"></span>
+                        <label for="variacion_prog_dist">N° Variaciones Prog. Dist.</label>
+                        <input type="number" id="variacion_prog_dist-1" name="variacion_prog_dist[]" step="any" inputmode="decimal" value="{{ old('variacion_prog_dist.0') }}">
                     </div>
                     <div class="form-group-inline">
-                        <label for="retencion_clientes">Tasa retención clientes</label>
-                        <input type="number" id="retencion_clientes-1" name="retencion_clientes[]" step="any" inputmode="decimal" value="{{ old('retencion_clientes.0') }}">
-                        <span class="validation" id="validation-retencion_clientes-1"></span>
+                        <label for="total_prog_dist_solicitadas">N° total de Prog. Distrib solicitadas</label>
+                        <input type="number" id="total_prog_dist_solicitadas-1" name="total_prog_dist_solicitadas[]" step="any" inputmode="decimal" value="{{ old('total_prog_dist_solicitadas.0') }}">
                     </div>
                     <div class="form-group-inline">
-                        <label for="incorporacion_clientes">Tasa incorporación clientes</label>
-                        <input type="number" id="incorporacion_clientes-1" name="incorporacion_clientes[]" step="any" inputmode="decimal" value="{{ old('incorporacion_clientes.0') }}">
-                        <span class="validation" id="validation-incorporacion_clientes-1"></span>
+                        <label for="clientes_finales">N° de clientes finales del período</label>
+                        <input type="number" id="clientes_finales-1" name="clientes_finales[]" step="any" inputmode="decimal" value="{{ old('clientes_finales.0') }}">
                     </div>
                     <div class="form-group-inline">
-                        <label for="satisfaccion_clientes">Tasa de satisfacción de clientes</label>
-                        <input type="number" id="satisfaccion_clientes-1" name="satisfaccion_clientes[]" step="any" inputmode="decimal" value="{{ old('satisfaccion_clientes.0') }}">
-                        <span class="validation" id="validation-satisfaccion_clientes-1"></span>
+                        <label for="clientes_nuevos">N° de clientes nuevos del periodo</label>
+                        <input type="number" id="clientes_nuevos-1" name="clientes_nuevos[]" step="any" inputmode="decimal" value="{{ old('clientes_nuevos.0') }}">
+                    </div>
+                    <div class="form-group-inline">
+                        <label for="clientes_iniciales">N° clientes iniciales del período</label>
+                        <input type="number" id="clientes_iniciales-1" name="clientes_iniciales[]" step="any" inputmode="decimal" value="{{ old('clientes_iniciales.0') }}">
+                    </div>
+                    <div class="form-group-inline">
+                        <label for="clientes_antiguos">N° de clientes antiguos del período</label>
+                        <input type="number" id="clientes_antiguos-1" name="clientes_antiguos[]" step="any" inputmode="decimal" value="{{ old('clientes_antiguos.0') }}">
+                    </div>
+                    <div class="form-group-inline">
+                        <label for="encuestas_satisfaccion">N° de encuestas con resultados ≥ 80% de satisfacción</label>
+                        <input type="number" id="encuestas_satisfaccion-1" name="encuestas_satisfaccion[]" step="any" inputmode="decimal" value="{{ old('encuestas_satisfaccion.0') }}">
+                    </div>
+                    <div class="form-group-inline">
+                        <label for="total_encuestas">N° total de encuestas del período</label>
+                        <input type="number" id="total_encuestas-1" name="total_encuestas[]" step="any" inputmode="decimal" value="{{ old('total_encuestas.0') }}">
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group-inline">
-                        <label for="carpetas_completas">Tasa de carpetas comerciales completas</label>
+                        <label for="carpetas_completas">N° de carpetas de clientes completas</label>
                         <input type="number" id="carpetas_completas-1" name="carpetas_completas[]" step="any" inputmode="decimal" value="{{ old('carpetas_completas.0') }}">
-                        <span class="validation" id="validation-carpetas_completas-1"></span>
                     </div>
                     <div class="form-group-inline">
-                        <label for="devolucion_productos">Tasa devolución de productos</label>
-                        <input type="number" id="devolucion_productos-1" name="devolucion_productos[]" step="any" inputmode="decimal" value="{{ old('devolucion_productos.0') }}">
-                        <span class="validation" id="validation-devolucion_productos-1"></span>
+                        <label for="total_clientes">N° total de clientes</label>
+                        <input type="number" id="total_clientes-1" name="total_clientes[]" step="any" inputmode="decimal" value="{{ old('total_clientes.0') }}">
                     </div>
                     <div class="form-group-inline">
-                        <label for="tiempo_respuesta">Tiempo promedio respuesta a consultas y/o reclamos de clientes</label>
-                        <input type="number" id="tiempo_respuesta-1" name="tiempo_respuesta[]" step="any" inputmode="decimal" value="{{ old('tiempo_respuesta.0') }}">
-                        <span class="validation" id="validation-tiempo_respuesta-1"></span>
+                        <label for="devoluciones_productos">N° devoluciones de productos del período</label>
+                        <input type="number" id="devoluciones_productos-1" name="devoluciones_productos[]" step="any" inputmode="decimal" value="{{ old('devoluciones_productos.0') }}">
                     </div>
                     <div class="form-group-inline">
-                        <label for="capacitacion_personal">Tasa de capacitación personal</label>
-                        <input type="number" id="capacitacion_personal-1" name="capacitacion_personal[]" step="any" inputmode="decimal" value="{{ old('capacitacion_personal.0') }}">
-                        <span class="validation" id="validation-capacitacion_personal-1"></span>
+                        <label for="total_entregas">N° total de entregas del período</label>
+                        <input type="number" id="total_entregas-1" name="total_entregas[]" step="any" inputmode="decimal" value="{{ old('total_entregas.0') }}">
+                    </div>
+                    <div class="form-group-inline">
+                        <label for="dias_espera">Suma de días en espera por respuesta a reclamos y/o consultas no cerradas</label>
+                        <input type="number" id="dias_espera-1" name="dias_espera[]" step="any" inputmode="decimal" value="{{ old('dias_espera.0') }}">
+                    </div>
+                    <div class="form-group-inline">
+                        <label for="total_reclamos_consultas">N° total reclamos y/o consultas recibidas</label>
+                        <input type="number" id="total_reclamos_consultas-1" name="total_reclamos_consultas[]" step="any" inputmode="decimal" value="{{ old('total_reclamos_consultas.0') }}">
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <button type="button" id="btn-graficos" onclick="generateCharts()">Generar Gráficos</button>
-    <button type="submit">Subir metrica semanal</button>
+    <button type="submit">Subir métrica semanal</button>
 </form>
 
 <div id="chartsContainer" style="display: flex; flex-wrap: wrap; justify-content: center;"></div>
@@ -135,6 +147,16 @@ const metas = {
     'carpetas_completas': { min: 80 },
     'devolucion_productos': { max: 3 },
     'tiempo_respuesta': { max: 3 }
+};
+
+const formulas = {
+    'variacion_programa': (variaciones, total) => (variaciones / total) * 100,
+    'retencion_clientes': (finales, nuevos, iniciales) => ((finales - nuevos) / iniciales) * 100,
+    'incorporacion_clientes': (nuevos, antiguos) => (nuevos / antiguos) * 100,
+    'satisfaccion_clientes': (satisfaccion, total) => (satisfaccion / total) * 100,
+    'carpetas_completas': (completas, total) => (completas / total) * 100,
+    'devolucion_productos': (devoluciones, entregas) => (devoluciones / entregas) * 100,
+    'tiempo_respuesta': (dias, total) => dias / total,
 };
 
 function validateField(value, field) {
@@ -169,70 +191,82 @@ function generateCharts() {
 
     const formGroups = document.querySelectorAll('.form-group');
     formGroups.forEach((group, groupIndex) => {
-        const variacionPrograma = parseFloat(group.querySelector(`#variacion_programa-${groupIndex + 1}`).value) || 0;
-        const retencionClientes = parseFloat(group.querySelector(`#retencion_clientes-${groupIndex + 1}`).value) || 0;
-        const incorporacionClientes = parseFloat(group.querySelector(`#incorporacion_clientes-${groupIndex + 1}`).value) || 0;
-        const satisfaccionClientes = parseFloat(group.querySelector(`#satisfaccion_clientes-${groupIndex + 1}`).value) || 0;
-        const carpetasCompletas = parseFloat(group.querySelector(`#carpetas_completas-${groupIndex + 1}`).value) || 0;
-        const devolucionProductos = parseFloat(group.querySelector(`#devolucion_productos-${groupIndex + 1}`).value) || 0;
-        const tiempoRespuesta = parseFloat(group.querySelector(`#tiempo_respuesta-${groupIndex + 1}`).value) || 0;
-        const capacitacionPersonal = parseFloat(group.querySelector(`#capacitacion_personal-${groupIndex + 1}`).value) || 0;
+        const variacionPrograma = formulas.variacion_programa(
+            parseFloat(group.querySelector(`#variacion_prog_dist-${groupIndex + 1}`).value) || 0,
+            parseFloat(group.querySelector(`#total_prog_dist_solicitadas-${groupIndex + 1}`).value) || 0
+        );
+        const retencionClientes = formulas.retencion_clientes(
+            parseFloat(group.querySelector(`#clientes_finales-${groupIndex + 1}`).value) || 0,
+            parseFloat(group.querySelector(`#clientes_nuevos-${groupIndex + 1}`).value) || 0,
+            parseFloat(group.querySelector(`#clientes_iniciales-${groupIndex + 1}`).value) || 0
+        );
+        const incorporacionClientes = formulas.incorporacion_clientes(
+            parseFloat(group.querySelector(`#clientes_nuevos-${groupIndex + 1}`).value) || 0,
+            parseFloat(group.querySelector(`#clientes_antiguos-${groupIndex + 1}`).value) || 0
+        );
+        const satisfaccionClientes = formulas.satisfaccion_clientes(
+            parseFloat(group.querySelector(`#encuestas_satisfaccion-${groupIndex + 1}`).value) || 0,
+            parseFloat(group.querySelector(`#total_encuestas-${groupIndex + 1}`).value) || 0
+        );
+        const carpetasCompletas = formulas.carpetas_completas(
+            parseFloat(group.querySelector(`#carpetas_completas-${groupIndex + 1}`).value) || 0,
+            parseFloat(group.querySelector(`#total_clientes-${groupIndex + 1}`).value) || 0
+        );
+        const devolucionProductos = formulas.devolucion_productos(
+            parseFloat(group.querySelector(`#devoluciones_productos-${groupIndex + 1}`).value) || 0,
+            parseFloat(group.querySelector(`#total_entregas-${groupIndex + 1}`).value) || 0
+        );
+        const tiempoRespuesta = formulas.tiempo_respuesta(
+            parseFloat(group.querySelector(`#dias_espera-${groupIndex + 1}`).value) || 0,
+            parseFloat(group.querySelector(`#total_reclamos_consultas-${groupIndex + 1}`).value) || 0
+        );
 
-        const formulas = [
+        const data = [
             {
                 label: "Tasa de variación programa distribución",
-                description: "(N ° Variaciones Prog. Dist. /N° total de Prog. Distrib solicitadas) x100",
-                value: variacionPrograma,
-                field: 'variacion_programa'
+                value: variacionPrograma.toFixed(2),
+                field: 'variacion_programa',
+                isValid: validateField(variacionPrograma, 'variacion_programa')
             },
             {
                 label: "Tasa retención clientes",
-                description: "((N ° de clientes finales del período – N° de clientes nuevos del periodo) /N ° clientes iniciales del período) x100",
-                value: retencionClientes,
-                field: 'retencion_clientes'
+                value: retencionClientes.toFixed(2),
+                field: 'retencion_clientes',
+                isValid: validateField(retencionClientes, 'retencion_clientes')
             },
             {
                 label: "Tasa incorporación clientes",
-                description: "(N ° de clientes nuevos del período / N ° de clientes antiguos del período) x 100",
-                value: incorporacionClientes,
-                field: 'incorporacion_clientes'
+                value: incorporacionClientes.toFixed(2),
+                field: 'incorporacion_clientes',
+                isValid: validateField(incorporacionClientes, 'incorporacion_clientes')
             },
             {
                 label: "Tasa de satisfacción de clientes",
-                description: "(N ° de encuestas con resultados iguales o superiores al 80% de satisfacción / N ° total de encuestas del período) x 100",
-                value: satisfaccionClientes,
-                field: 'satisfaccion_clientes'
+                value: satisfaccionClientes.toFixed(2),
+                field: 'satisfaccion_clientes',
+                isValid: validateField(satisfaccionClientes, 'satisfaccion_clientes')
             },
             {
                 label: "Tasa de carpetas comerciales completas",
-                description: "(N ° de carpetas de clientes completas / N ° total de clientes) x 100",
-                value: carpetasCompletas,
-                field: 'carpetas_completas'
+                value: carpetasCompletas.toFixed(2),
+                field: 'carpetas_completas',
+                isValid: validateField(carpetasCompletas, 'carpetas_completas')
             },
             {
                 label: "Tasa devolución de productos",
-                description: "(N ° devoluciones de productos del período / N ° total de entregas del período) x 100",
-                value: devolucionProductos,
-                field: 'devolucion_productos'
+                value: devolucionProductos.toFixed(2),
+                field: 'devolucion_productos',
+                isValid: validateField(devolucionProductos, 'devolucion_productos')
             },
             {
                 label: "Tiempo promedio respuesta a consultas y/o reclamos de clientes",
-                description: "(Suma de días en espera por respuesta a reclamos y/o consultas no cerradas en el período / N ° total reclamos y/o consultas recibidas en el período)",
-                value: tiempoRespuesta,
-                field: 'tiempo_respuesta'
-            },
-            {
-                label: "Tasa de capacitación personal",
-                description: "Tasa de capacitación personal",
-                value: capacitacionPersonal,
-                field: 'capacitacion_personal'
-            },
+                value: tiempoRespuesta.toFixed(2),
+                field: 'tiempo_respuesta',
+                isValid: validateField(tiempoRespuesta, 'tiempo_respuesta')
+            }
         ];
 
-        formulas.forEach((formula, formulaIndex) => {
-            const isValid = validateField(formula.value, formula.field);
-            const difference = 100 - formula.value;
-
+        data.forEach((item) => {
             const canvasContainer = document.createElement('div');
             canvasContainer.style.width = '400px';
             canvasContainer.style.margin = '10px';
@@ -249,18 +283,17 @@ function generateCharts() {
             validationIcon.style.top = '10px';
             validationIcon.style.right = '10px';
             validationIcon.style.fontSize = '24px';
-            validationIcon.style.color = isValid ? 'green' : 'red';
-            validationIcon.textContent = isValid ? '✔️' : '❌';
+            validationIcon.style.color = item.isValid ? 'green' : 'red';
+            validationIcon.textContent = item.isValid ? '✔️' : '❌';
             canvasContainer.appendChild(validationIcon);
 
             const ctx = canvas.getContext('2d');
             charts.push(new Chart(ctx, {
                 type: 'pie',
                 data: {
-                    labels: [formula.label, 'Restante'],
+                    labels: [item.label, 'Restante'],
                     datasets: [{
-                        label: formula.description,
-                        data: [formula.value.toFixed(2), difference.toFixed(2)],
+                        data: [item.value, 100 - item.value],
                         backgroundColor: [
                             'rgba(54, 162, 235, 0.2)',
                             'rgba(75, 192, 192, 0.2)'
@@ -281,7 +314,7 @@ function generateCharts() {
                             },
                             formatter: (value, context) => {
                                 if (context.dataIndex === 0) {
-                                    return value.toFixed(2) + '%';
+                                    return value + '%';
                                 }
                                 return '';
                             }
@@ -332,6 +365,4 @@ document.querySelectorAll('#dataForm input').forEach(input => {
 });
 </script>
 @endsection
-
-
 @include('essencials/footer')

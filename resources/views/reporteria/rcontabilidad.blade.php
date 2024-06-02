@@ -66,58 +66,77 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group-inline">
-                        <label for="conciliacion_bancaria">Tasa asertividad conciliación bancaria del período</label>
-                        <input type="number" id="conciliacion_bancaria-1" name="conciliacion_bancaria[]" step="any" inputmode="decimal" value="{{ old('conciliacion_bancaria.0') }}">
-                        <span class="validation" id="validation-conciliacion_bancaria-1"></span>
+                        <label for="movimientos_identificados">N° de movimientos en cuentas bancarias identificados</label>
+                        <input type="number" id="movimientos_identificados-1" name="movimientos_identificados[]" step="any" inputmode="decimal" value="{{ old('movimientos_identificados.0') }}">
                     </div>
                     <div class="form-group-inline">
-                        <label for="liquidez_corriente">Tasa liquidez corriente</label>
-                        <input type="number" id="liquidez_corriente-1" name="liquidez_corriente[]" step="any" inputmode="decimal" value="{{ old('liquidez_corriente.0') }}">
-                        <span class="validation" id="validation-liquidez_corriente-1"></span>
+                        <label for="movimientos_totales">N° de movimientos totales en cuentas bancarias</label>
+                        <input type="number" id="movimientos_totales-1" name="movimientos_totales[]" step="any" inputmode="decimal" value="{{ old('movimientos_totales.0') }}">
                     </div>
                     <div class="form-group-inline">
-                        <label for="ventas_netas">Ventas netas del período</label>
+                        <label for="activo_circulante">Total activo circulante</label>
+                        <input type="number" id="activo_circulante-1" name="activo_circulante[]" step="any" inputmode="decimal" value="{{ old('activo_circulante.0') }}">
+                    </div>
+                    <div class="form-group-inline">
+                        <label for="pasivo_circulante">Total pasivo circulante</label>
+                        <input type="number" id="pasivo_circulante-1" name="pasivo_circulante[]" step="any" inputmode="decimal" value="{{ old('pasivo_circulante.0') }}">
+                    </div>
+                    <div class="form-group-inline">
+                        <label for="ventas_netas">Valor total de ventas netas</label>
                         <input type="number" id="ventas_netas-1" name="ventas_netas[]" step="any" inputmode="decimal" value="{{ old('ventas_netas.0') }}">
-                        <span class="validation" id="validation-ventas_netas-1"></span>
                     </div>
                     <div class="form-group-inline">
-                        <label for="ventas_netas_tasa">Tasa de ventas netas por período</label>
-                        <input type="number" id="ventas_netas_tasa-1" name="ventas_netas_tasa[]" step="any" inputmode="decimal" value="{{ old('ventas_netas_tasa.0') }}">
-                        <span class="validation" id="validation-ventas_netas_tasa-1"></span>
+                        <label for="descuentos">Valor total de descuentos</label>
+                        <input type="number" id="descuentos-1" name="descuentos[]" step="any" inputmode="decimal" value="{{ old('descuentos.0') }}">
                     </div>
                     <div class="form-group-inline">
-                        <label for="rotacion_cuentas">Rotación cuentas por cobrar</label>
-                        <input type="number" id="rotacion_cuentas-1" name="rotacion_cuentas[]" step="any" inputmode="decimal" value="{{ old('rotacion_cuentas.0') }}">
-                        <span class="validation" id="validation-rotacion_cuentas-1"></span>
+                        <label for="rebajas_devoluciones">Valor total en rebajas y devoluciones</label>
+                        <input type="number" id="rebajas_devoluciones-1" name="rebajas_devoluciones[]" step="any" inputmode="decimal" value="{{ old('rebajas_devoluciones.0') }}">
+                    </div>
+                    <div class="form-group-inline">
+                        <label for="saldo_cuentas_cobrar">Saldo total cuentas por cobrar</label>
+                        <input type="number" id="saldo_cuentas_cobrar-1" name="saldo_cuentas_cobrar[]" step="any" inputmode="decimal" value="{{ old('saldo_cuentas_cobrar.0') }}">
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group-inline">
-                        <label for="deudas_vencidas">% deudas vencidas</label>
+                        <label for="deudas_vencidas">Valor total cuentas por cobrar con retraso</label>
                         <input type="number" id="deudas_vencidas-1" name="deudas_vencidas[]" step="any" inputmode="decimal" value="{{ old('deudas_vencidas.0') }}">
-                        <span class="validation" id="validation-deudas_vencidas-1"></span>
                     </div>
                     <div class="form-group-inline">
-                        <label for="solvencia_largo_plazo">Solvencia a largo plazo</label>
-                        <input type="number" id="solvencia_largo_plazo-1" name="solvencia_largo_plazo[]" step="any" inputmode="decimal" value="{{ old('solvencia_largo_plazo.0') }}">
-                        <span class="validation" id="validation-solvencia_largo_plazo-1"></span>
+                        <label for="activo_total">Activos totales</label>
+                        <input type="number" id="activo_total-1" name="activo_total[]" step="any" inputmode="decimal" value="{{ old('activo_total.0') }}">
                     </div>
                     <div class="form-group-inline">
-                        <label for="razon_endeudamiento">Razón de endeudamiento</label>
-                        <input type="number" id="razon_endeudamiento-1" name="razon_endeudamiento[]" step="any" inputmode="decimal" value="{{ old('razon_endeudamiento.0') }}">
-                        <span class="validation" id="validation-razon_endeudamiento-1"></span>
+                        <label for="deuda_largo_plazo">Deuda total Largo plazo</label>
+                        <input type="number" id="deuda_largo_plazo-1" name="deuda_largo_plazo[]" step="any" inputmode="decimal" value="{{ old('deuda_largo_plazo.0') }}">
                     </div>
                     <div class="form-group-inline">
-                        <label for="liquidez_corto_plazo">Razón liquidez corto plazo</label>
-                        <input type="number" id="liquidez_corto_plazo-1" name="liquidez_corto_plazo[]" step="any" inputmode="decimal" value="{{ old('liquidez_corto_plazo.0') }}">
-                        <span class="validation" id="validation-liquidez_corto_plazo-1"></span>
+                        <label for="deuda_total">Deuda total del período</label>
+                        <input type="number" id="deuda_total-1" name="deuda_total[]" step="any" inputmode="decimal" value="{{ old('deuda_total.0') }}">
+                    </div>
+                    <div class="form-group-inline">
+                        <label for="capital_total">Capital total del período</label>
+                        <input type="number" id="capital_total-1" name="capital_total[]" step="any" inputmode="decimal" value="{{ old('capital_total.0') }}">
+                    </div>
+                    <div class="form-group-inline">
+                        <label for="activo_corriente">Total valor activo corriente</label>
+                        <input type="number" id="activo_corriente-1" name="activo_corriente[]" step="any" inputmode="decimal" value="{{ old('activo_corriente.0') }}">
+                    </div>
+                    <div class="form-group-inline">
+                        <label for="inventario">Total valor inventario</label>
+                        <input type="number" id="inventario-1" name="inventario[]" step="any" inputmode="decimal" value="{{ old('inventario.0') }}">
+                    </div>
+                    <div class="form-group-inline">
+                        <label for="pasivo_corriente">Total valor pasivo corriente</label>
+                        <input type="number" id="pasivo_corriente-1" name="pasivo_corriente[]" step="any" inputmode="decimal" value="{{ old('pasivo_corriente.0') }}">
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <button type="button" id="btn-graficos" onclick="generateCharts()">Generar Gráficos</button>
-    <button type="submit">Subir metrica semanal</button>
+    <button type="submit">Subir métrica semanal</button>
 </form>
 
 <div id="chartsContainer" style="display: flex; flex-wrap: wrap; justify-content: center;"></div>
@@ -137,6 +156,16 @@ const metas = {
     'solvencia_largo_plazo': { min: 1 },
     'razon_endeudamiento': { max: 0.8 },
     'liquidez_corto_plazo': { min: 100 }
+};
+
+const formulas = {
+    'conciliacion_bancaria': (identificados, totales) => (identificados / totales) * 100,
+    'liquidez_corriente': (activo, pasivo) => activo / pasivo,
+    'ventas_netas_tasa': (descuentos, ventas) => (descuentos / ventas) * 100,
+    'deudas_vencidas': (retraso, total) => (retraso / total) * 100,
+    'solvencia_largo_plazo': (activos, deuda) => (activos / deuda) * 100,
+    'razon_endeudamiento': (deuda, capital) => deuda / capital,
+    'liquidez_corto_plazo': (activo, inventario, pasivo) => ((activo - inventario) / pasivo) * 100
 };
 
 function validateField(value, field) {
@@ -171,63 +200,82 @@ function generateCharts() {
 
     const formGroups = document.querySelectorAll('.form-group');
     formGroups.forEach((group, groupIndex) => {
-        const conciliacionBancaria = parseFloat(group.querySelector(`#conciliacion_bancaria-${groupIndex + 1}`).value) || 0;
-        const liquidezCorriente = parseFloat(group.querySelector(`#liquidez_corriente-${groupIndex + 1}`).value) || 0;
-        const ventasNetasTasa = parseFloat(group.querySelector(`#ventas_netas_tasa-${groupIndex + 1}`).value) || 0;
-        const deudasVencidas = parseFloat(group.querySelector(`#deudas_vencidas-${groupIndex + 1}`).value) || 0;
-        const solvenciaLargoPlazo = parseFloat(group.querySelector(`#solvencia_largo_plazo-${groupIndex + 1}`).value) || 0;
-        const razonEndeudamiento = parseFloat(group.querySelector(`#razon_endeudamiento-${groupIndex + 1}`).value) || 0;
-        const liquidezCortoPlazo = parseFloat(group.querySelector(`#liquidez_corto_plazo-${groupIndex + 1}`).value) || 0;
+        const conciliacionBancaria = formulas.conciliacion_bancaria(
+            parseFloat(group.querySelector(`#movimientos_identificados-${groupIndex + 1}`).value) || 0,
+            parseFloat(group.querySelector(`#movimientos_totales-${groupIndex + 1}`).value) || 0
+        );
+        const liquidezCorriente = formulas.liquidez_corriente(
+            parseFloat(group.querySelector(`#activo_circulante-${groupIndex + 1}`).value) || 0,
+            parseFloat(group.querySelector(`#pasivo_circulante-${groupIndex + 1}`).value) || 0
+        );
+        const ventasNetasTasa = formulas.ventas_netas_tasa(
+            parseFloat(group.querySelector(`#descuentos-${groupIndex + 1}`).value) || 0,
+            parseFloat(group.querySelector(`#ventas_netas-${groupIndex + 1}`).value) || 0
+        );
+        const deudasVencidas = formulas.deudas_vencidas(
+            parseFloat(group.querySelector(`#deudas_vencidas-${groupIndex + 1}`).value) || 0,
+            parseFloat(group.querySelector(`#saldo_cuentas_cobrar-${groupIndex + 1}`).value) || 0
+        );
+        const solvenciaLargoPlazo = formulas.solvencia_largo_plazo(
+            parseFloat(group.querySelector(`#activo_total-${groupIndex + 1}`).value) || 0,
+            parseFloat(group.querySelector(`#deuda_largo_plazo-${groupIndex + 1}`).value) || 0
+        );
+        const razonEndeudamiento = formulas.razon_endeudamiento(
+            parseFloat(group.querySelector(`#deuda_total-${groupIndex + 1}`).value) || 0,
+            parseFloat(group.querySelector(`#capital_total-${groupIndex + 1}`).value) || 0
+        );
+        const liquidezCortoPlazo = formulas.liquidez_corto_plazo(
+            parseFloat(group.querySelector(`#activo_corriente-${groupIndex + 1}`).value) || 0,
+            parseFloat(group.querySelector(`#inventario-${groupIndex + 1}`).value) || 0,
+            parseFloat(group.querySelector(`#pasivo_corriente-${groupIndex + 1}`).value) || 0
+        );
 
-        const formulas = [
+        const data = [
             {
                 label: "Tasa asertividad conciliación bancaria del período",
-                description: "(N ° de movimientos en cuentas bancarias identificados por período / N ° de movimientos totales en cuentas bancarias por período) x 100",
-                value: conciliacionBancaria,
-                field: 'conciliacion_bancaria'
+                value: conciliacionBancaria.toFixed(2),
+                field: 'conciliacion_bancaria',
+                isValid: validateField(conciliacionBancaria, 'conciliacion_bancaria')
             },
             {
                 label: "Tasa liquidez corriente",
-                description: "(Total activo circulante / total pasivo circulante)",
-                value: liquidezCorriente,
-                field: 'liquidez_corriente'
+                value: liquidezCorriente.toFixed(2),
+                field: 'liquidez_corriente',
+                isValid: validateField(liquidezCorriente, 'liquidez_corriente')
             },
             {
                 label: "Tasa de ventas netas por período",
-                description: "(Valor total de descuento en $ / Valor total de ventas en $) x 100",
-                value: ventasNetasTasa,
-                field: 'ventas_netas_tasa'
+                value: ventasNetasTasa.toFixed(2),
+                field: 'ventas_netas_tasa',
+                isValid: validateField(ventasNetasTasa, 'ventas_netas_tasa')
             },
             {
                 label: "% deudas vencidas",
-                description: "(Valor total $ cuentas por cobrar con retraso por período / Valor total $ cuentas por cobrar por período) x 100",
-                value: deudasVencidas,
-                field: 'deudas_vencidas'
+                value: deudasVencidas.toFixed(2),
+                field: 'deudas_vencidas',
+                isValid: validateField(deudasVencidas, 'deudas_vencidas')
             },
             {
                 label: "Solvencia a largo plazo",
-                description: "(Activos totales $ / Deuda total Largo plazo $) x 100",
-                value: solvenciaLargoPlazo,
-                field: 'solvencia_largo_plazo'
+                value: solvenciaLargoPlazo.toFixed(2),
+                field: 'solvencia_largo_plazo',
+                isValid: validateField(solvenciaLargoPlazo, 'solvencia_largo_plazo')
             },
             {
                 label: "Razón de endeudamiento",
-                description: "(Deuda total $ del período / capital total $ del período)",
-                value: razonEndeudamiento,
-                field: 'razon_endeudamiento'
+                value: razonEndeudamiento.toFixed(2),
+                field: 'razon_endeudamiento',
+                isValid: validateField(razonEndeudamiento, 'razon_endeudamiento')
             },
             {
                 label: "Razón liquidez corto plazo",
-                description: "((Total valor $ activo corriente - Total valor $ inventario) / Total $ pasivo corriente) x 100",
-                value: liquidezCortoPlazo,
-                field: 'liquidez_corto_plazo'
-            },
+                value: liquidezCortoPlazo.toFixed(2),
+                field: 'liquidez_corto_plazo',
+                isValid: validateField(liquidezCortoPlazo, 'liquidez_corto_plazo')
+            }
         ];
 
-        formulas.forEach((formula, formulaIndex) => {
-            const isValid = validateField(formula.value, formula.field);
-            const difference = 100 - formula.value;
-
+        data.forEach((item) => {
             const canvasContainer = document.createElement('div');
             canvasContainer.style.width = '400px';
             canvasContainer.style.margin = '10px';
@@ -244,18 +292,17 @@ function generateCharts() {
             validationIcon.style.top = '10px';
             validationIcon.style.right = '10px';
             validationIcon.style.fontSize = '24px';
-            validationIcon.style.color = isValid ? 'green' : 'red';
-            validationIcon.textContent = isValid ? '✔️' : '❌';
+            validationIcon.style.color = item.isValid ? 'green' : 'red';
+            validationIcon.textContent = item.isValid ? '✔️' : '❌';
             canvasContainer.appendChild(validationIcon);
 
             const ctx = canvas.getContext('2d');
             charts.push(new Chart(ctx, {
                 type: 'pie',
                 data: {
-                    labels: [formula.label, 'Restante'],
+                    labels: [item.label, 'Restante'],
                     datasets: [{
-                        label: formula.description,
-                        data: [formula.value.toFixed(2), difference.toFixed(2)],
+                        data: [item.value, 100 - item.value],
                         backgroundColor: [
                             'rgba(54, 162, 235, 0.2)',
                             'rgba(75, 192, 192, 0.2)'
@@ -276,7 +323,7 @@ function generateCharts() {
                             },
                             formatter: (value, context) => {
                                 if (context.dataIndex === 0) {
-                                    return value.toFixed(2) + '%';
+                                    return value + '%';
                                 }
                                 return '';
                             }
@@ -329,4 +376,3 @@ document.querySelectorAll('#dataForm input').forEach(input => {
 @endsection
 
 @include('essencials.footer')
-

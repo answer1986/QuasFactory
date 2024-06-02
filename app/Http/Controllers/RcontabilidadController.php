@@ -40,29 +40,69 @@ class RcontabilidadController extends Controller
             'startDate.*' => 'required|date',
             'endDate' => 'required|array',
             'endDate.*' => 'required|date',
-            'conciliacion_bancaria' => 'required|array',
-            'conciliacion_bancaria.*' => 'required|numeric',
-            'liquidez_corriente' => 'required|array',
-            'liquidez_corriente.*' => 'required|numeric',
+            'movimientos_identificados' => 'required|array',
+            'movimientos_identificados.*' => 'required|numeric',
+            'movimientos_totales' => 'required|array',
+            'movimientos_totales.*' => 'required|numeric',
+            'activo_circulante' => 'required|array',
+            'activo_circulante.*' => 'required|numeric',
+            'pasivo_circulante' => 'required|array',
+            'pasivo_circulante.*' => 'required|numeric',
             'ventas_netas' => 'required|array',
             'ventas_netas.*' => 'required|numeric',
-            'ventas_netas_tasa' => 'required|array',
-            'ventas_netas_tasa.*' => 'required|numeric',
-            'rotacion_cuentas' => 'required|array',
-            'rotacion_cuentas.*' => 'required|numeric',
+            'descuentos' => 'required|array',
+            'descuentos.*' => 'required|numeric',
+            'rebajas_devoluciones' => 'required|array',
+            'rebajas_devoluciones.*' => 'required|numeric',
+            'saldo_cuentas_cobrar' => 'required|array',
+            'saldo_cuentas_cobrar.*' => 'required|numeric',
             'deudas_vencidas' => 'required|array',
             'deudas_vencidas.*' => 'required|numeric',
-            'solvencia_largo_plazo' => 'required|array',
-            'solvencia_largo_plazo.*' => 'required|numeric',
-            'razon_endeudamiento' => 'required|array',
-            'razon_endeudamiento.*' => 'required|numeric',
-            'liquidez_corto_plazo' => 'required|array',
-            'liquidez_corto_plazo.*' => 'required|numeric',
+            'activo_total' => 'required|array',
+            'activo_total.*' => 'required|numeric',
+            'deuda_largo_plazo' => 'required|array',
+            'deuda_largo_plazo.*' => 'required|numeric',
+            'deuda_total' => 'required|array',
+            'deuda_total.*' => 'required|numeric',
+            'capital_total' => 'required|array',
+            'capital_total.*' => 'required|numeric',
+            'activo_corriente' => 'required|array',
+            'activo_corriente.*' => 'required|numeric',
+            'inventario' => 'required|array',
+            'inventario.*' => 'required|numeric',
+            'pasivo_corriente' => 'required|array',
+            'pasivo_corriente.*' => 'required|numeric',
         ]);
-
+    
+        // Procesar y almacenar los datos
+        foreach ($data['startDate'] as $index => $startDate) {
+            $indicador = new IndicadorFinanciero([
+                'start_date' => $startDate,
+                'end_date' => $data['endDate'][$index],
+                'movimientos_identificados' => $data['movimientos_identificados'][$index],
+                'movimientos_totales' => $data['movimientos_totales'][$index],
+                'activo_circulante' => $data['activo_circulante'][$index],
+                'pasivo_circulante' => $data['pasivo_circulante'][$index],
+                'ventas_netas' => $data['ventas_netas'][$index],
+                'descuentos' => $data['descuentos'][$index],
+                'rebajas_devoluciones' => $data['rebajas_devoluciones'][$index],
+                'saldo_cuentas_cobrar' => $data['saldo_cuentas_cobrar'][$index],
+                'deudas_vencidas' => $data['deudas_vencidas'][$index],
+                'activo_total' => $data['activo_total'][$index],
+                'deuda_largo_plazo' => $data['deuda_largo_plazo'][$index],
+                'deuda_total' => $data['deuda_total'][$index],
+                'capital_total' => $data['capital_total'][$index],
+                'activo_corriente' => $data['activo_corriente'][$index],
+                'inventario' => $data['inventario'][$index],
+                'pasivo_corriente' => $data['pasivo_corriente'][$index],
+            ]);
+            $indicador->save();
+        }
+    
         // Redirigir de vuelta a la página con los datos procesados
         return redirect()->route('rcontabilidad.index')->with('data', $data);
     }
+    
 
     /**
      * Display the specified resource.
