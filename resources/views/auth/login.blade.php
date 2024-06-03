@@ -71,10 +71,10 @@
 
     <div class="row" id="pie-login">
         <div class="col-md-4">
-        <a href="https://quas.cl" id="pie1" >Nuestra web</a>
+        <a href="{{url('prd')}}" id="pie1" >TV-Prod</a>
         </div>
         <div class="col-md-4">
-         <a href="{{url('status') }}" id="pie1" >Status Bodega</a>        </div>
+         <a href="{{url('status') }}" id="pie1" >Status Bodega</a> </div>
         <div class="col-md-4">
           <a href="https://quas.cl/nuestros_servicios" id="pie1">Certificaciones iso </a>
         </div>
