@@ -18,10 +18,17 @@
     </div>
 </div>
 @endsection
+
 @section('banner')
 @if(session('error'))
     <div class="alert alert-danger">
         {{ session('error') }}
+    </div>
+@endif
+
+@if(session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
     </div>
 @endif
 
@@ -49,33 +56,34 @@
 </form>
 <br>
 
-
+<h2 style="margin-left:2%">Imágenes Cargadas</h2>
 @if(isset($imagenes) && $imagenes->isNotEmpty())
-    @foreach($imagenes as $imagen)
-        <div>
-            <img src="{{ asset('storage/imagenes/' . $imagen->nombre_archivo) }}" alt="Imagen" style="width: 100px; height: 100px; margin-left:2%; margin-bottom:8px">
-        </div>
-    @endforeach
-<br>
-    <form id="eliminar-todas-las-imagenes-form" action="{{ route('eliminar-todas-las-imagenes') }}" method="POST" style="margin-left:2%;">
+    <form action="{{ route('eliminar-imagenes-seleccionadas') }}" method="POST" id="eliminarSeleccionadasForm">
         @csrf
         @method('DELETE')
-        <button type="button" onclick="eliminarTodasLasImagenes()">Eliminar Todas las Imágenes</button>
+        <div style="margin-left:2%">
+            @foreach($imagenes as $imagen)
+                <div style="display:inline-block; margin-right:10px; margin-bottom:10px;">
+                    <img src="{{ asset('storage/imagenes/' . $imagen->nombre_archivo) }}" alt="Imagen" style="width: 100px; height: 100px;">
+                    <div>
+                        <input type="checkbox" name="imagenes[]" value="{{ $imagen->id }}"> Seleccionar
+                        <br>
+                       
+                    </div>
+                </div>
+            @endforeach
+        </div>
+        <button type="submit" class="btn btn-danger" style="margin-left:2%">Eliminar Seleccionadas</button>
     </form>
 @else
-    <p>No hay imágenes disponibles para mostrar.</p>
+    <p style="margin-left:2%">No hay imágenes disponibles para mostrar.</p>
 @endif
 <br>  
- <!-- borrar lo escogido -->
- @if(isset($imagen))
-    <form action="{{ route('eliminar-imagen', ['id' => $imagen->id]) }}" method="POST" style="margin-left:2%;">
-        @csrf
-        @method('DELETE')
-        <button type="submit">Eliminar ultima Imagen</button>
-    </form>
-@else
-    <p>No hay imagen para eliminar.</p>
-@endif
+<form id="eliminar-todas-las-imagenes-form" action="{{ route('eliminar-todas-las-imagenes') }}" method="POST" style="margin-left:2%;">
+    @csrf
+    @method('DELETE')
+    <button type="button" onclick="eliminarTodasLasImagenes()">Eliminar Todas las Imágenes</button>
+</form>
 <br>
 
 <script>

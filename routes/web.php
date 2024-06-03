@@ -197,6 +197,10 @@ Route::post('register', [RegisterController::class, 'register'])->name('register
         Route::post('/cargar-imagenes', [PrdController::class, 'cargarImagenes'])->name('cargar-imagenes');
         
         Route::get('/prd', [PrdController::class, 'mostrarImagenPublica'])->name('mostrar-imagen-publica');
+
+        Route::delete('/eliminar-imagen/{id}', [PrdController::class, 'eliminarImagen'])->name('eliminar-imagen');
+        Route::delete('/eliminar-imagenes-seleccionadas', [PrdController::class, 'eliminarImagenesSeleccionadas'])->name('eliminar-imagenes-seleccionadas');
+        Route::delete('/eliminar-todas-las-imagenes', [PrdController::class, 'eliminarTodasLasImagenes'])->name('eliminar-todas-las-imagenes');
         
        // Route::delete('/eliminar-todas-las-imagenes', 'PrdController@eliminarTodasLasImagenes')->name('eliminar-todas-las-imagenes');
         Route::delete('/eliminar-todas-las-imagenes', [PrdController::class, 'eliminarTodasLasImagenes'])->name('eliminar-todas-las-imagenes');

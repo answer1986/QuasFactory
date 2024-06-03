@@ -46,7 +46,7 @@ class PrdController extends Controller
     {
         $request->validate([
             'imagenes.*' => 'required|image|max:5000',
-            'imagenes' => 'required|array|max:10',
+            'imagenes' => 'required|array|max:30', //de 10 a 30
         ]);
 
         foreach ($request->file('imagenes') as $archivo) {
@@ -70,34 +70,49 @@ class PrdController extends Controller
     return back()->with('success', 'Tiempo de cambio configurado correctamente.');
     }
 
-    public function eliminarTodasLasImagenes()
-{
-    Log::debug('Eliminando todas las imágenes...');
-    $imagenes = Imagen::all();
-    foreach ($imagenes as $imagen) {
+        public function eliminarTodasLasImagenes()
+    {
+        Log::debug('Eliminando todas las imágenes...');
+        $imagenes = Imagen::all();
+        foreach ($imagenes as $imagen) {
+            Storage::delete('public/imagenes/' . $imagen->nombre_archivo);
+        }
+        Imagen::truncate();
+        return redirect()->route('mostrar-formulario-carga')->with('success', 'Todas las imágenes fueron eliminadas correctamente.');
+    }
+
+    /* borrar una imagen en particular */
+
+    public function eliminarImagen($id)
+    {
+        $imagen = Imagen::find($id);
+
+        if (!$imagen) {
+            return back()->with('error', 'La imagen no existe.');
+        }
+
         Storage::delete('public/imagenes/' . $imagen->nombre_archivo);
-    }
-    Imagen::truncate();
-    return redirect()->route('mostrar-formulario-carga')->with('success', 'Todas las imágenes fueron eliminadas correctamente.');
-}
+        $imagen->delete();
 
-/* borrar una imagen en particular */
-
-public function eliminarImagen($id)
-{
-    $imagen = Imagen::find($id);
-
-    if (!$imagen) {
-        return back()->with('error', 'La imagen no existe.');
+        return back()->with('success', 'La imagen fue eliminada correctamente.');
     }
 
-    Storage::delete('public/imagenes/' . $imagen->nombre_archivo);
-    $imagen->delete();
+    public function eliminarImagenesSeleccionadas(Request $request)
+    {
+        if (!$request->has('imagenes')) {
+            return back()->with('error', 'No se seleccionaron imágenes para eliminar.');
+        }
 
-    return redirect()->route('mostrar-formulario-carga')->with('success', 'La imagen fue eliminada correctamente.');
-}
+        foreach ($request->imagenes as $id) {
+            $imagen = Imagen::find($id);
 
-    
+            if ($imagen) {
+                Storage::delete('public/imagenes/' . $imagen->nombre_archivo);
+                $imagen->delete();
+            }
+        }
 
-    
-}
+        return back()->with('success', 'Las imágenes seleccionadas fueron eliminadas correctamente.');
+    }
+        
+    }
