@@ -26,7 +26,7 @@
     </div>
 @endif
 
-<h2 id="title-oc">Ingreso de indicadores{{$section ?? ''}}</h2>
+<h2 id="title-oc">Ingreso de indicadores area produccion </h2>
 <form id="dataForm" method="POST" action="{{ route('rproduccion.store') }}" onsubmit="return validateForm()">
     @csrf
     @if(session('error'))

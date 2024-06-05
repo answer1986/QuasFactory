@@ -40,7 +40,7 @@
     <button type="submit">Subir Imagen</button>
 </form> 
 <br>
-<h2 style="margin-left:2%">Para cargar hasta 10 fotos</h2>
+<h2 style="margin-left:2%">Para cargar hasta 50 fotos</h2>
 <form action="{{ route('cargar-imagenes') }}" method="post" enctype="multipart/form-data">
     @csrf
     <input style="margin-left:2%" type="file" name="imagenes[]" accept="image/*" multiple>

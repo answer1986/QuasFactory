@@ -46,7 +46,7 @@ class PrdController extends Controller
     {
         $request->validate([
             'imagenes.*' => 'required|image|max:5000',
-            'imagenes' => 'required|array|max:30', //de 10 a 30
+            'imagenes' => 'required|array|max:50', //de 10 a 50
         ]);
 
         foreach ($request->file('imagenes') as $archivo) {
