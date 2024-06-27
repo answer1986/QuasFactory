@@ -96,14 +96,14 @@ class RproduccionController extends Controller
                          $machine_id = str_replace('orden_produccion_', '', $key);
                          $machine_type = explode('-', $machine_id)[0];
                          Rproduccion::create([
-                             'start_date' => $request->startDate[0],  // Assuming the same date for simplicity
-                             'end_date' => $request->endDate[0],      // Assuming the same date for simplicity
-                             'kilostotales' => $request->kilostotales[0],  // Assuming the same value for simplicity
-                             'kilosscrap' => $request->kilosscrap[0],      // Assuming the same value for simplicity
-                             'kilosprogramados' => $request->kilosprogramados[0], // Assuming the same value for simplicity
-                             'kiloproducto' => $request->kiloproducto[0],  // Assuming the same value for simplicity
-                             'totalkilosxmaquina' => $request->totalkilosxmaquina[0], // Assuming the same value for simplicity
-                             'numerocambioxprog' => $request->numerocambioxprog[0],   // Assuming the same value for simplicity
+                             'start_date' => $request->startDate[0],  
+                             'end_date' => $request->endDate[0],      
+                             'kilostotales' => $request->kilostotales[0], 
+                             'kilosscrap' => $request->kilosscrap[0],      
+                             'kilosprogramados' => $request->kilosprogramados[0], 
+                             'kiloproducto' => $request->kiloproducto[0],  
+                             'totalkilosxmaquina' => $request->totalkilosxmaquina[0], 
+                             'numerocambioxprog' => $request->numerocambioxprog[0],   
                              'kilosprodprog' => $request->kilosprodprog[0],   // Assuming the same value for simplicity
                              'kilosscrapproce' => $request->kilosscrapproce[0],   // Assuming the same value for simplicity
                              'kiloproducxmaqperiod' => $request->kiloproducxmaqperiod[0],   // Assuming the same value for simplicity
@@ -120,10 +120,11 @@ class RproduccionController extends Controller
      
             // Generate charts
             $charts = $this->generateCharts($request);
-
-            $emails = ['arv00316@hotmail.com'];
+            $subjectTitle = 'Reporte de Indicadores de Producción'; 
+            $emails = ['arv00316@hotmail.com', 'irojas@quas.cl'];
             foreach ($emails as $email) {
-                Mail::to($email)->send(new IndicadoresMail($charts));
+                Mail::to($email)->send(new IndicadoresMail($charts, $subjectTitle));
+
             }
         
             return redirect()->back()->with('success', 'Datos guardados y correos enviados exitosamente.');
@@ -135,29 +136,76 @@ class RproduccionController extends Controller
                 [
                     'data' => $request->kilostotales[0],
                     'title' => 'Kilos Totales',
+                    'description' => 'Total kilogramos de producidos en período',
                     'filename' => 'charts/kilostotales.png',
                 ],
                 [
                     'data' => $request->kilosscrap[0],
                     'title' => 'Kilos Scrap',
+                    'description' => 'Total kilogramos de scrap del período',
                     'filename' => 'charts/kilosscrap.png',
                 ],
+                [
+                    'data' => $request->kilosprogramados[0],
+                    'title' => 'Kilos Programados',
+                    'description' => 'Kilogramos totales de producción programados para el período',
+                    'filename' => 'charts/kilosprogramados.png',
+                ],
+                [
+                    'data' => $request->kiloproducto[0],
+                    'title' => 'Kilos por Producto',
+                    'description' => 'Kilogramos totales por producto producidos en el período',
+                    'filename' => 'charts/kiloproducto.png',
+                ],
+                [
+                    'data' => $request->totalkilosxmaquina[0],
+                    'title' => 'Total Kilos por Máquina',
+                    'description' => 'Total de kilogramos producidos por máquina por período',
+                    'filename' => 'charts/totalkilosxmaquina.png',
+                ],
+                [
+                    'data' => $request->numerocambioxprog[0],
+                    'title' => 'Número de Cambios por Programa',
+                    'description' => 'Número de cambios hechos al programa de producción',
+                    'filename' => 'charts/numerocambioxprog.png',
+                ],
+                [
+                    'data' => $request->kilosprodprog[0],
+                    'title' => 'Kilos Producción por Programa',
+                    'description' => 'Kilogramos totales de producción por programa',
+                    'filename' => 'charts/kilosprodprog.png',
+                ],
+                [
+                    'data' => $request->kilosscrapproce[0],
+                    'title' => 'Kilos Scrap por Proceso',
+                    'description' => 'Total kilogramos de scrap por proceso',
+                    'filename' => 'charts/kilosscrapproce.png',
+                ],
+                [
+                    'data' => $request->kiloproducxmaqperiod[0],
+                    'title' => 'Kilos Producción por Máquina y Periodo',
+                    'description' => 'Kilogramos de producción por máquina y periodo',
+                    'filename' => 'charts/kiloproducxmaqperiod.png',
+                ],
             ];
-        
+    
             $images = [];
             $nodePath = '/Users/alvaro/.nvm/versions/node/v18.17.0/bin/node';
-        
+    
             foreach ($charts as $chart) {
-                $process = new Process([$nodePath, 'generate_charts.js', $chart['data'], $chart['title'], $chart['filename']]);
+                $isGreen = $chart['data'] >= 100;
+                $process = new Process([$nodePath, 'generate_charts.js', $chart['data'], $chart['title'], $chart['filename'], $isGreen ? 'true' : 'false']);
                 $process->run();
-        
+    
                 if (!$process->isSuccessful()) {
                     throw new ProcessFailedException($process);
                 }
-        
-                $images[] = ['path' => public_path($chart['filename']), 'name' => basename($chart['filename'])];
+    
+                $chart['path'] = public_path($chart['filename']);
+                $chart['name'] = basename($chart['filename']);
+                $images[] = $chart;
             }
-        
+    
             return $images;
         }
 

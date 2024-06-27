@@ -9,3 +9,5 @@ php artisan storage:link
 rockerita
 
 +569 46459083 
+
+ ssh-add ~/.ssh/quasfactory

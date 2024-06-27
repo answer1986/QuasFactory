@@ -69,6 +69,7 @@ Route::get('register', [RegisterController::class, 'showRegistrationForm'])->nam
 Route::post('register', [RegisterController::class, 'register'])->name('register');
 
 
+Route::middleware(['auth', 'role:admin'])->group(function () {
 
     Route::prefix('user')->group(function () {
         Route::get('create', function () {
@@ -79,6 +80,7 @@ Route::post('register', [RegisterController::class, 'register'])->name('register
         Route::match(['get', 'post'], 'edit', [UserController::class, 'edit'])->name('user.edit');
         Route::delete('{id}', [UserController::class, 'destroy'])->name('user.destroy');
     });
+});    
 
     Route::prefix('productos')->group(function () {
         Route::get('create', function () {

@@ -444,13 +444,13 @@ function generateCharts() {
                         label: formula.description,
                         data: [formula.value.toFixed(2), difference.toFixed(2)],
                         backgroundColor: [
-                            'rgba(54, 162, 235, 0.2)',
-                            'rgba(75, 192, 192, 0.2)'
-                        ],
-                        borderColor: [
-                            'rgba(54, 162, 235, 1)',
-                            'rgba(75, 192, 192, 1)'
-                        ],
+                                formula.value >= 100 ? 'rgba(0, 255, 0, 0.2)' : 'rgba(255, 0, 0, 0.2)', // Verde si cumple, rojo si no
+                                'rgba(255, 0, 0, 0.2)' // Rojo para el resto
+                            ],
+                            borderColor: [
+                                formula.value >= 100 ? 'rgba(0, 255, 0, 1)' : 'rgba(255, 0, 0, 1)', // Verde si cumple, rojo si no
+                                'rgba(255, 0, 0, 1)' // Rojo para el resto
+                            ],
                         borderWidth: 1
                     }]
                 },
