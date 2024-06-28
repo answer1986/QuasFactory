@@ -190,8 +190,9 @@ class RproduccionController extends Controller
             ];
     
             $images = [];
-            $nodePath = '/Users/alvaro/.nvm/versions/node/v18.17.0/bin/node';
-    
+              $nodePath = '/Users/alvaro/.nvm/versions/node/v18.17.0/bin/node';
+            //$nodePath ='/root/.nvm/versions/node/v18.17.0/bin/node';
+
             foreach ($charts as $chart) {
                 $isGreen = $chart['data'] >= 100;
                 $process = new Process([$nodePath, 'generate_charts.js', $chart['data'], $chart['title'], $chart['filename'], $isGreen ? 'true' : 'false']);
