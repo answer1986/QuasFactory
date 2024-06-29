@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Rti extends Model
 {
+    use HasFactory;
+    protected $table = 'rti';
+
     protected $fillable = [
         'start_date',
         'end_date',

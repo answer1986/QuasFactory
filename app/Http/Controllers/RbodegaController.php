@@ -5,33 +5,25 @@ namespace App\Http\Controllers;
 use App\Models\Rbodega;
 use Illuminate\Http\Request;
 
+use App\Mail\IndicadoresMail;
+use Illuminate\Support\Facades\Mail;
+use Symfony\Component\Process\Process;
+use Symfony\Component\Process\Exception\ProcessFailedException;
+
 class RbodegaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function index()
     {
         return view('reporteria.rbodega');
     }
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    
     public function store(Request $request)
     {
         // Validar y almacenar los datos del formulario
@@ -78,7 +70,8 @@ class RbodegaController extends Controller
     
         // Procesar y almacenar los datos
         foreach ($data['startDate'] as $index => $startDate) {
-            $indicador = new IndicadorBodega([
+                
+                Rbodega::create([
                 'start_date' => $startDate,
                 'end_date' => $data['endDate'][$index],
                 'retiro_produccion' => $data['retiro_produccion'][$index],
@@ -99,54 +92,177 @@ class RbodegaController extends Controller
                 'gestion_retiro_scrap' => $data['gestion_retiro_scrap'][$index],
                 'total_retiros_scrap' => $data['total_retiros_scrap'][$index],
             ]);
-            $indicador->save();
         }
     
-        // Redirigir de vuelta a la página con los datos procesados
-        return redirect()->route('rbodega.index')->with('data', $data);
-    }
-    
+       // Generate charts
+     $charts = $this->generateCharts($request);
+     $subjectTitle = 'Reporte de Indicadores de Bodega'; 
+     $emails = ['Michel@trescastillos.cl', 'irojas@quas.cl', 'javierao@trescastillos.cl' , 'soporte@quas.cl'];
+     //$emails = ['arv00316@hotmail.com'];  
+     foreach ($emails as $email) {
+         Mail::to($email)->send(new IndicadoresMail($charts, $subjectTitle));
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Rbodega  $rbodega
-     * @return \Illuminate\Http\Response
-     */
+     }
+ 
+     return redirect()->back()->with('success', 'Datos guardados y correos enviados exitosamente.');
+ }
+ private function generateCharts($data)
+ {
+     // Define los gráficos a generar con sus detalles específicos
+     $charts = [
+         [
+             'data' => $data['retiro_produccion'][0],
+             'title' => 'Retiro de Producción',
+             'description' => 'Total de retiros de producción',
+             'filename' => 'charts/retiro_produccion.png',
+         ],
+         [
+             'data' => $data['total_pallets_retirados'][0],
+             'title' => 'Total Pallets Retirados',
+             'description' => 'Total de pallets retirados',
+             'filename' => 'charts/total_pallets_retirados.png',
+         ],
+         [
+             'data' => $data['envio_inventario'][0],
+             'title' => 'Envío a Inventario',
+             'description' => 'Envíos completados al inventario',
+             'filename' => 'charts/envio_inventario.png',
+         ],
+         [
+             'data' => $data['total_inventarios_planificados'][0],
+             'title' => 'Total Inventarios Planificados',
+             'description' => 'Total de inventarios planificados durante el periodo',
+             'filename' => 'charts/total_inventarios_planificados.png',
+         ],
+         [
+             'data' => $data['verificacion_materias_primas'][0],
+             'title' => 'Verificación de Materias Primas',
+             'description' => 'Verificaciones realizadas a materias primas',
+             'filename' => 'charts/verificacion_materias_primas.png',
+         ],
+         [
+             'data' => $data['total_verificaciones_planificadas'][0],
+             'title' => 'Total Verificaciones Planificadas',
+             'description' => 'Total de verificaciones planificadas',
+             'filename' => 'charts/total_verificaciones_planificadas.png',
+         ],
+         [
+             'data' => $data['verificacion_producto_terminado'][0],
+             'title' => 'Verificación de Producto Terminado',
+             'description' => 'Verificaciones realizadas a productos terminados',
+             'filename' => 'charts/verificacion_producto_terminado.png',
+         ],
+         [
+             'data' => $data['cumplimiento_envio_programacion'][0],
+             'title' => 'Cumplimiento de Envío Según Programación',
+             'description' => 'Cumplimiento de los envíos según la programación establecida',
+             'filename' => 'charts/cumplimiento_envio_programacion.png',
+         ],
+         [
+             'data' => $data['total_programas_despacho'][0],
+             'title' => 'Total Programas de Despacho',
+             'description' => 'Total de programas de despacho planificados',
+             'filename' => 'charts/total_programas_despacho.png',
+         ],
+         [
+             'data' => $data['cumplimiento_estandar_embalaje'][0],
+             'title' => 'Cumplimiento del Estándar de Embalaje',
+             'description' => 'Cumplimiento con los estándares de embalaje',
+             'filename' => 'charts/cumplimiento_estandar_embalaje.png',
+         ],
+         [
+             'data' => $data['total_pallet_periodo'][0],
+             'title' => 'Total Pallets en el Período',
+             'description' => 'Total de pallets manejados durante el período',
+             'filename' => 'charts/total_pallet_periodo.png',
+         ],
+         [
+             'data' => $data['cumplimiento_programa_despacho'][0],
+             'title' => 'Cumplimiento del Programa de Despacho',
+             'description' => 'Nivel de cumplimiento del programa de despacho',
+             'filename' => 'charts/cumplimiento_programa_despacho.png',
+         ],
+         [
+             'data' => $data['total_despachos_planificados'][0],
+             'title' => 'Total Despachos Planificados',
+             'description' => 'Total de despachos planificados en el período',
+             'filename' => 'charts/total_despachos_planificados.png',
+         ],
+         [
+             'data' => $data['eficiencia_emision_documentos'][0],
+             'title' => 'Eficiencia en la Emisión de Documentos',
+             'description' => 'Eficiencia en la emisión de documentos para despachos',
+             'filename' => 'charts/eficiencia_emision_documentos.png',
+         ],
+         [
+             'data' => $data['total_despachos_ejecutados'][0],
+             'title' => 'Total Despachos Ejecutados',
+             'description' => 'Total de despachos efectivamente realizados',
+             'filename' => 'charts/total_despachos_ejecutados.png',
+         ],
+         [
+             'data' => $data['gestion_retiro_scrap'][0],
+             'title' => 'Gestión de Retiro de Scrap',
+             'description' => 'Gestión y eficacia en el retiro de scrap',
+             'filename' => 'charts/gestion_retiro_scrap.png',
+         ],
+         [
+             'data' => $data['total_retiros_scrap'][0],
+             'title' => 'Total Retiros de Scrap',
+             'description' => 'Total de retiros de scrap realizados',
+             'filename' => 'charts/total_retiros_scrap.png',
+         ],
+     ];
+ 
+     $images = [];
+      //$nodePath = '/Users/alvaro/.nvm/versions/node/v18.17.0/bin/node';
+      $nodePath='/usr/local/nvm/versions/node/v18.20.3/bin/node';
+ 
+      foreach ($charts as $chart) {
+        $isSignificant = $chart['data'] >= 1000; // Establece un criterio para la importancia del gráfico
+        $process = new Process([
+            $nodePath,
+            public_path('generate_charts.js'), // Asegúrate de que el path al script JS sea correcto
+            $chart['data'],
+            $chart['title'],
+            public_path($chart['filename']), // Guarda el gráfico generado en el directorio público
+            $isSignificant ? 'true' : 'false'
+        ]);
+
+        $process->run();
+
+        if (!$process->isSuccessful()) {
+            throw new ProcessFailedException($process);
+        }
+
+        $chart['path'] = public_path($chart['filename']);
+        $chart['name'] = basename($chart['filename']);
+        $images[] = $chart;
+    }
+
+    return $images;
+}
+ 
+
+   
     public function show(Rbodega $rbodega)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Rbodega  $rbodega
-     * @return \Illuminate\Http\Response
-     */
+   
     public function edit(Rbodega $rbodega)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Rbodega  $rbodega
-     * @return \Illuminate\Http\Response
-     */
+   
     public function update(Request $request, Rbodega $rbodega)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Rbodega  $rbodega
-     * @return \Illuminate\Http\Response
-     */
+    
     public function destroy(Rbodega $rbodega)
     {
         //

@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Rbodega extends Model
 {
+    use HasFactory;
+    protected $table = 'rbodega';
+
     protected $fillable = [
         'start_date',
         'end_date',

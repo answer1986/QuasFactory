@@ -5,34 +5,26 @@ namespace App\Http\Controllers;
 use App\Models\Rcalidad;
 use Illuminate\Http\Request;
 
+use App\Mail\IndicadoresMail;
+use Illuminate\Support\Facades\Mail;
+use Symfony\Component\Process\Process;
+use Symfony\Component\Process\Exception\ProcessFailedException;
+
 class RcalidadController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+   
     public function index()
     {
         return view('reporteria.rcalidad');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    
     public function store(Request $request)
     {
         // Validar y almacenar los datos del formulario
@@ -81,7 +73,7 @@ class RcalidadController extends Controller
     
         // Procesar y almacenar los datos
         foreach ($data['startDate'] as $index => $startDate) {
-            $indicador = new IndicadorCalidad([
+            Rcalidad::create([
                 'start_date' => $startDate,
                 'end_date' => $data['endDate'][$index],
                 'informes_calidad_extrusion' => $data['informes_calidad_extrusion'][$index],
@@ -103,12 +95,75 @@ class RcalidadController extends Controller
                 'muestreos_calidad_turno' => $data['muestreos_calidad_turno'][$index],
                 'muestreos_calidad_totales' => $data['muestreos_calidad_totales'][$index],
             ]);
-            $indicador->save();
         }
     
-        // Redirigir de vuelta a la página con los datos procesados
-        return redirect()->route('rcalidad.index')->with('data', $data);
-    }
+                // Generate charts
+            $charts = $this->generateCharts($request);
+            $subjectTitle = 'Reporte de Indicadores de Calidad'; 
+            $emails = ['Michel@trescastillos.cl', 'irojas@quas.cl', 'alejandrom@trescastillos.cl' , 'soporte@quas.cl'];
+            //$emails = ['arv00316@hotmail.com'];  
+            foreach ($emails as $email) {
+                Mail::to($email)->send(new IndicadoresMail($charts, $subjectTitle));
+
+            }
+        
+            return redirect()->back()->with('success', 'Datos guardados y correos enviados exitosamente.');
+        }
+
+        private function generateCharts($data)
+{
+    // Define the charts with their details based on the validated data
+    $charts = [
+        ['data' => $data['informes_calidad_extrusion'][0], 'title' => 'Informes de Calidad Extrusión', 'description' => 'Cantidad de informes de calidad en extrusión.', 'filename' => 'charts/informes_calidad_extrusion.png'],
+        ['data' => $data['informes_calidad_sellado'][0], 'title' => 'Informes de Calidad Sellado', 'description' => 'Cantidad de informes de calidad en sellado.', 'filename' => 'charts/informes_calidad_sellado.png'],
+        ['data' => $data['informes_alergenos'][0], 'title' => 'Informes de Alergenos', 'description' => 'Informes generados sobre alergenos.', 'filename' => 'charts/informes_alergenos.png'],
+        ['data' => $data['registros_alergenos_entregados'][0], 'title' => 'Registros de Alergenos Entregados', 'description' => 'Registros entregados de control de alergenos.', 'filename' => 'charts/registros_alergenos_entregados.png'],
+        ['data' => $data['registros_alergenos_programados'][0], 'title' => 'Registros de Alergenos Programados', 'description' => 'Registros programados para control de alergenos.', 'filename' => 'charts/registros_alergenos_programados.png'],
+        ['data' => $data['inducciones_realizadas'][0], 'title' => 'Inducciones Realizadas', 'description' => 'Total de inducciones realizadas.', 'filename' => 'charts/inducciones_realizadas.png'],
+        ['data' => $data['inducciones_correspondientes'][0], 'title' => 'Inducciones Correspondientes', 'description' => 'Inducciones correspondientes a normativas.', 'filename' => 'charts/inducciones_correspondientes.png'],
+        ['data' => $data['validaciones_masa_patron'][0], 'title' => 'Validaciones de Masa Patrón', 'description' => 'Validaciones realizadas usando masa patrón.', 'filename' => 'charts/validaciones_masa_patron.png'],
+        ['data' => $data['validaciones_correspondientes'][0], 'title' => 'Validaciones Correspondientes', 'description' => 'Validaciones correspondientes realizadas.', 'filename' => 'charts/validaciones_correspondientes.png'],
+        ['data' => $data['registros_revision_trampas'][0], 'title' => 'Registros de Revisión de Trampas', 'description' => 'Registros de revisiones de trampas para plagas.', 'filename' => 'charts/registros_revision_trampas.png'],
+        ['data' => $data['registros_charlas_bpm'][0], 'title' => 'Registros de Charlas BPM', 'description' => 'Registros de charlas de Buenas Prácticas de Manufactura.', 'filename' => 'charts/registros_charlas_bpm.png'],
+        ['data' => $data['charlas_bpm_programadas'][0], 'title' => 'Charlas BPM Programadas', 'description' => 'Charlas de BPM que fueron programadas.', 'filename' => 'charts/charlas_bpm_programadas.png'],
+        ['data' => $data['auditorias_internas'][0], 'title' => 'Auditorías Internas', 'description' => 'Cantidad de auditorías internas realizadas.', 'filename' => 'charts/auditorias_internas.png'],
+        ['data' => $data['auditorias_internas_programadas'][0], 'title' => 'Auditorías Internas Programadas', 'description' => 'Cantidad de auditorías internas programadas.', 'filename' => 'charts/auditorias_internas_programadas.png'],
+        ['data' => $data['funcionarios_capacitados'][0], 'title' => 'Funcionarios Capacitados', 'description' => 'Número de funcionarios capacitados en el período.', 'filename' => 'charts/funcionarios_capacitados.png'],
+        ['data' => $data['total_funcionarios_empresa'][0], 'title' => 'Total de Funcionarios en la Empresa', 'description' => 'Total de funcionarios en la empresa.', 'filename' => 'charts/total_funcionarios_empresa.png'],
+        ['data' => $data['muestreos_calidad_turno'][0], 'title' => 'Muestreos de Calidad por Turno', 'description' => 'Muestreos de calidad realizados por turno.', 'filename' => 'charts/muestreos_calidad_turno.png'],
+        ['data' => $data['muestreos_calidad_totales'][0], 'title' => 'Muestreos de Calidad Totales', 'description' => 'Total de muestreos de calidad realizados.', 'filename' => 'charts/muestreos_calidad_totales.png'],
+    ];
+
+     
+    $images = [];
+    //$nodePath = '/Users/alvaro/.nvm/versions/node/v18.17.0/bin/node';
+    $nodePath='/usr/local/nvm/versions/node/v18.20.3/bin/node';
+
+    foreach ($charts as $chart) {
+      $isSignificant = $chart['data'] >= 1000; // Establece un criterio para la importancia del gráfico
+      $process = new Process([
+          $nodePath,
+          public_path('generate_charts.js'), // Asegúrate de que el path al script JS sea correcto
+          $chart['data'],
+          $chart['title'],
+          public_path($chart['filename']), // Guarda el gráfico generado en el directorio público
+          $isSignificant ? 'true' : 'false'
+      ]);
+
+      $process->run();
+
+      if (!$process->isSuccessful()) {
+          throw new ProcessFailedException($process);
+      }
+
+      $chart['path'] = public_path($chart['filename']);
+      $chart['name'] = basename($chart['filename']);
+      $images[] = $chart;
+  }
+
+  return $images;
+}
+
     
 
     /**

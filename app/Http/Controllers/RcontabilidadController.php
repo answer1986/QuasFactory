@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Rcontabilidad;
 use Illuminate\Http\Request;
+use App\Mail\IndicadoresMail;
+use Illuminate\Support\Facades\Mail;
+use Symfony\Component\Process\Process;
+use Symfony\Component\Process\Exception\ProcessFailedException;
 
 class RcontabilidadController extends Controller
 {
@@ -34,6 +38,7 @@ class RcontabilidadController extends Controller
      */
     public function store(Request $request)
     {
+    
         // Validar y almacenar los datos del formulario
         $data = $request->validate([
             'startDate' => 'required|array',
@@ -76,7 +81,7 @@ class RcontabilidadController extends Controller
     
         // Procesar y almacenar los datos
         foreach ($data['startDate'] as $index => $startDate) {
-            $indicador = new IndicadorFinanciero([
+            Rcontabilidad::create([
                 'start_date' => $startDate,
                 'end_date' => $data['endDate'][$index],
                 'movimientos_identificados' => $data['movimientos_identificados'][$index],
@@ -96,12 +101,98 @@ class RcontabilidadController extends Controller
                 'inventario' => $data['inventario'][$index],
                 'pasivo_corriente' => $data['pasivo_corriente'][$index],
             ]);
-            $indicador->save();
         }
-    
-        // Redirigir de vuelta a la página con los datos procesados
-        return redirect()->route('rcontabilidad.index')->with('data', $data);
+        
+        
+        //nuevo envio de correo 28-jun 
+
+        $charts = $this->generateCharts($data);
+            
+        $subjectTitle = 'Reporte Contabilidad Actualizado'; 
+
+        // Lista de correos a los que enviar
+        $emails = ['Michel@trescastillos.cl', 'irojas@quas.cl', 'soledad@trescastillos.cl' ,'soporte@quas.cl'];
+
+        foreach ($emails as $email) {
+            Mail::to($email)->send(new IndicadoresMail($charts, $subjectTitle));
+        }
+
+        // Redirigir con un mensaje de éxito
+            
+            return redirect()->back()->with('success', 'Datos guardados y correos enviados exitosamente.');
+        }
+
+
+        private function generateCharts($data)
+{
+    // Define los gráficos a generar con sus detalles específicos
+    $charts = [
+        [
+            'data' => $data['activo_total'][0],
+            'title' => 'Activo Total',
+            'description' => 'Descripción del activo total',
+            'filename' => 'charts/activo_total.png',
+        ],
+        [
+            'data' => $data['pasivo_corriente'][0],
+            'title' => 'Pasivo Corriente',
+            'description' => 'Descripción del pasivo corriente',
+            'filename' => 'charts/pasivo_corriente.png',
+        ],
+        [
+            'data' => $data['ventas_netas'][0],
+            'title' => 'Ventas Netas',
+            'description' => 'Descripción de las ventas netas',
+            'filename' => 'charts/ventas_netas.png',
+        ],
+        [
+            'data' => $data['activo_circulante'][0],
+            'title' => 'Activo Circulante',
+            'description' => 'Descripción del activo circulante',
+            'filename' => 'charts/activo_circulante.png',
+        ],
+        [
+            'data' => $data['deuda_total'][0],
+            'title' => 'Deuda Total',
+            'description' => 'Descripción de la deuda total',
+            'filename' => 'charts/deuda_total.png',
+        ]
+    ];
+
+    $images = [];
+    //$nodePath = '/Users/alvaro/.nvm/versions/node/v18.17.0/bin/node';
+    $nodePath='/usr/local/nvm/versions/node/v18.20.3/bin/node';
+
+
+    // Iterar sobre cada definición de gráfico para generarlos
+    foreach ($charts as $chart) {
+        $isSignificant = $chart['data'] >= 1000; // Asumiendo un criterio para algo significativo
+        $process = new Process([
+            $nodePath, 
+            'generate_charts.js', 
+            $chart['data'], 
+            $chart['title'], 
+            $chart['filename'], 
+            $isSignificant ? 'true' : 'false'
+        ]);
+
+        $process->run();
+
+        // Verificar si el proceso fue exitoso, y manejar errores
+        if (!$process->isSuccessful()) {
+            throw new ProcessFailedException($process);
+        }
+
+        // Almacenar detalles del gráfico para uso posterior
+        $chart['path'] = public_path($chart['filename']);
+        $chart['name'] = basename($chart['filename']);
+        $images[] = $chart;
     }
+
+    return $images;
+}
+    
+    
     
 
     /**

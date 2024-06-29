@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Rcontabilidad extends Model
 {
+    use HasFactory;
+    protected $table = 'rcontabilidad';
+
     protected $fillable = [
         'start_date',
         'end_date',

@@ -5,8 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Indicador extends Model
+class Rcomercial extends Model
 {
+    use HasFactory;
+    protected $table = 'rcomercial';
+
     protected $fillable = [
         'start_date',
         'end_date',

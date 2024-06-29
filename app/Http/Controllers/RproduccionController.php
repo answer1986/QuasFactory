@@ -121,7 +121,7 @@ class RproduccionController extends Controller
             // Generate charts
             $charts = $this->generateCharts($request);
             $subjectTitle = 'Reporte de Indicadores de Producción'; 
-            $emails = ['arv00316@hotmail.com', 'irojas@quas.cl'];
+            $emails = ['Michel@trescastillos.cl', 'irojas@quas.cl', 'anamariag@trescastillos.cl','soporte@quas.cl'];
             foreach ($emails as $email) {
                 Mail::to($email)->send(new IndicadoresMail($charts, $subjectTitle));
 
@@ -190,8 +190,8 @@ class RproduccionController extends Controller
             ];
     
             $images = [];
-              $nodePath = '/Users/alvaro/.nvm/versions/node/v18.17.0/bin/node';
-            //$nodePath ='/root/.nvm/versions/node/v18.17.0/bin/node';
+              //$nodePath = '/Users/alvaro/.nvm/versions/node/v18.17.0/bin/node';
+              $nodePath='/usr/local/nvm/versions/node/v18.20.3/bin/node';
 
             foreach ($charts as $chart) {
                 $isGreen = $chart['data'] >= 100;

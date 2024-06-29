@@ -216,23 +216,23 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     });
 
     Route::prefix('reporteria')->group(function() {
-        Route::get('rproduccion', [RproduccionController::class, 'index'])->name('rproduccion')->middleware('checkdepartment:1');
+        Route::get('rproduccion', [RproduccionController::class, 'index'])->name('rproduccion')->middleware('checkdepartment:1'); //listo
         Route::post('rproduccion/store', [RproduccionController::class, 'store'])->name('rproduccion.store');
         
-        Route::get('rcomercial', [RcomercialController::class, 'index'])->name('rcomercial')->middleware('checkdepartment:2');
+        Route::get('rcomercial', [RcomercialController::class, 'index'])->name('rcomercial')->middleware('checkdepartment:2'); //listo
         Route::post('rproduccion/rcomercial', [RcomercialController::class, 'store'])->name('rcomercial.store');
 
-        Route::get('rrrhh', [RrrhhController::class, 'index'])->name('rrrhh')->middleware('checkdepartment:3');
+        Route::get('rrrhh', [RrrhhController::class, 'index'])->name('rrrhh')->middleware('checkdepartment:3'); // listo
         Route::post('rproduccion/rrrhh', [RrrhhController::class, 'store'])->name('rrrhh.store');
 
 
-        Route::get('rcontabilidad', [RcontabilidadController::class, 'index'])->name('rcontabilidad')->middleware('checkdepartment:4');
+        Route::get('rcontabilidad', [RcontabilidadController::class, 'index'])->name('rcontabilidad')->middleware('checkdepartment:4'); //listo
         Route::post('rproduccion/rcontabilidad', [RcontabilidadController::class, 'store'])->name('rcontabilidad.store');
 
-        Route::get('rbodega', [RbodegaController::class, 'index'])->name('rbodega')->middleware('checkdepartment:5');
+        Route::get('rbodega', [RbodegaController::class, 'index'])->name('rbodega')->middleware('checkdepartment:5'); //listo
         Route::post('rproduccion/rbodega', [RbodegaController::class, 'store'])->name('rbodega.store');
 
-        Route::get('rti', [RtiController::class, 'index'])->name('rti'); //Javier es el 7
+        Route::get('rti', [RtiController::class, 'index'])->name('rti')->middleware('checkdepartment:7');
         Route::post('rproduccion/rti', [RtiController::class, 'store'])->name('rti.store');
 
         Route::get('rcalidad', [RcalidadController::class, 'index'])->name('rti')->middleware('checkdepartment:6');

@@ -5,35 +5,24 @@ namespace App\Http\Controllers;
 use App\Models\Rti;
 use Illuminate\Http\Request;
 
+use App\Mail\IndicadoresMail;
+use Illuminate\Support\Facades\Mail;
+use Symfony\Component\Process\Process;
+use Symfony\Component\Process\Exception\ProcessFailedException;
+
 class RtiController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function index()
     {
         return view('reporteria.rti');
     }
-
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    
     public function store(Request $request)
 {
     // Validar y almacenar los datos del formulario
@@ -78,7 +67,7 @@ class RtiController extends Controller
 
     // Procesar y almacenar los datos
     foreach ($data['startDate'] as $index => $startDate) {
-        $indicador = new IndicadorTI([
+        Rti::create([
             'start_date' => $startDate,
             'end_date' => $data['endDate'][$index],
             'planos_tecnicos_productos' => $data['planos_tecnicos_productos'][$index],
@@ -98,54 +87,172 @@ class RtiController extends Controller
             'plano_circuitos_informaticos' => $data['plano_circuitos_informaticos'][$index],
             'planificacion_operaciones' => $data['planificacion_operaciones'][$index],
         ]);
-        $indicador->save();
     }
 
-    // Redirigir de vuelta a la página con los datos procesados
-    return redirect()->route('rti.index')->with('data', $data);
+        // Generate charts
+        $charts = $this->generateCharts($request);
+        $subjectTitle = 'Reporte de Indicadores de TI'; 
+        $emails = ['Michel@trescastillos.cl', 'irojas@quas.cl', 'javier@trescastillos.cl' , 'soporte@quas.cl'];
+        //$emails = ['arv00316@hotmail.com'];  
+        foreach ($emails as $email) {
+            Mail::to($email)->send(new IndicadoresMail($charts, $subjectTitle));
+
+        }
+    
+        return redirect()->back()->with('success', 'Datos guardados y correos enviados exitosamente.');
+    }
+
+    private function generateCharts($data)
+{
+    // Define the charts with their specific details
+    $charts = [
+        [
+            'data' => $data['planos_tecnicos_productos'][0],
+            'title' => 'Planos Técnicos de Productos',
+            'description' => 'Número de planos técnicos de productos disponibles.',
+            'filename' => 'charts/planos_tecnicos_productos.png'
+        ],
+        [
+            'data' => $data['total_productos_comercializados'][0],
+            'title' => 'Total de Productos Comercializados',
+            'description' => 'Número total de productos comercializados.',
+            'filename' => 'charts/total_productos_comercializados.png'
+        ],
+        [
+            'data' => $data['planos_tecnicos_almacenados'][0],
+            'title' => 'Planos Técnicos Almacenados',
+            'description' => 'Número de planos técnicos almacenados.',
+            'filename' => 'charts/planos_tecnicos_almacenados.png'
+        ],
+        [
+            'data' => $data['total_maquinarias_industrial'][0],
+            'title' => 'Total de Maquinarias Industrial',
+            'description' => 'Número total de maquinarias en el sector industrial.',
+            'filename' => 'charts/total_maquinarias_industrial.png'
+        ],
+        [
+            'data' => $data['planos_tecnicos_maquinaria'][0],
+            'title' => 'Planos Técnicos de Maquinaria',
+            'description' => 'Número de planos técnicos específicos para maquinaria.',
+            'filename' => 'charts/planos_tecnicos_maquinaria.png'
+        ],
+        [
+            'data' => $data['planos_tecnicos_almacenados_maquinaria'][0],
+            'title' => 'Planos Técnicos Almacenados de Maquinaria',
+            'description' => 'Número de planos técnicos de maquinaria almacenados.',
+            'filename' => 'charts/planos_tecnicos_almacenados_maquinaria.png'
+        ],
+        [
+            'data' => $data['total_maquinaria_existente'][0],
+            'title' => 'Total de Maquinaria Existente',
+            'description' => 'Total de maquinaria existente en la planta.',
+            'filename' => 'charts/total_maquinaria_existente.png'
+        ],
+        [
+            'data' => $data['manuales_maquinaria_productiva'][0],
+            'title' => 'Manuales de Maquinaria Productiva',
+            'description' => 'Número de manuales disponibles para maquinaria productiva.',
+            'filename' => 'charts/manuales_maquinaria_productiva.png'
+        ],
+        [
+            'data' => $data['total_maquinaria_productiva'][0],
+            'title' => 'Total de Maquinaria Productiva',
+            'description' => 'Total de maquinaria productiva en operación.',
+            'filename' => 'charts/total_maquinaria_productiva.png'
+        ],
+        [
+            'data' => $data['usuarios_requerimientos_pendientes'][0],
+            'title' => 'Usuarios con Requerimientos Pendientes',
+            'description' => 'Número de usuarios con requerimientos pendientes en TI.',
+            'filename' => 'charts/usuarios_requerimientos_pendientes.png'
+        ],
+        [
+            'data' => $data['total_usuarios_red'][0],
+            'title' => 'Total de Usuarios en la Red',
+            'description' => 'Total de usuarios activos en la red de la empresa.',
+            'filename' => 'charts/total_usuarios_red.png'
+        ],
+        [
+            'data' => $data['licencias_activas'][0],
+            'title' => 'Licencias Activas',
+            'description' => 'Número total de licencias activas para software.',
+            'filename' => 'charts/licencias_activas.png'
+        ],
+        [
+            'data' => $data['total_softwares_usados'][0],
+            'title' => 'Total de Softwares Usados',
+            'description' => 'Total de softwares en uso en la empresa.',
+            'filename' => 'charts/total_softwares_usados.png'
+        ],
+        [
+            'data' => $data['plano_electrico_industrial'][0],
+            'title' => 'Plano Eléctrico Industrial',
+            'description' => 'Detalles del plano eléctrico del sector industrial.',
+            'filename' => 'charts/plano_electrico_industrial.png'
+        ],
+        [
+            'data' => $data['plano_circuitos_informaticos'][0],
+            'title' => 'Plano de Circuitos Informáticos',
+            'description' => 'Detalles del plano de circuitos informáticos de la empresa.',
+            'filename' => 'charts/plano_circuitos_informaticos.png'
+        ],
+        [
+            'data' => $data['planificacion_operaciones'][0],
+            'title' => 'Planificación de Operaciones',
+            'description' => 'Detalle de la planificación de operaciones de TI.',
+            'filename' => 'charts/planificacion_operaciones.png'
+        ],
+    ];
+
+    $images = [];
+    //$nodePath = '/Users/alvaro/.nvm/versions/node/v18.17.0/bin/node';
+    $nodePath='/usr/local/nvm/versions/node/v18.20.3/bin/node';
+
+    foreach ($charts as $chart) {
+        $isSignificant = $chart['data'] >= 1000; // Asumiendo un criterio para algo significativo
+        $process = new Process([
+            $nodePath, 
+            'generate_charts.js', 
+            $chart['data'], 
+            $chart['title'], 
+            $chart['filename'], 
+            $isSignificant ? 'true' : 'false'
+        ]);
+
+        $process->run();
+
+        // Verificar si el proceso fue exitoso, y manejar errores
+        if (!$process->isSuccessful()) {
+            throw new ProcessFailedException($process);
+        }
+
+        // Almacenar detalles del gráfico para uso posterior
+        $chart['path'] = public_path($chart['filename']);
+        $chart['name'] = basename($chart['filename']);
+        $images[] = $chart;
+    }
+
+    return $images;
 }
 
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Rti  $rti
-     * @return \Illuminate\Http\Response
-     */
+
+   
     public function show(Rti $rti)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Rti  $rti
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Rti $rti)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Rti  $rti
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, Rti $rti)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Rti  $rti
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Rti $rti)
     {
         //

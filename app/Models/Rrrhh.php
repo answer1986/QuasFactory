@@ -7,6 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class RRRHH extends Model
 {
+ 
+    use HasFactory;
+    protected $table = 'rrhh';
+
     protected $fillable = [
         'start_date',
         'end_date',
